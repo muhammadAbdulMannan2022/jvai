@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "./Sections/Hero";
 import Navbar from "./Sections/Navbar";
 import TrustSection from "./Sections/TrustSection";
+import Intro from "./Sections/Intro";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <Hero />
       </div>
       <TrustSection />
+      <Intro />
     </div>
   );
 }
