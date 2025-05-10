@@ -5,6 +5,7 @@ import TrustSection from "./Sections/TrustSection";
 import Intro from "./Sections/Intro";
 import ServicesSection from "./Sections/SerVicesSection";
 import TechStack from "./Sections/TechStack";
+import Proces from "./Sections/Proces";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Intro />
       <ServicesSection />
       <TechStack />
+      <Proces />
     </div>
   );
 }
