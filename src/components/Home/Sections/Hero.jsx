@@ -7,12 +7,12 @@ export default function Hero() {
   return (
     <div className="text-[#F3F3F3] px-24 w-[70%] md:w-1/2 h-full flex flex-col justify-center">
       <h1 className="text-[28px]">We're JVAI-</h1>
-      <h1 className="text-6xl font-bold">
+      <h1 className="text-6xl font-bold mt-4 mb-10">
         <span className="text-blue-500">Empowering</span>
         <br />
         Innovation with AI
       </h1>
-      <p className="text-[24px] text-xs font-[100]">
+      <p className="text-[24px] text-xs font-[100] mb-6">
         Partner with us to design, build, and scale cutting-edge AI solutions
         tailored to your business needs.
       </p>

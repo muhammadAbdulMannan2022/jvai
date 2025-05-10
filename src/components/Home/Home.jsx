@@ -3,6 +3,8 @@ import Hero from "./Sections/Hero";
 import Navbar from "./Sections/Navbar";
 import TrustSection from "./Sections/TrustSection";
 import Intro from "./Sections/Intro";
+import ServicesSection from "./Sections/SerVicesSection";
+import TechStack from "./Sections/TechStack";
 
 export default function Home() {
   return (
@@ -14,6 +16,8 @@ export default function Home() {
       </div>
       <TrustSection />
       <Intro />
+      <ServicesSection />
+      <TechStack />
     </div>
   );
 }
