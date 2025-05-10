@@ -2,3 +2,29 @@
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
 }
+.marquee-fade {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .marquee-fade::before,
+  .marquee-fade::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .marquee-fade::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  }
+  
+  .marquee-fade::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  }
+  

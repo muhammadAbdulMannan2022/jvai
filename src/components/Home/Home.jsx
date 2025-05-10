@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "./Sections/Hero";
 import Navbar from "./Sections/Navbar";
+import TrustSection from "./Sections/TrustSection";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <Navbar />
         <Hero />
       </div>
+      <TrustSection />
     </div>
   );
 }
