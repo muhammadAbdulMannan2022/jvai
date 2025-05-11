@@ -6,6 +6,7 @@ import Intro from "./Sections/Intro";
 import ServicesSection from "./Sections/SerVicesSection";
 import TechStack from "./Sections/TechStack";
 import Proces from "./Sections/Proces";
+import Footer from "./Sections/Footer";
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
       <ServicesSection />
       <TechStack />
       <Proces />
+
+      {/* footer */}
+      <Footer />
     </div>
   );
 }

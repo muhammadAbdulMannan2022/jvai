@@ -2,6 +2,10 @@
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
 }
+.open-sans-text {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+}
 .marquee-fade {
     position: relative;
     overflow: hidden;
