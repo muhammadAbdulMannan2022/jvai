@@ -18,7 +18,8 @@ export default function ProjectsCard({
   return (
     <div
       ref={container}
-      className="flex items-center justify-center sticky top-0 z-10"
+      style={{ top: `${50 + i * 50}px` }}
+      className="flex items-center justify-center sticky z-10"
     >
       <motion.div
         style={{ scale, top: `calc(-10% + ${i + 25}px)` }}
