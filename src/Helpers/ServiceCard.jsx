@@ -76,7 +76,16 @@ const ServiceCard = ({
           className="w-full h-[60%] bg-[#E6EDFF] rounded-lg text-center flex flex-col items-center justify-center px-3 absolute"
           style={{ top: `${topPosition}px` }} // Dynamically update the top position
           initial={{ y: 100, opacity: 0 }} // Start off-screen and invisible
-          animate={controls} // Animate based on controls
+          animate={{
+            top: `${topPosition}px`, // Smooth transition of the 'top' position
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.5, // Transition duration for smooth animation
+            type: "spring", // You can use 'spring' for more fluid animations
+            stiffness: 100, // Adjust the stiffness for a more fluid effect
+            damping: 25, // Adjust damping to prevent the animation from being too snappy
+          }}
         >
           <h3 className="text-2xl font-bold text-blue-900">{centerTitle}</h3>
           <p className="text-gray-700 mt-2">{centerDescription}</p>
