@@ -7,6 +7,7 @@ import ServicesSection from "./Sections/SerVicesSection";
 import TechStack from "./Sections/TechStack";
 import Proces from "./Sections/Proces";
 import Footer from "./Sections/Footer";
+import RecentProjects from "./Sections/recentProjects/RecentProjects";
 
 export default function Home() {
   return (
@@ -21,7 +22,8 @@ export default function Home() {
       <ServicesSection />
       <TechStack />
       <Proces />
-
+      {/*  */}
+      <RecentProjects />
       {/* footer */}
       <Footer />
     </div>
