@@ -1,14 +1,3 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "./team.css";
-
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-
 const data = [
   {
     id: 1,
@@ -30,66 +19,83 @@ const data = [
   },
 ];
 
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "./team.css";
+import Title from "../../../../Helpers/Title";
+
+// import required modules
+import { EffectCoverflow, Pagination } from "swiper/modules";
+
 export default function TeamSlider() {
   return (
-    <div className="flower-slider">
-      <h1 className="heading">Flower Gallery</h1>
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2.5,
-        }}
-        pagination={{
-          el: ".flower-slider .swiper-pagination",
-          clickable: true,
-        }}
-        navigation={{
-          nextEl: ".flower-slider .swiper-button-next",
-          prevEl: ".flower-slider .swiper-button-prev",
-          clickable: true,
-        }}
-        modules={[EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container"
-      >
-        {data.map((member, index) => (
-          <SwiperSlide
-            key={index}
-            className="transition-all duration-500 ease-in-out absolute"
-          >
-            <div className="bg-white flex flex-row-reverse rounded-xl shadow-lg w-[320px] md:w-[380px] h-[500px] text-left space-x-4 space-x-reverse">
-              <div className="relative w-full h-full">
-                <div className="absolute h-full pt-[80px] w-full bottom-0 left-0 px-6 overflow-hidden">
-                  <img src={member.img} alt="fafsun" />
+    <div className="team_slide flex flex-col justify-center items-center w-full">
+      <Title
+        title={
+          <>
+            Meet Our <span className="text-blue-500">AI Experts</span>
+          </>
+        }
+        desc={`Our team of AI specialists, data scientists, and engineers are passionate about creating innovative solutions.`}
+      />
+      <div className="w-[900px]">
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={3} // Limit to 3 visible slides
+          spaceBetween={30} // Optional: spacing between slides
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination]}
+          className="mySwiper"
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+        >
+          {Array(9)
+            .fill(null)
+            .map((_, i) => (
+              <SwiperSlide key={i} className="relative overflow-hidden">
+                <div className="w-full h-full overflow-hidden relative flex items-center justify-center">
+                  <img
+                    src={`/team.png`}
+                    alt={`Nature ${i + 1}`}
+                    className="w-[260px] object-cover absolute top-0" // Ensure consistent size
+                  />
                 </div>
-                <div className="absolute h-[50%] w-full bg-gradient-to-t from-black via-black to-transparent bottom-0 left-0"></div>
-                <div className="absolute bottom-0  w-full flex flex-col items-center justify-center py-3">
-                  <h1 className="text-white font-bold text-2xl">
-                    {member.name}
-                  </h1>
-                  <h1 className="text-blue-500 text-xl ">{member.position}</h1>
+                <div className="w-full h-1/2 bg-gradient-to-t from-black via-black to-transparent absolute bottom-0">
+                  <div className="w-full h-full relative">
+                    <h1 className="absolute bottom-16 text-center w-full text-2xl text-blue-500 font-bold">
+                      Rafsun Ahmed
+                    </h1>
+                    <p className="absolute bottom-10 text-center w-full text-lg text-white font-bold">
+                      Ai Engineer
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-
-        <div className="slider-controler">
-          <div className="swiper-button-prev slider-arrow">
-            <ion-icon name="arrow-back-outline"></ion-icon>
-          </div>
-          <div className="swiper-button-next slider-arrow">
-            <ion-icon name="arrow-forward-outline"></ion-icon>
-          </div>
-          <div className="swiper-pagination"></div>
-        </div>
-      </Swiper>
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </div>
+      ;
     </div>
   );
 }

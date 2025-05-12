@@ -1,0 +1,17 @@
+.team_slide .swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.team_slide .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px !important;
+  height: 400px !important;
+}
+
+.swiper-slide img {
+  display: block;
+  height: 100% !important;
+}
