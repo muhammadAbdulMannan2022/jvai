@@ -1,6 +1,6 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { FaPlay, FaArrowRight } from "react-icons/fa";
+import { motion, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { FaPlay, FaPause, FaArrowRight } from "react-icons/fa";
 import { LuCalendarClock } from "react-icons/lu";
 
 export default function ProjectsCard({
@@ -12,8 +12,53 @@ export default function ProjectsCard({
 }) {
   const { title, description, video, date, coverImage } = data;
   const container = useRef(null);
-
+  const videoRef = useRef(null);
   const scale = useTransform(progress, range, [1, targetScale]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Detect visibility
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    if (container.current) observer.observe(container.current);
+
+    return () => {
+      if (container.current) observer.unobserve(container.current);
+    };
+  }, []);
+
+  // Auto pause when out of view
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+
+    if (!isVisible && !vid.paused) {
+      vid.pause();
+      setIsPlaying(false);
+    }
+  }, [isVisible]);
+
+  const togglePlayback = (e) => {
+    e.stopPropagation();
+    const vid = videoRef.current;
+    if (!vid) return;
+
+    if (vid.paused) {
+      vid
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch(() => {});
+    } else {
+      vid.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
     <div
@@ -25,15 +70,12 @@ export default function ProjectsCard({
         style={{ scale, top: `calc(-10% + ${i + 25}px)` }}
         className="gap-6 bg-white rounded-xl shadow-lg p-6 h-[600px] my-16 w-7xl flex flex-col justify-between"
       >
-        {/* Header - Title and Meta */}
+        {/* Header */}
         <div className="flex justify-between w-full gap-5">
-          {/* Title & Description */}
           <div className="w-[64%]">
             <h1 className="text-4xl text-blue-950 font-bold mb-2">{title}</h1>
             <p className="text-xl text-gray-700">{description}</p>
           </div>
-
-          {/* Date & Link */}
           <div className="w-[35%] flex justify-between items-end">
             <div className="flex items-center gap-2 text-gray-600 text-sm mt-1">
               <LuCalendarClock className="text-blue-600 text-xl" />
@@ -58,18 +100,27 @@ export default function ProjectsCard({
           </div>
 
           {/* Video */}
-          <div className="relative rounded-lg overflow-hidden w-[64%] h-full">
+          <div className="relative rounded-lg overflow-hidden w-[64%] h-full group">
             <video
+              ref={videoRef}
               src={video}
               className="w-full h-full object-cover rounded-lg"
-              controls={false}
               muted
-              autoPlay
               loop
+              playsInline
             />
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-20 transition">
+
+            {/* Overlay play/pause button */}
+            <div
+              className="absolute inset-0 flex items-center justify-center bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 z-10"
+              onClick={togglePlayback}
+            >
               <div className="bg-white p-4 rounded-full shadow-lg cursor-pointer">
-                <FaPlay className="text-blue-600 text-xl" />
+                {isPlaying ? (
+                  <FaPause className="text-blue-600 text-xl" />
+                ) : (
+                  <FaPlay className="text-blue-600 text-xl" />
+                )}
               </div>
             </div>
           </div>
