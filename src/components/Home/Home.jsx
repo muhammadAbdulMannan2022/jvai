@@ -19,7 +19,6 @@ export default function Home() {
     <div className="h-screen relative">
       {/* header */}
       <div className="bg-blue-950 bg-[url('/HeroBg.png')] bg-cover bg-no-repeat bg-center h-full">
-        <Navbar />
         <Hero />
       </div>
       <TrustSection />
