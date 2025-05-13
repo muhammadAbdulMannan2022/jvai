@@ -14,6 +14,8 @@ import "swiper/css/navigation";
 
 import "./testimonials.css";
 
+import Title from "../../../../Helpers/Title";
+
 const testimonials = [
   {
     id: 1,
@@ -64,8 +66,16 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <div className="flower-slider">
-      <h1 className="heading">Testimonials</h1>
+    <div className="flower-slider bg-[#F3F5F9]">
+      <Title
+        title={
+          <>
+            <span className="text-blue-500">Our Clients</span> Are Proud to
+            Recommend Us.
+          </>
+        }
+        desc={`Trusted by clients for delivering results that speak for themselves.`}
+      />
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

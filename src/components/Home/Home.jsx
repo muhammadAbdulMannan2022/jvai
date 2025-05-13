@@ -11,6 +11,8 @@ import RecentProjects from "./Sections/recentProjects/RecentProjects";
 import TeamSlider from "./Sections/teamSlider/TeamSlider";
 import Testimonials from "./Sections/Testimonials/Testimonials";
 import SupportSection from "./Sections/Support/SupportSection";
+import Moments from "./Sections/moments/Moments";
+import FAQSection from "./Sections/FAQ/FAQSection";
 
 export default function Home() {
   return (
@@ -33,6 +35,10 @@ export default function Home() {
       <Testimonials />
       {/*  */}
       <TeamSlider />
+      {/*  */}
+      <Moments />
+      {/*  */}
+      <FAQSection />
       {/* footer */}
       <Footer />
     </div>
