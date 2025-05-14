@@ -3,6 +3,8 @@ import Button from "../../Helpers/Button";
 import { MdRocketLaunch } from "react-icons/md";
 import VideoPlayer from "../../Helpers/VideoPlayer";
 import VideoSection from "./Sections/VideoSection";
+import Testimonials from "../Home/Sections/Testimonials/Testimonials";
+import TrustSection from "../Home/Sections/TrustSection";
 
 export default function Services() {
   return (
@@ -52,11 +54,8 @@ export default function Services() {
 
       {/*  */}
       <VideoSection />
+      <TrustSection />
+      <Testimonials />
     </section>
   );
-}
-{
-  /* <div className="w-[600px] h-[340px] mx-auto mt-10">
-        <VideoPlayer src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" />
-      </div> */
 }
