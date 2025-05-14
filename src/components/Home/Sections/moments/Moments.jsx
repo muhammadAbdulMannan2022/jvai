@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination } from "swiper/modules";
 import { Calendar } from "lucide-react";
 import Title from "../../../../Helpers/Title";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "./moments.css";
 
 const activitySlides = [
   {
@@ -43,18 +47,7 @@ const activitySlides = [
   },
 ];
 
-export default function Moments() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) =>
-        prev === activitySlides.length - 1 ? 0 : prev + 1
-      );
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
+export default function MomentsSwiper() {
   const renderImages = (images) => {
     const count = images.length;
 
@@ -127,7 +120,7 @@ export default function Moments() {
   };
 
   return (
-    <div className="w-full mx-auto text-center py-16 px-4 bg-[#F3F5F9]">
+    <div className="team_slide flex flex-col justify-center items-center w-full py-16 bg-[#F3F5F9]">
       <Title
         title={
           <>
@@ -137,66 +130,51 @@ export default function Moments() {
         desc={`Tracking the Momentum of Our Day with Every Commit and Conversation.`}
       />
 
-      <div>
-        <div className="relative h-[750px] overflow-x-hidden">
-          <div className="relative w-full h-full flex items-center justify-center">
-            {activitySlides.map((slide, index) => {
-              const position =
-                (index - activeIndex + activitySlides.length) %
-                activitySlides.length;
-
-              // Show 3 slides at once (activeIndex, activeIndex+1, activeIndex+2)
-              const isVisible = [0, 1, 2].includes(position);
-
-              if (!isVisible) return null;
-
-              let zIndex = 0;
-              let scale = 0.8;
-              let opacity = 0.6;
-              let translateX = 0;
-
-              if (position === 0) {
-                zIndex = 30;
-                scale = 1;
-                opacity = 1;
-                translateX = 0;
-              } else if (position === 1) {
-                zIndex = 20;
-                scale = 0.9;
-                opacity = 0.8;
-                translateX = 300;
-              } else if (position === 2) {
-                zIndex = 20;
-                scale = 0.9;
-                opacity = 0.8;
-                translateX = -300;
-              }
-
-              return (
-                <div
-                  key={slide.id}
-                  className="transition-all duration-500 ease-in-out absolute"
-                  style={{
-                    zIndex,
-                    transform: `translateX(${translateX}px) scale(${scale})`,
-                    opacity,
-                  }}
-                >
-                  <div className="bg-[#B2C7FF] rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[600px] text-left p-5 h-[500px] md:h-[700px]">
-                    <div className="pb-5">
-                      <h3 className="text-xl font-semibold">{slide.title}</h3>
-                      <div className="flex items-center text-sm text-blue-950 mt-1">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        <span>{slide.date}</span>
-                      </div>
-                    </div>
-                    {renderImages(slide.images)}
+      <div className="w-full max-w-[1100px] ">
+        <Swiper
+          modules={[EffectCoverflow, Pagination]}
+          effect="coverflow"
+          grabCursor={true}
+          centeredSlides={true}
+          loop={true}
+          slidesPerView={3}
+          spaceBetween={0}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2,
+            slideShadows: false,
+          }}
+          pagination={{ clickable: true }}
+          className="teamSwiper"
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 2,
+            },
+          }}
+        >
+          {activitySlides.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              <div className="bg-[#B2C7FF] rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[600px] text-left p-5 h-[500px] md:h-[700px]">
+                <div className="pb-5">
+                  <h3 className="text-xl font-semibold">{slide.title}</h3>
+                  <div className="flex items-center text-sm text-blue-950 mt-1">
+                    <Calendar className="h-4 w-4 mr-1" />
+                    <span>{slide.date}</span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        </div>
+                {renderImages(slide.images)}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

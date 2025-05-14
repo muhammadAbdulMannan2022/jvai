@@ -1,0 +1,10 @@
+/* team.css */
+.teamSwiper .swiper-slide:not(.swiper-slide-active) {
+  /* padding-left: 200px; */
+}
+.teamSwiper .swiper-slide-next {
+  padding-right: 140px;
+}
+.teamSwiper .swiper-slide-prev {
+  padding-left: 140px;
+}

@@ -85,7 +85,7 @@ export default function TeamSlider() {
         >
           {data.map((member) => (
             <SwiperSlide key={member.id}>
-              <div className="relative h-[600px] w-[400px] rounded-xl overflow-hidden shadow-xl">
+              <div className="relative h-[600px] w-[400px] border border-gray-200 rounded-xl overflow-hidden shadow-xl">
                 <img
                   src={member.img}
                   alt={member.name}
