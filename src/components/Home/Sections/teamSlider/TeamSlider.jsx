@@ -1,101 +1,105 @@
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "./team.css";
+
+import { EffectCoverflow, Pagination } from "swiper/modules";
+import Title from "../../../../Helpers/Title";
+
 const data = [
   {
     id: 1,
     img: "/team.png",
     name: "Rafsun Ahmed",
-    position: "Ai Engineer",
+    position: "AI Engineer",
   },
   {
-    id: 1,
+    id: 2,
     img: "/team.png",
-    name: "Rafsun Ahmed",
-    position: "Ai Engineer",
+    name: "Sara Rahman",
+    position: "Machine Learning Engineer",
   },
   {
-    id: 1,
+    id: 3,
     img: "/team.png",
-    name: "Rafsun Ahmed",
-    position: "Ai Engineer",
+    name: "Tom Hardy",
+    position: "Data Scientist",
+  },
+  {
+    id: 4,
+    img: "/team.png",
+    name: "Nina Lee",
+    position: "AI Researcher",
+  },
+  {
+    id: 5,
+    img: "/team.png",
+    name: "Leo Zhang",
+    position: "AI Strategist",
   },
 ];
 
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "./team.css";
-import Title from "../../../../Helpers/Title";
-
-// import required modules
-import { EffectCoverflow, Pagination } from "swiper/modules";
-
 export default function TeamSlider() {
   return (
-    <div className="team_slide flex flex-col justify-center items-center w-full">
+    <div className="team_slide flex flex-col justify-center items-center w-full py-16">
       <Title
         title={
           <>
-            Meet Our <span className="text-blue-500">AI Experts</span>
+            Meet Our <span className="text-blue-500">AI Experts</span>
           </>
         }
         desc={`Our team of AI specialists, data scientists, and engineers are passionate about creating innovative solutions.`}
       />
-      <div className="w-[900px]">
+
+      <div className="w-full max-w-[1100px] ">
         <Swiper
+          modules={[EffectCoverflow, Pagination]}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView={3} // Limit to 3 visible slides
-          spaceBetween={30} // Optional: spacing between slides
+          loop={true}
+          slidesPerView={3}
+          spaceBetween={0}
           coverflowEffect={{
-            rotate: 50,
+            rotate: 20,
             stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
+            depth: 150,
+            modifier: 2,
+            slideShadows: false,
           }}
-          pagination={true}
-          modules={[EffectCoverflow, Pagination]}
-          className="mySwiper"
+          pagination={{ clickable: true }}
+          className="teamSwiper"
           breakpoints={{
             0: {
               slidesPerView: 1,
             },
+            768: {
+              slidesPerView: 2,
+            },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 2,
             },
           }}
         >
-          {Array(9)
-            .fill(null)
-            .map((_, i) => (
-              <SwiperSlide key={i} className="relative overflow-hidden">
-                <div className="w-full h-full overflow-hidden relative flex items-center justify-center">
-                  <img
-                    src={`/team.png`}
-                    alt={`Nature ${i + 1}`}
-                    className="w-[260px] object-cover absolute top-0" // Ensure consistent size
-                  />
+          {data.map((member) => (
+            <SwiperSlide key={member.id}>
+              <div className="relative h-[600px] w-[400px] rounded-xl overflow-hidden shadow-xl">
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-black via-black to-transparent p-4 text-white text-center flex flex-col justify-end pb-10">
+                  <h3 className="text-xl font-bold">{member.name}</h3>
+                  <p className="text-sm text-blue-500">{member.position}</p>
                 </div>
-                <div className="w-full h-1/2 bg-gradient-to-t from-black via-black to-transparent absolute bottom-0">
-                  <div className="w-full h-full relative">
-                    <h1 className="absolute bottom-16 text-center w-full text-2xl text-blue-500 font-bold">
-                      Rafsun Ahmed
-                    </h1>
-                    <p className="absolute bottom-10 text-center w-full text-lg text-white font-bold">
-                      Ai Engineer
-                    </p>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
-      ;
     </div>
   );
 }
