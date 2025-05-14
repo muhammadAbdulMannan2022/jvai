@@ -9,10 +9,10 @@ import Proces from "./Sections/Proces";
 import Footer from "./Sections/Footer";
 import RecentProjects from "./Sections/recentProjects/RecentProjects";
 import TeamSlider from "./Sections/teamSlider/TeamSlider";
-import Testimonials from "./Sections/Testimonials/Testimonials";
 import SupportSection from "./Sections/Support/SupportSection";
 import Moments from "./Sections/moments/Moments";
 import FAQSection from "./Sections/FAQ/FAQSection";
+import Testimonials from "./Sections/Testimonials/Testimonials";
 
 export default function Home() {
   return (
