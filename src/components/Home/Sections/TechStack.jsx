@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer"; // Import the IntersectionObserver
 import Title from "../../../Helpers/Title";
 
 export default function TechStack() {
@@ -39,26 +41,46 @@ export default function TechStack() {
         desc={`We leverage the latest technologies across AI, web, and Phone platforms to build robust, scalable solutions.`}
       />
 
-      <div className="flex flex-wrap justify-center gap-4 mt-8">
+      <div className="flex flex-wrap justify-center mt-8">
         {[firstRow, secondRow].map((row, rowIndex) => (
           <div key={rowIndex} className="flex justify-center gap-4 flex-wrap">
-            {row.map((icon, key) => (
-              <div
-                key={key}
-                className="relative h-[80px] w-[80px] flex items-center justify-center"
-              >
-                <img
-                  src="/icons/Polygon 5.png"
-                  className="absolute h-full w-full"
-                  alt=""
-                />
-                <img
-                  src={icon.src}
-                  className="z-20 w-[40px] h-[40px]"
-                  alt={icon.name}
-                />
-              </div>
-            ))}
+            {row.map((icon, key) => {
+              const { ref, inView } = useInView({
+                triggerOnce: false, // Make it trigger each time the section comes into view
+                threshold: 0.1, // Adjust visibility percentage
+              });
+
+              return (
+                <motion.div
+                  key={key}
+                  ref={ref}
+                  className="relative h-[80px] w-[80px] flex items-center justify-center"
+                  initial={{ opacity: 0, x: 0, y: 0 }} // Initially stacked in one place
+                  animate={{
+                    opacity: inView ? 1 : 0,
+                    x: inView ? 0 : Math.random() * 100 - 50, // Random horizontal position for initial stacking
+                    y: inView ? 0 : Math.random() * 100 - 50, // Random vertical position for initial stacking
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 25,
+                    delay: key * 0.05, // Stagger the animations for a nice effect
+                  }}
+                >
+                  <img
+                    src="/icons/Polygon 5.png"
+                    className="absolute h-full w-full"
+                    alt=""
+                  />
+                  <img
+                    src={icon.src}
+                    className="z-20 w-[40px] h-[40px]"
+                    alt={icon.name}
+                  />
+                </motion.div>
+              );
+            })}
           </div>
         ))}
       </div>
