@@ -35,27 +35,27 @@ const faqData = [
 const teamData = [
   {
     id: 1,
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/team/1.png",
     alt: "Team member",
   },
   {
     id: 2,
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/team/2.png",
     alt: "Team member",
   },
   {
     id: 3,
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/team/3.png",
     alt: "Team member",
   },
   {
     id: 4,
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/team/4.png",
     alt: "Team member",
   },
   {
     id: 5,
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/team/5.png",
     alt: "Team member",
   },
 ];
@@ -65,7 +65,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
   return (
     <div className="border-b border-gray-200">
       <button
-        className="flex w-full items-center justify-between py-4 text-left"
+        className="flex w-full items-center justify-between py-4 text-left hover:cursor-pointer"
         onClick={onClick}
       >
         <span className="text-sm font-medium text-gray-900 md:text-base">
@@ -129,7 +129,7 @@ export default function FAQTeamSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-4 flex space-x-2"
+              className="mt-4 flex -space-x-4"
             >
               {teamData.map((member, index) => (
                 <motion.div
@@ -137,14 +137,13 @@ export default function FAQTeamSection() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                  className="overflow-hidden rounded-full border-2 border-white shadow-md"
+                  className="overflow-hidden rounded-full border-2 border-white shadow-md w-14 h-14"
                 >
                   <img
                     src={member.image}
                     alt={member.alt}
                     width={60}
-                    height={60}
-                    className="h-14 w-14 rounded-full object-cover md:h-16 md:w-16"
+                    className="w-14 rounded-full object-cover md:h-16 md:w-16"
                   />
                 </motion.div>
               ))}
@@ -168,7 +167,7 @@ export default function FAQTeamSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="rounded-md bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow-md transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 md:text-base"
+                className="rounded-md bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow-md transition-colors hover:bg-blue-700  focus:ring-2  md:text-base hover:cursor-pointer"
               >
                 Book a Quick Call
               </motion.button>

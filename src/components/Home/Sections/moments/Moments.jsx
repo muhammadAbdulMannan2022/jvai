@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { Calendar } from "lucide-react";
 import Title from "../../../../Helpers/Title";
 
@@ -132,13 +132,16 @@ export default function MomentsSwiper() {
 
       <div className="w-full max-w-[1100px] ">
         <Swiper
-          modules={[EffectCoverflow, Pagination]}
+          modules={[EffectCoverflow, Pagination, Autoplay]}
           effect="coverflow"
           grabCursor={true}
           centeredSlides={true}
           loop={true}
           slidesPerView={3}
           spaceBetween={0}
+          autoplay={{
+            delay: 3000,
+          }}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
