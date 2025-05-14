@@ -4,6 +4,8 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
+import Button from "../../../Helpers/Button";
+import { FaCircle, FaPlay } from "react-icons/fa";
 
 // Your data
 // data
@@ -95,7 +97,15 @@ const data = [
   },
 ];
 // INDIVIDUAL CARD COMPONENT
-const VideoCard = ({ data, isActive, isPlaying, onToggle, progress }) => {
+const VideoCard = ({
+  data,
+  isActive,
+  isPlaying,
+  onToggle,
+  progress,
+  goToNext,
+  goToPrev,
+}) => {
   const { title, desc, videoSrc, image, services, color } = data;
 
   return (
@@ -106,56 +116,128 @@ const VideoCard = ({ data, isActive, isPlaying, onToggle, progress }) => {
         backgroundImage: `url(${image})`,
       }}
     >
-      <div
-        className={`absolute top-4 left-4 z-20  border ${
-          !isActive && "h-full flex flex-col items-center"
-        }`}
-      >
+      <div className="bg-black/60 px-[10%] backdrop-blur-sm border h-full">
         <div
-          className="w-4 h-4 rounded-full"
-          style={{ backgroundColor: color }}
-        />
-      </div>
-
-      {isActive && (
-        <div className="bg-black/60 backdrop-blur-sm p-6 text-white relative z-10 h-full">
-          <h2 className="text-2xl font-bold mb-2">{title}</h2>
-          <p className="text-sm mb-4">{desc}</p>
-          <ul className="list-decimal list-inside space-y-1 text-sm mb-6">
-            {services.map((service, i) => (
-              <li key={i}>{service}</li>
-            ))}
-          </ul>
-
-          <div className="w-full max-w-md">
-            <VideoPlayer
-              src={videoSrc}
-              isPlaying={isPlaying}
-              onToggle={onToggle}
-            />
-          </div>
-
-          <div className="absolute bottom-6 left-6 right-6">
-            <div className="w-[70%] h-2 bg-white/20 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-white transition-all"
-                style={{
-                  width: `${progress}%`,
-                  transition: "width 0.1s linear",
-                }}
+          className={`w-full h-[10%] relative flex items-center justify-end py-4 ${
+            !isActive && "h-full"
+          }`}
+        >
+          {isActive ? (
+            <div
+              className={`w-full flex items-center  gap-4 ${
+                !isActive ? "rotate-90 justify-center" : "justify-end"
+              }`}
+            >
+              <span
+                className="w-4 h-4 rounded-full block"
+                style={{ backgroundColor: color }}
               />
-              <div>
-                <div>
-                  <MdOutlineKeyboardArrowLeft />
-                </div>
-                <div>
-                  <MdOutlineKeyboardArrowRight />
+              <span
+                className={`font-bold ${!isActive && "hidden"}`}
+                style={{ color: color }}
+              >
+                {title}
+              </span>
+            </div>
+          ) : (
+            <div className="w-16 h-full flex flex-col items-center gap-4 overflow-hidden">
+              {/* Green circle icon */}
+              <div className="">
+                <FaCircle
+                  style={{ color: color }}
+                  className={`w-[30px] h-[30px] `}
+                />
+              </div>
+
+              {/* Vertical text using Tailwind */}
+              <div className="flex flex-col items-center">
+                <div
+                  style={{
+                    writingMode: "vertical-rl",
+                    textOrientation: "mixed",
+                    letterSpacing: "0.1em",
+                    color: color,
+                  }}
+                  className={` font-medium tracking-wide`}
+                >
+                  {title}
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
-      )}
+        <div className="w-full h-[80%]">
+          {isActive && (
+            <div className=" p-6 text-white relative z-10 h-[80vh] flex gap-10 items-center">
+              <div className="w-1/2">
+                <h2
+                  className="text-2xl lg:text-5xl font-bold mb-2"
+                  style={{ color: color }}
+                >
+                  {title}
+                </h2>
+                <p className="text-sm lg:text-[16px] my-8">{desc}</p>
+                <ul className="list-decimal list-inside space-y-1 text-sm lg:text-lg font-bold mb-6">
+                  {services.map((service, i) => (
+                    <li key={i}>{service}</li>
+                  ))}
+                </ul>
+                <Button text={"Contact Us"} />
+              </div>
+
+              <div className="w-1/2 h-[40%] max-w-md flex items-center justify-center">
+                <VideoPlayer
+                  src={videoSrc}
+                  isPlaying={isPlaying}
+                  onToggle={onToggle}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+        {isActive && (
+          <>
+            <div className="w-full h-[10%] flex relative">
+              {/* Progress Bar */}
+              <div className="absolute bottom-3 left-6 right-6 flex items-center justify-center">
+                <div className="w-[70%] h-2 bg-white/20 rounded-full overflow-hidden mb-4">
+                  <div
+                    className="h-full bg-white transition-all"
+                    style={{
+                      width: `${progress}%`,
+                      transition: "width 0.1s linear",
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Controls Inside Card */}
+              <div className="absolute bottom-3 right-0 flex  justify-end items- w-fit px-4 gap-4 z-50">
+                <button
+                  onClick={goToPrev}
+                  className="bg-white/30 hover:bg-white/60 hover:cursor-pointer text-black p-2 rounded-full"
+                >
+                  <MdOutlineKeyboardArrowLeft size={24} />
+                </button>
+                <button
+                  onClick={goToNext}
+                  className="bg-white/30 hover:cursor-pointer hover:bg-white/60 text-black p-2 rounded-full"
+                >
+                  <MdOutlineKeyboardArrowRight size={24} />
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+        {!isActive && (
+          <div className="absolute bottom-3 w-full flex justify-center">
+            {/* terget */}
+            <div className="w-[40px] h-[40px] bg-white/50 hover:cursor-pointer hover:bg-white/60 text-white flex items-center justify-center rounded-full">
+              <FaPlay />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -219,13 +301,6 @@ export default function VideoSection() {
 
   return (
     <div className="flex gap-4 items-stretch px-24 py-40 overflow-hidden relative">
-      <button
-        onClick={goToPrev}
-        className="absolute left-0 z-30 bg-white/20 hover:bg-white/40 p-2 rounded-full"
-      >
-        <MdOutlineKeyboardArrowLeft size={24} />
-      </button>
-
       <div className="flex w-full gap-4 ml-10 mr-10">
         {data.map((item, index) => (
           <VideoCard
@@ -239,16 +314,11 @@ export default function VideoSection() {
               }
             }}
             progress={index === activeIndex ? progress : 0}
+            goToNext={goToNext}
+            goToPrev={goToPrev}
           />
         ))}
       </div>
-
-      <button
-        onClick={goToNext}
-        className="absolute right-0 z-30 bg-white/20 hover:bg-white/40 p-2 rounded-full"
-      >
-        <MdOutlineKeyboardArrowRight size={24} />
-      </button>
     </div>
   );
 }
