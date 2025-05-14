@@ -105,12 +105,14 @@ const VideoCard = ({
   progress,
   goToNext,
   goToPrev,
+  index,
+  setActiveIndex,
 }) => {
   const { title, desc, videoSrc, image, services, color } = data;
 
   return (
     <div
-      className={`transition-all duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center`}
+      className={`transition-all h-[70vh] duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center`}
       style={{
         width: isActive ? "100%" : "100px",
         backgroundImage: `url(${image})`,
@@ -168,7 +170,7 @@ const VideoCard = ({
         </div>
         <div className="w-full h-[80%]">
           {isActive && (
-            <div className=" p-6 text-white relative z-10 h-[80vh] flex gap-10 items-center">
+            <div className=" p-6 text-white relative z-10 flex gap-10 items-center">
               <div className="w-1/2">
                 <h2
                   className="text-2xl lg:text-5xl font-bold mb-2"
@@ -185,7 +187,7 @@ const VideoCard = ({
                 <Button text={"Contact Us"} />
               </div>
 
-              <div className="w-1/2 h-[40%] max-w-md flex items-center justify-center">
+              <div className="w-1/2 h-[30vh] max-w-md flex items-center justify-center">
                 <VideoPlayer
                   src={videoSrc}
                   isPlaying={isPlaying}
@@ -232,7 +234,10 @@ const VideoCard = ({
         {!isActive && (
           <div className="absolute bottom-3 w-full flex justify-center">
             {/* terget */}
-            <div className="w-[40px] h-[40px] bg-white/50 hover:cursor-pointer hover:bg-white/60 text-white flex items-center justify-center rounded-full">
+            <div
+              onClick={() => setActiveIndex(index)}
+              className="w-[40px] h-[40px] bg-white/50 hover:cursor-pointer hover:bg-white/60 text-white flex items-center justify-center rounded-full"
+            >
               <FaPlay />
             </div>
           </div>
@@ -316,6 +321,8 @@ export default function VideoSection() {
             progress={index === activeIndex ? progress : 0}
             goToNext={goToNext}
             goToPrev={goToPrev}
+            index={index}
+            setActiveIndex={setActiveIndex}
           />
         ))}
       </div>

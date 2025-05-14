@@ -70,8 +70,8 @@ const ServicesSection = () => {
               <div
                 key={`left-${i}`}
                 ref={ref}
-                className={`h-[80vh] rounded-lg p-4 flex items-center justify-center`}
-                style={{ backgroundColor: service.bg[0] }}
+                className={`h-[60vh] rounded-lg p-4 flex items-center justify-center`}
+                // style={{ backgroundColor: service.bg[0] }}
               >
                 <img
                   src={service.leftImage}
@@ -121,8 +121,8 @@ const ServicesSection = () => {
               <div
                 key={`right-${i}`}
                 ref={ref}
-                className={`h-[80vh] rounded-lg p-4 flex items-center justify-center`}
-                style={{ backgroundColor: service.bg[1] }}
+                className={`h-[60vh] rounded-lg p-4 flex items-center justify-center`}
+                // style={{ backgroundColor: service.bg[1] }}
               >
                 <img
                   src={service.rightImage}
