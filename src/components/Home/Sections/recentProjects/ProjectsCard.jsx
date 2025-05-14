@@ -1,7 +1,8 @@
 import { motion, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { FaPlay, FaPause, FaArrowRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { LuCalendarClock } from "react-icons/lu";
+import VideoPlayer from "../../../../Helpers/VideoPlayer";
 
 export default function ProjectsCard({
   data,
@@ -12,12 +13,11 @@ export default function ProjectsCard({
 }) {
   const { title, description, video, date, coverImage } = data;
   const container = useRef(null);
-  const videoRef = useRef(null);
   const scale = useTransform(progress, range, [1, targetScale]);
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Detect visibility
+  // Detect visibility with IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -33,31 +33,16 @@ export default function ProjectsCard({
     };
   }, []);
 
-  // Auto pause when out of view
+  // Auto pause when the video is out of view
   useEffect(() => {
-    const vid = videoRef.current;
-    if (!vid) return;
-
-    if (!isVisible && !vid.paused) {
-      vid.pause();
-      setIsPlaying(false);
+    if (!isVisible && isPlaying) {
+      setIsPlaying(false); // Pause the video when the section goes out of view
     }
-  }, [isVisible]);
+  }, [isVisible, isPlaying]);
 
-  const togglePlayback = (e) => {
-    e.stopPropagation();
-    const vid = videoRef.current;
-    if (!vid) return;
-
-    if (vid.paused) {
-      vid
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => {});
-    } else {
-      vid.pause();
-      setIsPlaying(false);
-    }
+  // Toggle play/pause state
+  const togglePlayback = () => {
+    setIsPlaying((prevState) => !prevState); // Toggle play/pause
   };
 
   return (
@@ -100,29 +85,12 @@ export default function ProjectsCard({
           </div>
 
           {/* Video */}
-          <div className="relative rounded-lg overflow-hidden w-[64%] h-full group">
-            <video
-              ref={videoRef}
+          <div className="w-[64%] h-full">
+            <VideoPlayer
               src={video}
-              className="w-full h-full object-cover rounded-lg"
-              muted
-              loop
-              playsInline
+              isPlaying={isPlaying}
+              onToggle={togglePlayback} // Pass the togglePlayback function to VideoPlayer
             />
-
-            {/* Overlay play/pause button */}
-            <div
-              className="absolute inset-0 flex items-center justify-center bg-opacity-0 group-hover:bg-opacity-30 transition duration-300 z-10"
-              onClick={togglePlayback}
-            >
-              <div className="bg-white p-4 rounded-full shadow-lg cursor-pointer">
-                {isPlaying ? (
-                  <FaPause className="text-blue-600 text-xl" />
-                ) : (
-                  <FaPlay className="text-blue-600 text-xl" />
-                )}
-              </div>
-            </div>
           </div>
         </div>
       </motion.div>
