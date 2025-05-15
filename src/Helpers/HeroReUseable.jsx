@@ -3,9 +3,9 @@ import React from "react";
 export default function HeroReUseable({
   bgImag,
   gradient = "from-blue-950/80 to-purple-950/80",
-  title,
-  pageTitle,
-  desc,
+  title = "",
+  pageTitle = "",
+  desc = "",
   height = "h-[80vh]",
 }) {
   return (
