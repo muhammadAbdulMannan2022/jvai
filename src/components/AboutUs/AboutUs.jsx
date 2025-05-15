@@ -5,6 +5,7 @@ import TeamSlider from "../Home/Sections/teamSlider/TeamSlider";
 import GradientTitle from "../../Helpers/GradientTitle";
 import Button from "../../Helpers/Button";
 import AboutDisplay from "./display/AboutDisplay";
+import AboutLead from "./lead/AboutLead";
 
 export default function AboutUs() {
   return (
@@ -83,6 +84,8 @@ export default function AboutUs() {
       </div>
       {/*  */}
       <AboutDisplay />
+      {/*  */}
+      <AboutLead />
       {/*  */}
       {/*  */}
       <TeamSlider />
