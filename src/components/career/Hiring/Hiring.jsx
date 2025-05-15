@@ -10,35 +10,35 @@ const jobOpenings = [
     id: "01",
     title: "UI/UX Designer",
     vacancy: 4,
-    link: "",
+    link: "/career/job_details",
     hiring: true,
   },
   {
     id: "02",
     title: "Frontend Developer",
     vacancy: 4,
-    link: "",
+    link: "/career/job_details",
     hiring: false,
   },
   {
     id: "03",
     title: "Backend Developer",
     vacancy: 4,
-    link: "",
+    link: "/career/job_details",
     hiring: true,
   },
   {
     id: "04",
     title: "Product Manager",
     vacancy: 4,
-    link: "",
+    link: "/career/job_details",
     hiring: true,
   },
   {
     id: "05",
     title: "Motion Designer",
     vacancy: 4,
-    link: "",
+    link: "/career/job_details",
     hiring: true,
   },
 ];
@@ -86,6 +86,7 @@ export default function Hiring() {
               {job.hiring ? (
                 <Link
                   to={job.link}
+                  state={{ jobId: job?.id }}
                   className="text-2xl bg-white text-gray-700 p-2 rounded-full"
                 >
                   <MdArrowOutward />

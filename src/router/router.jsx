@@ -4,6 +4,8 @@ import Home from "../components/Home/Home";
 import Services from "../components/Services/Services";
 import AboutUs from "../components/AboutUs/AboutUs";
 import Career from "../components/career/Career";
+import CareerMain from "../components/career/CareerMain";
+import JobDetails from "../components/career/jobDetails/JobDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,16 @@ const router = createBrowserRouter([
       {
         path: "/career",
         element: <Career />,
+        children: [
+          {
+            path: "",
+            element: <CareerMain />,
+          },
+          {
+            path: "job_details",
+            element: <JobDetails />,
+          },
+        ],
       },
     ],
   },
