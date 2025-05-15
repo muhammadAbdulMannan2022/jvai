@@ -6,6 +6,7 @@ import GradientTitle from "../../Helpers/GradientTitle";
 import Button from "../../Helpers/Button";
 import AboutDisplay from "./display/AboutDisplay";
 import AboutLead from "./lead/AboutLead";
+import Quality from "./quality/Quality";
 
 export default function AboutUs() {
   return (
@@ -87,6 +88,7 @@ export default function AboutUs() {
       {/*  */}
       <AboutLead />
       {/*  */}
+      <Quality />
       {/*  */}
       <TeamSlider />
       <MomentsSwiper />
