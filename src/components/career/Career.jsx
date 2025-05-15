@@ -4,6 +4,7 @@ import GradientTitle from "../../Helpers/GradientTitle";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Hiring from "./Hiring/Hiring";
+import CareerFaq from "./CareerFaq/CareerFaq";
 export default function Career() {
   const { ref: leftRef, inView: leftInView } = useInView({
     triggerOnce: false,
@@ -111,6 +112,7 @@ export default function Career() {
         </div>
       </div>
       <Hiring />
+      <CareerFaq />
     </div>
   );
 }
