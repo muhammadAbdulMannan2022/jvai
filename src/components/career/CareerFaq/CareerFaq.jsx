@@ -28,9 +28,9 @@ export default function CareerFaq() {
         "We offer a comprehensive benefits package including health insurance, retirement plans, paid time off, parental leave, professional development opportunities, and flexible work arrangements to ensure a healthy work-life balance.",
     },
     {
-      question: "Why is XYZ Different?",
+      question: "Why is JVAI Different?",
       answer:
-        "XYZ stands out because of our innovative approach, commitment to employee growth, and dedication to creating meaningful impact. Our unique company culture fosters creativity and collaboration, making us a leader in our industry.",
+        "JVAI stands out because of our innovative approach, commitment to employee growth, and dedication to creating meaningful impact. Our unique company culture fosters creativity and collaboration, making us a leader in our industry.",
     },
   ];
 

@@ -6,6 +6,7 @@ import AboutUs from "../components/AboutUs/AboutUs";
 import Career from "../components/career/Career";
 import CareerMain from "../components/career/CareerMain";
 import JobDetails from "../components/career/jobDetails/JobDetails";
+import ApplyJob from "../components/career/Apply/ApplyJob";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           {
             path: "job_details",
             element: <JobDetails />,
+          },
+          {
+            path: "apply",
+            element: <ApplyJob />,
           },
         ],
       },
