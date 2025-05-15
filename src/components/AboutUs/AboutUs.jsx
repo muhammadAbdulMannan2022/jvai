@@ -4,6 +4,7 @@ import MomentsSwiper from "../Home/Sections/moments/Moments";
 import TeamSlider from "../Home/Sections/teamSlider/TeamSlider";
 import GradientTitle from "../../Helpers/GradientTitle";
 import Button from "../../Helpers/Button";
+import AboutDisplay from "./display/AboutDisplay";
 
 export default function AboutUs() {
   return (
@@ -80,7 +81,8 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-
+      {/*  */}
+      <AboutDisplay />
       {/*  */}
       {/*  */}
       <TeamSlider />
