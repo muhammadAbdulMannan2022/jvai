@@ -10,6 +10,7 @@ import ApplyJob from "../components/career/Apply/ApplyJob";
 import ContactUs from "../components/ContactUs/ContactUs";
 import Work from "../components/Work/Work";
 import Projects from "../components/Projects/Projects";
+import Blog from "../components/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/project/:id",
         element: <Projects />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
     ],
   },
