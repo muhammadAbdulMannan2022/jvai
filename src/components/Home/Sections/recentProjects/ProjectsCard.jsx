@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { LuCalendarClock } from "react-icons/lu";
 import VideoPlayer from "../../../../Helpers/VideoPlayer";
+import { Link } from "react-router";
 
 export default function ProjectsCard({
   data,
@@ -11,7 +12,7 @@ export default function ProjectsCard({
   range,
   targetScale,
 }) {
-  const { title, description, video, date, coverImage } = data;
+  const { title, description, video, date, coverImage, id } = data;
   const container = useRef(null);
   const scale = useTransform(progress, range, [1, targetScale]);
   const [isVisible, setIsVisible] = useState(false);
@@ -66,10 +67,13 @@ export default function ProjectsCard({
               <LuCalendarClock className="text-blue-600 text-xl" />
               <p>{date}</p>
             </div>
-            <div className="flex items-center gap-2 text-blue-600 font-semibold cursor-pointer hover:underline">
+            <Link
+              to={`/project/${id}`}
+              className="flex items-center gap-2 text-blue-600 font-semibold cursor-pointer hover:underline"
+            >
               <p>View Details</p>
               <FaArrowRight />
-            </div>
+            </Link>
           </div>
         </div>
 

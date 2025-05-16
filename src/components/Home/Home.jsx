@@ -16,6 +16,7 @@ import Testimonials from "./Sections/Testimonials/Testimonials";
 import Title from "../../Helpers/Title";
 const projectsData = [
   {
+    id: 1,
     title: "Project Title 1",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -25,6 +26,7 @@ const projectsData = [
     coverImage: "/projects/1.png",
   },
   {
+    id: 2,
     title: "Project Title 2",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -34,6 +36,7 @@ const projectsData = [
     coverImage: "/projects/2.png",
   },
   {
+    id: 2,
     title: "Project Title 3",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",

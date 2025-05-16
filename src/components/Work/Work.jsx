@@ -7,6 +7,7 @@ import ContactHeroForm from "../ContactUs/ContactHeroForm";
 import { motion } from "framer-motion";
 const projectsData = [
   {
+    id: 1,
     title: "Project Title 1",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -17,6 +18,7 @@ const projectsData = [
     catagory: "UI UX Design",
   },
   {
+    id: 2,
     title: "Project Title 2",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -27,6 +29,7 @@ const projectsData = [
     catagory: "Mobile App",
   },
   {
+    id: 3,
     title: "Project Title 3",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -37,6 +40,7 @@ const projectsData = [
     catagory: "Web Development",
   },
   {
+    id: 4,
     title: "Project Title 1",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -47,6 +51,7 @@ const projectsData = [
     catagory: "UI UX Design",
   },
   {
+    id: 5,
     title: "Project Title 2",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -57,6 +62,7 @@ const projectsData = [
     catagory: "Mobile App",
   },
   {
+    id: 6,
     title: "Project Title 3",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -67,6 +73,7 @@ const projectsData = [
     catagory: "Web Development",
   },
   {
+    id: 8,
     title: "Project Title 1",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -77,6 +84,7 @@ const projectsData = [
     catagory: "UI UX Design",
   },
   {
+    id: 9,
     title: "Project Title 2",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
@@ -87,6 +95,7 @@ const projectsData = [
     catagory: "Mobile App",
   },
   {
+    id: 10,
     title: "Project Title 3",
     description:
       "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",

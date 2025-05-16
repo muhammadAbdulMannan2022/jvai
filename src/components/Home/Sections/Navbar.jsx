@@ -23,7 +23,7 @@ export default function Navbar() {
       ],
     },
     { name: "Work", path: "/work" },
-    { name: "More", path: "/more" },
+    { name: "Blog", path: "/blog" },
   ];
 
   const toggleDropdown = (menu) => {
@@ -45,19 +45,21 @@ export default function Navbar() {
         </div>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6 text-white">
-          {navItems.map((item) =>
-            item.child ? (
+          {navItems.map((item) => {
+            const isChildActive = item.child?.some((child) =>
+              currentPath.startsWith(child.path)
+            );
+
+            const isActive = currentPath === item.path || isChildActive;
+
+            return item.child ? (
               <div key={item.name} className="relative group">
-                <div className="flex items-center gap-1 cursor-pointer group-hover:text-blue-500 transition">
-                  <span
-                    className={`${
-                      currentPath.startsWith(item.path)
-                        ? "text-blue-500 underline"
-                        : ""
-                    }`}
-                  >
-                    {item.name}
-                  </span>
+                <div
+                  className={`flex items-center gap-1 cursor-pointer group-hover:text-blue-500 transition ${
+                    isActive ? "text-blue-500 underline" : ""
+                  }`}
+                >
+                  <span>{item.name}</span>
                   <IoIosArrowUp className="transition-transform group-hover:rotate-180" />
                 </div>
                 <ul className="absolute top-full left-0 mt-2 bg-[#0000005e] backdrop-blur-[3px] shadow-md rounded-md py-2 opacity-0 invisible group-hover:visible group-hover:opacity-100 transform transition-all duration-200 z-50 min-w-[150px]">
@@ -65,7 +67,7 @@ export default function Navbar() {
                     <li key={child.text}>
                       <Link
                         to={child.path}
-                        className="block  px-4 py-2 hover:text-blue-500 hover:underline"
+                        className="block px-4 py-2 hover:text-blue-500 hover:underline"
                       >
                         {child.text}
                       </Link>
@@ -78,13 +80,13 @@ export default function Navbar() {
                 key={item.name}
                 to={item.path}
                 className={`hover:text-blue-500 hover:underline transition ${
-                  currentPath === item.path ? "text-blue-500 underline" : ""
+                  isActive ? "text-blue-500 underline" : ""
                 }`}
               >
                 {item.name}
               </Link>
-            )
-          )}
+            );
+          })}
         </div>
 
         {/* Contact Button */}
