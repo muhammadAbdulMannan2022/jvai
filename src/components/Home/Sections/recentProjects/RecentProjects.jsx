@@ -51,16 +51,7 @@ export default function RecentProjects() {
   }, []);
 
   return (
-    <div ref={container} className="relative bg-[#F3F5F9] pt-16 px-16">
-      <Title
-        title={
-          <>
-            <span className="text-blue-500">Recent Projects</span> That Showcase
-            Our Innovation and Craft
-          </>
-        }
-        desc={`Discover the latest projects we've completed, where innovation meets real-world results. Each project reflects our dedication to delivering high-quality, impactful software solutions.`}
-      />
+    <div ref={container} className="relative bg-[#F3F5F9]">
       {data.map((project, i) => {
         const targetScale = 1 - (data.length - i) * 0.05;
         return (

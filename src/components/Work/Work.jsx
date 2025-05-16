@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import HeroReUseable from "../../Helpers/HeroReUseable";
 import WorkCatagory from "./WorkCatagory";
+import RecentProjects from "../Home/Sections/recentProjects/RecentProjects";
+import GradientTitle from "../../Helpers/GradientTitle";
 
 export default function Work() {
   const [selectedCategory, setSelectedCategory] = useState("All Project");
@@ -24,6 +25,19 @@ export default function Work() {
       </div>
       <div className="w-full flex items-center justify-center">
         <WorkCatagory onCategoryChange={handleCategoryChange} />
+      </div>
+      <div className="bg-gray-100 px-20 lg:px-40 pt-16">
+        <div className="mb-5">
+          <GradientTitle
+            text={"Our Case Study"}
+            className={`bg-gradient-to-r from-blue-500 to-blue-900 text-3xl font-bold`}
+          />
+          <p className="text-[#505050]">
+            An Experience design agency building high-end products and
+            experiences that grow your business exponentially.
+          </p>
+        </div>
+        <RecentProjects />
       </div>
     </div>
   );

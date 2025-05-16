@@ -13,6 +13,7 @@ import SupportSection from "./Sections/Support/SupportSection";
 import Moments from "./Sections/moments/Moments";
 import FAQSection from "./Sections/FAQ/FAQSection";
 import Testimonials from "./Sections/Testimonials/Testimonials";
+import Title from "../../Helpers/Title";
 
 export default function Home() {
   return (
@@ -27,7 +28,18 @@ export default function Home() {
       <TechStack />
       <Proces />
       {/*  */}
-      <RecentProjects />
+      <div className="bg-[#F3F5F9] pt-40 px-40">
+        <Title
+          title={
+            <>
+              <span className="text-blue-500">Recent Projects</span> That
+              Showcase Our Innovation and Craft
+            </>
+          }
+          desc={`Discover the latest projects we've completed, where innovation meets real-world results. Each project reflects our dedication to delivering high-quality, impactful software solutions.`}
+        />
+        <RecentProjects />
+      </div>
       {/*  */}
       <SupportSection />
       {/*  */}
