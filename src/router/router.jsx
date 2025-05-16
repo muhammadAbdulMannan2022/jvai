@@ -8,6 +8,7 @@ import CareerMain from "../components/career/CareerMain";
 import JobDetails from "../components/career/jobDetails/JobDetails";
 import ApplyJob from "../components/career/Apply/ApplyJob";
 import ContactUs from "../components/ContactUs/ContactUs";
+import Work from "../components/Work/Work";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUs />,
+      },
+      {
+        path: "/work",
+        element: <Work />,
       },
     ],
   },
