@@ -2,7 +2,9 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import WorkCatagory from "./WorkCatagory";
 import RecentProjects from "../Home/Sections/recentProjects/RecentProjects";
 import GradientTitle from "../../Helpers/GradientTitle";
-
+import Testimonials from "../Home/Sections/Testimonials/Testimonials";
+import ContactHeroForm from "../ContactUs/ContactHeroForm";
+import { motion } from "framer-motion";
 const projectsData = [
   {
     title: "Project Title 1",
@@ -95,7 +97,34 @@ const projectsData = [
     catagory: "Web Development",
   },
 ];
-
+// Team data
+const teamData = [
+  {
+    id: 1,
+    image: "/team/1.png",
+    alt: "Team member",
+  },
+  {
+    id: 2,
+    image: "/team/2.png",
+    alt: "Team member",
+  },
+  {
+    id: 3,
+    image: "/team/3.png",
+    alt: "Team member",
+  },
+  {
+    id: 4,
+    image: "/team/4.png",
+    alt: "Team member",
+  },
+  {
+    id: 5,
+    image: "/team/5.png",
+    alt: "Team member",
+  },
+];
 export default function Work() {
   const [selectedCategory, setSelectedCategory] = useState("All Project");
   const [currentPage, setCurrentPage] = useState(0);
@@ -181,6 +210,52 @@ export default function Work() {
           </div>
         )}
       </div>
+      {/*  */}
+      <div className="relative flex justify-between items-center h-full px-40 py-16">
+        {/* Left Section */}
+        <div className="w-1/2">
+          <div className="text-start mb-10">
+            <h1 className="text-6xl text-black font-bold leading-tight">
+              Start your{" "}
+              <span className="text-blue-500">
+                project <br /> journey
+              </span>{" "}
+              with us.
+            </h1>
+          </div>
+          <p className="text-gray-900 text-lg text-start w-full lg:w-3/5">
+            Ready to build something exceptional? As a global digital product
+            design agency, we help brands craft high-quality SaaS platforms,
+            MVPs, software, mobile apps, and websites. With a focus on
+            user-friendly, visually stunning, and seamlessly functional designs,
+            we're here to turn your vision into reality. Let's create your next
+            big product—contact us today.
+          </p>
+          <div className="mt-10 flex -space-x-4">
+            {teamData.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                className="overflow-hidden rounded-full border-2 border-white w-14 h-14"
+              >
+                <img
+                  src={member.image}
+                  alt={member.alt}
+                  width={60}
+                  className="w-14 rounded-full object-cover md:h-16 md:w-16"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        <div className="w-1/2">
+          <ContactHeroForm dark={false} />
+        </div>
+      </div>
+      {/* testimonials */}
+      <Testimonials />
     </div>
   );
 }
