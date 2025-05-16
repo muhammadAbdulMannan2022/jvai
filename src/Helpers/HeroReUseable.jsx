@@ -19,7 +19,7 @@ export default function HeroReUseable({
       {/* Content */}
       <div className="relative z-10 text-center px-6 text-white max-w-7xl">
         <h1 className="text-3xl">{pageTitle}</h1>
-        <h1 className="text-7xl font-bold my-5">{title}</h1>
+        <h1 className="text-7xl font-bold my-5 leading-24">{title}</h1>
         <p className="px-5 text-2xl font-light">{desc}</p>
       </div>
     </div>

@@ -186,7 +186,7 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <HeroReUseable
-        bgImag={"/Blog/.png.png"}
+        bgImag={"/blog.png"}
         title={
           <>
             Stay Updated with Our Latest{" "}
