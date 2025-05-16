@@ -14,7 +14,35 @@ import Moments from "./Sections/moments/Moments";
 import FAQSection from "./Sections/FAQ/FAQSection";
 import Testimonials from "./Sections/Testimonials/Testimonials";
 import Title from "../../Helpers/Title";
-
+const projectsData = [
+  {
+    title: "Project Title 1",
+    description:
+      "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    date: "April 2025",
+    coverImage: "/projects/1.png",
+  },
+  {
+    title: "Project Title 2",
+    description:
+      "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    date: "April 2025",
+    coverImage: "/projects/2.png",
+  },
+  {
+    title: "Project Title 3",
+    description:
+      "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
+    video:
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    date: "April 2025",
+    coverImage: "/projects/3.png",
+  },
+];
 export default function Home() {
   return (
     <div className="h-screen relative">
@@ -38,7 +66,7 @@ export default function Home() {
           }
           desc={`Discover the latest projects we've completed, where innovation meets real-world results. Each project reflects our dedication to delivering high-quality, impactful software solutions.`}
         />
-        <RecentProjects />
+        <RecentProjects projectsData={projectsData} />
       </div>
       {/*  */}
       <SupportSection />

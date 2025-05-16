@@ -48,7 +48,7 @@ export default function ProjectsCard({
   return (
     <div
       ref={container}
-      style={{ top: `${50 + i * 50}px` }}
+      style={{ top: `${50 + i}px` }}
       className="flex items-center justify-center sticky z-10"
     >
       <motion.div
