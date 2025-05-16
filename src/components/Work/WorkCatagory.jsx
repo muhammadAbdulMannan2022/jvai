@@ -21,7 +21,7 @@ export default function CategoryFilter({
   };
 
   return (
-    <div className="w-full bg-[#0a0a5e] py-3 px-4 overflow-x-auto flex items-center justify-center">
+    <div className="w-full bg-gradient-to-r from-blue-950 to-purple-900 py-3 px-4 overflow-x-auto flex items-center justify-center flex-wrap">
       <div className="flex space-x-2 min-w-max">
         {categories.map((category) => (
           <button
