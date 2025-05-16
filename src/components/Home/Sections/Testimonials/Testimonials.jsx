@@ -4,6 +4,7 @@ import {
   EffectCoverflow,
   Keyboard,
   Mousewheel,
+  Autoplay,
 } from "swiper/modules";
 
 import "swiper/css";
@@ -12,7 +13,7 @@ import "swiper/css/navigation";
 
 import VideoPlayer from "../../../../Helpers/VideoPlayer";
 import { useInView } from "react-intersection-observer";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Title from "../../../../Helpers/Title";
 
 const testimonials = [
@@ -90,11 +91,20 @@ const testimonials = [
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [playingIndex, setPlayingIndex] = useState(null); // To track which video is playing
+  const [playingIndex, setPlayingIndex] = useState(null);
+  const swiperRef = useRef(null); // <-- NEW
 
   const onToggle = (index) => {
-    // Toggle play/pause for the specific video
-    setPlayingIndex(playingIndex === index ? null : index);
+    const newPlayingIndex = playingIndex === index ? null : index;
+    setPlayingIndex(newPlayingIndex);
+
+    if (swiperRef.current?.autoplay) {
+      if (newPlayingIndex !== null) {
+        swiperRef.current.autoplay.stop();
+      } else {
+        swiperRef.current.autoplay.start();
+      }
+    }
   };
 
   return (
@@ -116,8 +126,16 @@ const Testimonials = () => {
           loop={true}
           keyboard={{ enabled: true }}
           navigation={true}
+          autoplay={{ delay: 4000 }}
+          modules={[
+            EffectCoverflow,
+            Navigation,
+            Keyboard,
+            Mousewheel,
+            Autoplay,
+          ]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)} // <-- Capture swiper instance
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          modules={[EffectCoverflow, Navigation, Keyboard, Mousewheel]}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
@@ -126,27 +144,15 @@ const Testimonials = () => {
             slideShadows: true,
           }}
           breakpoints={{
-            0: {
-              slidesPerView: 1,
-            },
-            640: {
-              slidesPerView: 1.3,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 2.5,
-            },
+            0: { slidesPerView: 1 },
+            640: { slidesPerView: 1.3 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 2.5 },
           }}
           className="w-full"
         >
           {testimonials.map((testimonial, index) => {
-            const [ref, inView] = useInView({
-              threshold: 0.6, // 60% must be visible
-              triggerOnce: false,
-            });
-
+            const [ref, inView] = useInView({ threshold: 0.6 });
             const isPlaying = activeIndex === index && inView;
 
             return (
@@ -156,8 +162,8 @@ const Testimonials = () => {
                     <div className="w-1/2">
                       <VideoPlayer
                         src={testimonial.video}
-                        isPlaying={playingIndex === index && isPlaying} // Only play if it is the active one and in view
-                        onToggle={() => onToggle(index)} // Pass onToggle to control play/pause
+                        isPlaying={playingIndex === index && isPlaying}
+                        onToggle={() => onToggle(index)} // Toggle autoplay on video interaction
                       />
                     </div>
                     <div className="w-1/2 flex flex-col justify-between space-y-2">

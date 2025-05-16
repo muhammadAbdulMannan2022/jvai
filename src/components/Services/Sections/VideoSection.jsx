@@ -184,7 +184,7 @@ const VideoCard = ({
                     <li key={i}>{service}</li>
                   ))}
                 </ul>
-                <Button text={"Contact Us"} />
+                <Button to={"/contact"} text={"Contact Us"} />
               </div>
 
               <div className="w-1/2 h-[30vh] max-w-md flex items-center justify-center">
