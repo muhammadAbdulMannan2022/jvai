@@ -5,7 +5,7 @@ export default function TextAreaField({ label, id, value, ...props }) {
       <textarea
         id={id}
         value={value}
-        className="w-full outline-none border-none text-sm bg-transparent resize-vertical min-h-[80px]"
+        className="w-full outline-none border-none text-sm bg-transparent resize-vertical min-h-[80px] resize-none"
         placeholder=""
         {...props}
       />
