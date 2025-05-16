@@ -11,6 +11,8 @@ import ContactUs from "../components/ContactUs/ContactUs";
 import Work from "../components/Work/Work";
 import Projects from "../components/Projects/Projects";
 import Blog from "../components/Blog/Blog";
+import BlogMain from "../components/Blog/BlogMain";
+import BlogDetails from "../components/BlogDetails/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +64,16 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+        children: [
+          {
+            path: "",
+            element: <BlogMain />,
+          },
+          {
+            path: ":id",
+            element: <BlogDetails />,
+          },
+        ],
       },
     ],
   },
