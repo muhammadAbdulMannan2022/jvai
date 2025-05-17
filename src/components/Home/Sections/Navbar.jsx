@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -59,8 +59,14 @@ export default function Navbar() {
                     isActive ? "text-blue-500 underline" : ""
                   }`}
                 >
-                  <span>{item.name}</span>
-                  <IoIosArrowUp className="transition-transform group-hover:rotate-180" />
+                  <span>
+                    {isChildActive
+                      ? item.child.find((child) =>
+                          currentPath.startsWith(child.path)
+                        )?.text
+                      : item.name}
+                  </span>
+                  <IoIosArrowDown className="transition-transform group-hover:rotate-180" />
                 </div>
                 <ul className="absolute top-full left-0 mt-2 bg-[#0000005e] backdrop-blur-[3px] shadow-md rounded-md py-2 opacity-0 invisible group-hover:visible group-hover:opacity-100 transform transition-all duration-200 z-50 min-w-[150px]">
                   {item.child.map((child) => (
