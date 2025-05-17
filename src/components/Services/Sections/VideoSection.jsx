@@ -112,7 +112,10 @@ const VideoCard = ({
 
   return (
     <div
-      className={`transition-all h-[70vh] duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center`}
+      className={`transition-all h-[70vh] duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center ${
+        !isActive && "hover:cursor-pointer"
+      }`}
+      onClick={() => !isActive && setActiveIndex(index)}
       style={{
         width: isActive ? "100%" : "100px",
         backgroundImage: `url(${image})`,
