@@ -196,8 +196,8 @@ export default function JobDetails() {
         </div>
 
         {/* Right Section */}
-        <div className="w-full lg:w-1/3">
-          <div className="bg-white shadow-xl rounded-2xl p-6 border border-gray-200 space-y-4">
+        <div className="w-full lg:w-1/3 relative">
+          <div className="bg-white sticky top-20 shadow-xl rounded-2xl p-6 border border-gray-200 space-y-4">
             <div className="text-gray-700 space-y-3">
               <div className="flex items-center gap-3">
                 <FaBriefcase className="text-blue-600" />
