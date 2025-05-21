@@ -5,6 +5,7 @@ import router from "./router/router";
 function App() {
   return (
     <>
+      {/* all route starts here */}
       <RouterProvider router={router} />
     </>
   );
