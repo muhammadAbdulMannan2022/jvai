@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
       <HeroReUseable
         bgImag={"/blog.png"}
         title={

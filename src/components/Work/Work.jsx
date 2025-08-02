@@ -5,6 +5,7 @@ import GradientTitle from "../../Helpers/GradientTitle";
 import Testimonials from "../Home/Sections/Testimonials/Testimonials";
 import ContactHeroForm from "../ContactUs/ContactHeroForm";
 import { motion } from "framer-motion";
+
 const projectsData = [
   {
     id: 1,
@@ -106,6 +107,7 @@ const projectsData = [
     catagory: "Web Development",
   },
 ];
+
 // Team data
 const teamData = [
   {
@@ -134,6 +136,7 @@ const teamData = [
     alt: "Team member",
   },
 ];
+
 export default function Work() {
   const [selectedCategory, setSelectedCategory] = useState("All Project");
   const [currentPage, setCurrentPage] = useState(0);
@@ -157,23 +160,27 @@ export default function Work() {
     currentPage * projectsPerPage,
     (currentPage + 1) * projectsPerPage
   );
+
   useEffect(() => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [currentPage]);
+
   return (
-    <div className="w-full">
+    <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
-      <div className="w-full h-[80vh] bg-radial from-blue-900 via-blue-950 to-black bg-bottom px-40">
-        <div className="bg-[url(/work.png)] h-full w-full bg-no-repeat bg-contain bg-center flex items-center justify-center">
-          <h1 className="text-7xl font-bold text-white text-center">
-            Turning{" "}
-            <span className="text-blue-500">
-              Unique <br /> Concepts
-            </span>{" "}
-            into Powerful <br /> Products
-          </h1>
+      <div className="w-full min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] lg:h-[80vh] bg-radial from-blue-900 via-blue-950 to-black bg-bottom">
+        <div className="w-full min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] lg:h-[80vh] px-2 sm:px-4 md:px-8 lg:px-40 flex items-center justify-center bg-[url(/work.png)] bg-no-repeat bg-cover bg-center ">
+          <div className="h-full w-full flex items-center justify-center">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-white text-center">
+              Turning{" "}
+              <span className="text-blue-500">
+                Unique <br /> Concepts
+              </span>{" "}
+              into Powerful <br /> Products
+            </h1>
+          </div>
         </div>
       </div>
 
@@ -183,13 +190,13 @@ export default function Work() {
       </div>
 
       {/* Filtered Projects */}
-      <div className="bg-gray-100 px-20 lg:px-40 pt-16">
-        <div ref={ref} className="mb-5">
+      <div className="bg-gray-100 px-2 sm:px-4 md:px-8 lg:px-40 pt-4 sm:pt-8 md:pt-12 lg:pt-16">
+        <div ref={ref} className="mb-3 sm:mb-4 md:mb-5">
           <GradientTitle
             text={"Our Case Study"}
-            className={`bg-gradient-to-r from-blue-500 to-blue-900 text-3xl font-bold`}
+            className={`bg-gradient-to-r from-blue-500 to-blue-900 text-2xl sm:text-2xl md:text-3xl font-bold`}
           />
-          <p className="text-[#505050]">
+          <p className="text-[#505050] text-xs sm:text-sm md:text-base">
             An experience design agency building high-end products and
             experiences that grow your business exponentially.
           </p>
@@ -199,11 +206,11 @@ export default function Work() {
 
         {/* Pagination Buttons */}
         {filteredProjects.length > projectsPerPage && (
-          <div className="w-full flex justify-center gap-4 mt-8 pb-16">
+          <div className="w-full flex justify-center gap-2 sm:gap-3 md:gap-4 mt-4 sm:mt-6 md:mt-8 pb-8 sm:pb-12 md:pb-16">
             {currentPage > 0 && (
               <button
                 onClick={() => setCurrentPage((prev) => prev - 1)}
-                className="px-6 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition hover:cursor-pointer"
+                className="px-3 sm:px-4 md:px-6 py-1 sm:py-2 bg-gray-300 text-gray-700 text-xs sm:text-sm md:text-base rounded hover:bg-gray-400 transition hover:cursor-pointer"
               >
                 Prev
               </button>
@@ -211,7 +218,7 @@ export default function Work() {
             {currentPage < totalPages - 1 && (
               <button
                 onClick={() => setCurrentPage((prev) => prev + 1)}
-                className="px-6 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 transition hover:cursor-pointer"
+                className="px-3 sm:px-4 md:px-6 py-1 sm:py-2 bg-blue-700 text-white text-xs sm:text-sm md:text-base rounded hover:bg-blue-800 transition hover:cursor-pointer"
               >
                 See More
               </button>
@@ -219,12 +226,13 @@ export default function Work() {
           </div>
         )}
       </div>
-      {/*  */}
-      <div className="relative flex justify-between items-center h-full px-40 py-16">
+
+      {/* Contact Form Section */}
+      <div className="relative flex flex-col lg:flex-row justify-between items-start px-2 sm:px-4 md:px-8 lg:px-40 py-4 sm:py-8 md:py-12 lg:py-16">
         {/* Left Section */}
-        <div className="w-1/2">
-          <div className="text-start mb-10">
-            <h1 className="text-6xl text-black font-bold leading-tight">
+        <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
+          <div className="text-start mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-black font-bold leading-tight">
               Start your{" "}
               <span className="text-blue-500">
                 project <br /> journey
@@ -232,7 +240,7 @@ export default function Work() {
               with us.
             </h1>
           </div>
-          <p className="text-gray-900 text-lg text-start w-full lg:w-3/5">
+          <p className="text-gray-900 text-sm sm:text-base md:text-lg w-full">
             Ready to build something exceptional? As a global digital product
             design agency, we help brands craft high-quality SaaS platforms,
             MVPs, software, mobile apps, and websites. With a focus on
@@ -240,30 +248,30 @@ export default function Work() {
             we're here to turn your vision into reality. Let's create your next
             big product—contact us today.
           </p>
-          <div className="mt-10 flex -space-x-4">
+          <div className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 flex -space-x-2 sm:-space-x-3 md:-space-x-4">
             {teamData.map((member, index) => (
               <motion.div
                 key={member.id}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                className="overflow-hidden rounded-full border-2 border-white w-14 h-14"
+                transition={{ duration: 0.2, delay: 0.2 + index * 0.1 }}
+                className="overflow-hidden rounded-full border-2 border-white w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14"
               >
                 <img
                   src={member.image}
                   alt={member.alt}
-                  width={60}
-                  className="w-14 rounded-full object-cover md:h-16 md:w-16"
+                  className="w-full h-full rounded-full object-cover"
                 />
               </motion.div>
             ))}
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="w-full lg:w-1/2">
           <ContactHeroForm dark={false} />
         </div>
       </div>
-      {/* testimonials */}
+
+      {/* Testimonials */}
       <Testimonials />
     </div>
   );

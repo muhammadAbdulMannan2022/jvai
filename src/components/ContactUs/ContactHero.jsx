@@ -32,7 +32,7 @@ const teamData = [
 
 export default function ContactHero() {
   return (
-    <div className="relative h-screen w-full bg-radial from-blue-800 via-blue-950 to-black overflow-hidden">
+    <div className="relative min-h-screen pt-32 pb-10 flex items-center justify-center w-full bg-radial from-blue-800 via-blue-950 to-black overflow-hidden">
       {/* Top Right Image */}
       <div
         className="absolute top-0 right-0 w-1/2 h-[60%] bg-no-repeat bg-cover"
@@ -46,9 +46,9 @@ export default function ContactHero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex justify-between items-center h-full px-40">
+      <div className="relative z-10 gap-5 flex flex-col md:flex-row justify-between items-center h-full px-5 md:px-40">
         {/* Left Section */}
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <div className="text-start mb-10">
             <h1 className="text-6xl text-white font-bold leading-tight">
               Start your{" "}
@@ -87,7 +87,7 @@ export default function ContactHero() {
         </div>
 
         {/* Right Section - Form */}
-        <div className="w-1/2">
+        <div className="w-full md:w-1/2">
           <ContactHeroForm />
         </div>
       </div>

@@ -112,9 +112,8 @@ const VideoCard = ({
 
   return (
     <div
-      className={`transition-all h-[70vh] duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center ${
-        !isActive && "hover:cursor-pointer"
-      }`}
+      className={`transition-all h-[70vh] duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center ${!isActive && "hover:cursor-pointer"
+        }`}
       onClick={() => !isActive && setActiveIndex(index)}
       style={{
         width: isActive ? "100%" : "100px",
@@ -123,15 +122,13 @@ const VideoCard = ({
     >
       <div className="bg-black/60 px-[10%] backdrop-blur-sm border h-full">
         <div
-          className={`w-full h-[10%] relative flex items-center justify-end py-4 ${
-            !isActive && "h-full"
-          }`}
+          className={`w-full h-[10%] relative flex items-center justify-end py-4 ${!isActive && "h-full"
+            }`}
         >
           {isActive ? (
             <div
-              className={`w-full flex items-center  gap-4 ${
-                !isActive ? "rotate-90 justify-center" : "justify-end"
-              }`}
+              className={`w-full flex items-center  gap-4 ${!isActive ? "rotate-90 justify-center" : "justify-end"
+                }`}
             >
               <span
                 className="w-4 h-4 rounded-full block"
@@ -308,8 +305,8 @@ export default function VideoSection() {
   }, [activeIndex, isPlaying]);
 
   return (
-    <div className="flex gap-4 items-stretch px-24 py-40 overflow-hidden relative">
-      <div className="flex w-full gap-4 ml-10 mr-10">
+    <div className="flex gap-4 items-stretch px-5 md:px-24 py-40 overflow-hidden relative">
+      <div className="flex w-full gap-4 mx-5 md:mx-10">
         {data.map((item, index) => (
           <VideoCard
             key={index}

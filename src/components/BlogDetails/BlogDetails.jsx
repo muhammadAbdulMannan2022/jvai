@@ -14,12 +14,12 @@ export default function BlogDetails() {
   const location = useLocation();
   const { blog } = location.state;
   return (
-    <div className="w-full px-40 py-16">
+    <div className="w-full px-5 md:px-40 py-16 max-w-7xl border">
       <div className="flex flex-col items-center justify-center">
         <div className="flex items-center justify-center w-full max-h-[600px] overflow-hidden rounded-2xl">
-          <img className="w-[80%]  rounded" src={blog?.image} alt="" />
+          <img className="w-full  rounded" src={blog?.image} alt="" />
         </div>
-        <div className="pt-16 w-[80%]">
+        <div className="pt-16 w-full">
           <p className="text-sm text-gray-500 mb-2 flex items-center gap-2">
             <span>
               <FaRegCalendarAlt />
@@ -28,7 +28,7 @@ export default function BlogDetails() {
           </p>
           <h1 className="text-4xl font-bold">{blog?.title}</h1>
           {/* <p>{blog?.description}</p> */}
-          <p className="mt-10 text-[#3E3E3E] text-xl">
+          <p className="mt-10 text-[#3E3E3E] text-xl text-justify">
             User Interface and User Experience design are pivotal in creating
             digital products that resonate with users. This post delves into the
             principles of effective UI/UX design, highlighting how thoughtful

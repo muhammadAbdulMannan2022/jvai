@@ -6,10 +6,10 @@ export default function Career() {
     <div className="">
       <HeroReUseable
         title={
-          <>
+          <span>
             Explore Career <br /> Opportunities in{" "}
             <span className="text-blue-500">JVAI</span>
-          </>
+          </span>
         }
         bgImag={`/career/careerbg.png`}
       />

@@ -24,7 +24,7 @@ export default function AboutUs() {
         bgImag={"/aboutus/aboutus.png"}
       />
 
-      <div className="flex px-40 py-16 gap-5 md:gap-10">
+      <div className="flex px-5 md:px-40 py-16 gap-5 md:gap-10">
         {/* Left Column - 70% */}
         <div className="w-[25%] flex flex-col items-end">
           {/* Arrow */}
@@ -35,7 +35,7 @@ export default function AboutUs() {
               className="h-full max-h-16 mt-2"
             />
           </div>
-          <div className="h-full max-h-[500px] overflow-hidden rounded-2xl">
+          <div className="h-full max-h-[500px] overflow-hidden rounded-2xl hidden md:block">
             <img
               src="/aboutus/aboutLead1.png"
               className="w-full rounded-2xl"
@@ -44,7 +44,7 @@ export default function AboutUs() {
           </div>
         </div>
         {/* Content */}
-        <div className="w-[50%] pe-20">
+        <div className="md:w-[50%] w-full md:pe-20">
           <div className="h-[150px]">
             <GradientTitle
               text="We are leader in digital solutions"
@@ -73,7 +73,7 @@ export default function AboutUs() {
         </div>
 
         {/* Right Column - 30% */}
-        <div className="w-[25%] flex items-start">
+        <div className="w-[25%] md:flex items-start hidden">
           <div className="h-full max-h-[500px] overflow-hidden rounded-2xl">
             <img
               src="/aboutus/aboutLead2.png"
