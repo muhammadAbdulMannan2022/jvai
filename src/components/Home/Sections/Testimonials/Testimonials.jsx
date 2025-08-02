@@ -159,14 +159,14 @@ const Testimonials = () => {
               <SwiperSlide key={index} className="flex justify-center">
                 <div ref={ref}>
                   <div className="card bg-white flex flex-row-reverse rounded-xl shadow-lg p-4 w-[700px] h-[400px] text-left space-x-4 space-x-reverse">
-                    <div className="w-1/2">
+                    <div className="md:w-1/2 hidden md:block">
                       <VideoPlayer
                         src={testimonial.video}
                         isPlaying={playingIndex === index && isPlaying}
                         onToggle={() => onToggle(index)} // Toggle autoplay on video interaction
                       />
                     </div>
-                    <div className="w-1/2 flex flex-col justify-between space-y-2">
+                    <div className="md:w-1/2 w-full flex flex-col justify-between space-y-2">
                       <div className="h-16 mb-2">
                         <img
                           src={testimonial.logo}

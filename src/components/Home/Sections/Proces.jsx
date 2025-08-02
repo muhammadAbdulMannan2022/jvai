@@ -41,7 +41,7 @@ export default function Proces() {
     },
   ];
   return (
-    <div className="px-24 py-16">
+    <div className="px-10 md:px-24 py-16">
       <Title
         title={
           <>
@@ -53,7 +53,7 @@ export default function Proces() {
       />
       <div
         ref={ref}
-        className="flex items-center justify-center gap-4 flex-wrap py-16"
+        className="md:flex items-center justify-center gap-4 flex-wrap py-16 hidden"
       >
         {/* Mapping over serviceData and animating each card */}
         {serviceData.map((service, index) => {
@@ -69,6 +69,11 @@ export default function Proces() {
             </motion.div>
           );
         })}
+      </div>
+      <div className="md:hidden flex flex-col items-center justify-center gap-10">
+        {
+          serviceData.map((service, i) => <Card key={i} service={service} />)
+        }
       </div>
     </div>
   );

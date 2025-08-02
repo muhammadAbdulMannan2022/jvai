@@ -6,7 +6,7 @@ import Footer from "./Home/Sections/Footer";
 
 export default function MainLayout() {
   return (
-    <div>
+    <div className="min-h-screen">
       <Navbar />
       <Outlet />
       <Footer />

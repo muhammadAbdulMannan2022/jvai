@@ -53,11 +53,11 @@ export default function MomentsSwiper() {
 
     if (count === 1) {
       return (
-        <div className="w-full h-[580px]">
+        <div className="w-full h-[200px] sm:h-[80%]">
           <img
             src={images[0].src}
             alt={images[0].alt}
-            className="w-full h-full object-cover rounded-md"
+            className="w-full h-full object-contain rounded-md"
           />
         </div>
       );
@@ -65,13 +65,13 @@ export default function MomentsSwiper() {
 
     if (count === 2) {
       return (
-        <div className="flex flex-col h-[580px] gap-1">
+        <div className="flex flex-col h-[200px] md:h-[90%] gap-1">
           {images.map((img) => (
             <div key={img.id} className="w-full h-1/2 overflow-hidden">
               <img
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-full object-cover rounded-md"
+                className="w-full h-full object-contain rounded-md"
               />
             </div>
           ))}
@@ -81,12 +81,12 @@ export default function MomentsSwiper() {
 
     if (count === 3) {
       return (
-        <div className="h-[580px]">
+        <div className="h-[200px] md:h-[85%]">
           <div className="w-full h-1/2 overflow-hidden mb-1">
             <img
               src={images[0].src}
               alt={images[0].alt}
-              className="w-full h-full object-cover rounded-md"
+              className="w-full h-full object-contain rounded-md"
             />
           </div>
           <div className="flex h-1/2 gap-1">
@@ -95,7 +95,7 @@ export default function MomentsSwiper() {
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover rounded-md"
+                  className="w-full h-full object-contain rounded-md"
                 />
               </div>
             ))}
@@ -105,13 +105,13 @@ export default function MomentsSwiper() {
     }
 
     return (
-      <div className="flex flex-wrap h-[580px]">
+      <div className="flex flex-wrap h-[200px] sm:h-[380px]">
         {images.map((img) => (
           <div key={img.id} className="w-1/2 h-1/2 overflow-hidden">
             <img
               src={img.src}
               alt={img.alt}
-              className="w-full h-full object-cover rounded-md"
+              className="w-full h-full object-contain rounded-md"
             />
           </div>
         ))}
@@ -165,7 +165,7 @@ export default function MomentsSwiper() {
         >
           {activitySlides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <div className="bg-[#B2C7FF] rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[600px] text-left p-5 h-[500px] md:h-[700px]">
+              <div className="bg-[#B2C7FF] rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[600px] text-left p-5 h-fit md:h-[700px]">
                 <div className="pb-5">
                   <h3 className="text-xl font-semibold">{slide.title}</h3>
                   <div className="flex items-center text-sm text-blue-950 mt-1">

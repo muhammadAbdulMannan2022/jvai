@@ -5,42 +5,43 @@ import { FaStar } from "react-icons/fa";
 
 export default function Hero() {
   return (
-    <div className="text-[#F3F3F3] px-24 w-[70%] md:w-1/2 h-full flex flex-col justify-center">
-      <h1 className="text-[28px]">We're JVAI-</h1>
-      <h1 className="text-6xl font-bold mt-4 mb-10">
-        <span className="text-blue-500">Empowering</span>
-        <br />
-        Innovation with AI
-      </h1>
-      <p className="text-[24px] text-xs font-[100] mb-6">
-        Partner with us to design, build, and scale cutting-edge AI solutions
-        tailored to your business needs.
-      </p>
-      <div className="flex justify-start gap-8 mt-5">
-        <div>
+    <div className="text-[#F3F3F3] bg-black/30 px-4 sm:px-8 md:px-12 lg:px-16 w-full mx-auto flex flex-col justify-center min-h-[60vh] sm:min-h-[70vh] md:h-full">
+      <div className="max-w-7xl w-full mx-auto text-left">
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold">
+          We're JVAI-
+        </h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mt-1 sm:mt-2 mb-4 sm:mb-6">
+          <span className="text-blue-500">Empowering</span>
+          <br />
+          Innovation with AI
+        </h1>
+        <p className="text-sm sm:text-base md:text-lg font-light mb-4 sm:mb-6 max-w-xl">
+          Partner with us to design, build, and scale cutting-edge AI solutions
+          tailored to your business needs.
+        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 md:gap-6">
           <Button
-            className={`cursor-pointer`}
-            text={"Start a Project"}
+            className="cursor-pointer w-full sm:w-auto rounded-md"
+            text="Start a Project"
             icon={<MdRocketLaunch />}
+            aria-label="Start a project with JVAI"
           />
-        </div>
-        <div className="flex gap-4">
-          <div className="w-[55px] h-[50px] p-2 bg-white rounded-full flex items-center justify-center">
-            <img src="/logoOnly.png" alt="JVAI" className="h-full" />
-          </div>
-          <div>
-            <div className="flex gap-3 items-center justify-start">
-              <span>4.8</span>
-              <div className="flex gap-0.5 text-[#F4C700]">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 p-1.5 bg-white rounded-full flex items-center justify-center">
+              <img src="/logoOnly.png" alt="JVAI logo" className="w-full h-full object-contain" />
             </div>
             <div>
-              <p>100+ Reviews</p>
+              <div className="flex items-center gap-1 sm:gap-2">
+                <span className="text-xs sm:text-sm">4.8</span>
+                <div className="flex gap-0.5 text-[#F4C700]">
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                  <FaStar />
+                </div>
+              </div>
+              <p className="text-xs sm:text-sm">100+ Reviews</p>
             </div>
           </div>
         </div>

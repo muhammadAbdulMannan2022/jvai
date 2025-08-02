@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router";
-import { IoIosArrowDown } from "react-icons/io";
-import { HiMenu, HiX } from "react-icons/hi";
-import { motion, AnimatePresence } from "framer-motion";
+"use client"
+
+import { useState } from "react"
+import { ChevronDown, Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Link, useLocation } from "react-router"
 
 export default function Navbar() {
-  const location = useLocation();
-  const currentPath = location.pathname;
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const currentPath = useLocation().pathname
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(null)
 
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     {
       name: "Company",
-      path: "/company",
+      path: "/company", // This path is for the parent link, not necessarily a page
       child: [
         { path: "/about", text: "About Us" },
         { path: "/career", text: "Career" },
@@ -24,56 +24,46 @@ export default function Navbar() {
     },
     { name: "Work", path: "/work" },
     { name: "Blog", path: "/blog" },
-  ];
+  ]
 
   const toggleDropdown = (menu) => {
-    setOpenDropdown(openDropdown === menu ? null : menu);
-  };
+    setOpenDropdown(openDropdown === menu ? null : menu)
+  }
 
   const mobileMenuVariants = {
     hidden: { x: "100%", opacity: 0 },
     visible: { x: 0, opacity: 1 },
     exit: { x: "100%", opacity: 0 },
-  };
+  }
 
   return (
-    <nav className="bg-[#0000004d] backdrop-blur-[10px] inter-font-text p-4 flex items-center justify-center fixed top-0 left-0 w-full md:px-40 z-50">
-      <div className="w-full flex justify-between items-center">
+    <nav className="bg-[#0000004d] backdrop-blur-md font-sans p-4 flex items-center justify-center fixed top-0 left-0 w-full sm:px-8 lg:px-20 z-50">
+      <div className="w-full flex justify-between items-center max-w-7xl">
         {/* Logo */}
         <div className="flex items-center">
-          <img className="w-[80px] md:w-[100px]" src="/logo.png" alt="JVAI" />
+          <img className="w-16 sm:w-20 md:w-24" src="/logo.png" alt="JVAI" />
         </div>
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6 text-white">
+        <div className="hidden md:flex items-center space-x-6 text-white text-sm lg:text-base">
           {navItems.map((item) => {
-            const isChildActive = item.child?.some((child) =>
-              currentPath.startsWith(child.path)
-            );
-
-            const isActive = currentPath === item.path || isChildActive;
-
+            const isChildActive = item.child?.some((child) => currentPath.startsWith(child.path))
+            const isActive = currentPath === item.path || isChildActive
             return item.child ? (
               <div key={item.name} className="relative group">
                 <div
-                  className={`flex items-center gap-1 cursor-pointer group-hover:text-blue-500 transition ${
-                    isActive ? "text-blue-500 underline" : ""
-                  }`}
+                  className={`flex items-center gap-1 cursor-pointer hover:text-blue-400 transition ${isActive ? "text-blue-400 underline" : ""}`}
                 >
                   <span>
-                    {isChildActive
-                      ? item.child.find((child) =>
-                          currentPath.startsWith(child.path)
-                        )?.text
-                      : item.name}
+                    {isChildActive ? item.child.find((child) => currentPath.startsWith(child.path))?.text : item.name}
                   </span>
-                  <IoIosArrowDown className="transition-transform group-hover:rotate-180" />
+                  <ChevronDown className="transition-transform group-hover:rotate-180" />
                 </div>
-                <ul className="absolute top-full left-0 mt-2 bg-[#0000005e] backdrop-blur-[3px] shadow-md rounded-md py-2 opacity-0 invisible group-hover:visible group-hover:opacity-100 transform transition-all duration-200 z-50 min-w-[150px]">
+                <ul className="absolute top-full left-0 mt-2 bg-[#00000080] backdrop-blur-sm shadow-lg rounded-md py-2 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50 min-w-[160px]">
                   {item.child.map((child) => (
                     <li key={child.text}>
                       <Link
                         to={child.path}
-                        className="block px-4 py-2 hover:text-blue-500 hover:underline"
+                        className="block px-4 py-2 text-sm hover:text-blue-400 hover:bg-gray-800/50 transition"
                       >
                         {child.text}
                       </Link>
@@ -85,37 +75,33 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`hover:text-blue-500 hover:underline transition ${
-                  isActive ? "text-blue-500 underline" : ""
-                }`}
+                className={`hover:text-blue-400 hover:underline transition ${isActive ? "text-blue-400 underline" : ""}`}
               >
                 {item.name}
               </Link>
-            );
+            )
           })}
         </div>
-
-        {/* Contact Button */}
+        {/* Contact Button (Desktop) */}
         <div className="hidden md:block">
           <Link
             to="/contact"
-            className="bg-gradient-to-tr from-blue-800 to-blue-400 text-white px-4 py-2 rounded-full hover:shadow-xl transition"
+            className="bg-gradient-to-tr from-blue-800 to-blue-400 text-white px-4 py-2 rounded-full hover:shadow-lg transition text-sm"
           >
             Contact Us
           </Link>
         </div>
-
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="text-white text-2xl"
+            className="text-white text-2xl p-2"
+            aria-label="Toggle mobile menu"
           >
-            {mobileOpen ? <HiX /> : <HiMenu />}
+            {mobileOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
-
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
@@ -123,13 +109,12 @@ export default function Navbar() {
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
+              animate={{ opacity: 0.6 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black z-40"
+              className="fixed inset-0 bg-black z-40 h-screen"
               onClick={() => setMobileOpen(false)}
             />
-
             {/* Sliding Menu */}
             <motion.div
               initial="hidden"
@@ -137,49 +122,59 @@ export default function Navbar() {
               exit="exit"
               variants={mobileMenuVariants}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-full bg-white text-black z-50 shadow-2xl p-6 space-y-6"
+              className="fixed top-0 right-0 w-4/5 max-w-[280px] h-screen bg-white text-black z-50 shadow-xl p-6 flex flex-col space-y-4 overflow-y-auto"
             >
               <div className="flex justify-end">
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="text-2xl"
-                >
-                  <HiX />
+                <button onClick={() => setMobileOpen(false)} className="text-2xl p-2" aria-label="Close mobile menu">
+                  <X />
                 </button>
               </div>
-
               {navItems.map((item) => (
                 <div key={item.name}>
-                  <button
-                    onClick={() => toggleDropdown(item.name)}
-                    className={`w-full text-left flex justify-between items-center py-2 ${
-                      currentPath === item.path
-                        ? "text-blue-500 underline"
-                        : "text-black"
-                    }`}
-                  >
-                    <span>{item.name}</span>
-                    {item.child ? <IoIosArrowDown /> : null}
-                  </button>
-                  {openDropdown === item.name && item.child && (
-                    <div className="ml-4 mt-2 space-y-2">
-                      {item.child.map((sub) => (
-                        <Link
-                          key={sub.text}
-                          to={sub.path}
-                          className="block hover:text-blue-500 hover:underline"
-                        >
-                          {sub.text}
-                        </Link>
-                      ))}
-                    </div>
+                  {item.child ? (
+                    <>
+                      <button
+                        onClick={() => toggleDropdown(item.name)}
+                        className={`w-full text-left flex justify-between items-center py-3 text-base font-medium ${currentPath === item.path ? "text-blue-500 underline" : "text-gray-800"
+                          }`}
+                      >
+                        <span>{item.name}</span>
+                        <ChevronDown
+                          className={`transition-transform ${openDropdown === item.name ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      {openDropdown === item.name && (
+                        <div className="ml-4 mt-2 space-y-2">
+                          {item.child.map((sub) => (
+                            <Link
+                              key={sub.text}
+                              to={sub.path}
+                              onClick={() => setMobileOpen(false)}
+                              className={`block py-2 text-sm hover:text-blue-500 hover:underline ${currentPath === sub.path ? "text-blue-500 underline" : "text-gray-700"
+                                }`}
+                            >
+                              {sub.text}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block py-3 text-base font-medium ${currentPath === item.path ? "text-blue-500 underline" : "text-gray-800"
+                        } hover:text-blue-500 hover:underline`}
+                    >
+                      {item.name}
+                    </Link>
                   )}
                 </div>
               ))}
-
               <Link
                 to="/contact"
-                className="inline-block bg-gradient-to-tr from-blue-800 to-blue-400 text-white px-4 py-2 rounded-full w-full text-center mt-4"
+                onClick={() => setMobileOpen(false)}
+                className="block bg-gradient-to-tr from-blue-800 to-blue-400 text-white px-4 py-2 rounded-full text-center mt-4 text-sm font-medium"
               >
                 Contact Us
               </Link>
@@ -188,5 +183,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </nav>
-  );
+  )
 }

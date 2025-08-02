@@ -44,7 +44,7 @@ const LogoMarquee = ({ direction = "left" }) => {
 
 export default function TrustSection() {
   return (
-    <div className="bg-white py-12 px-24">
+    <div className="bg-white py-12 px-5 md:px-24">
       <h1 className="text-center text-2xl md:text-4xl font-bold mb-8 text-gray-900">
         TRUSTED BY <span className="text-blue-600">200+</span> GLOBAL BRANDS
       </h1>

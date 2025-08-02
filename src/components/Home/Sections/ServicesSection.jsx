@@ -16,9 +16,9 @@ const services = [
   {
     leftImage: "/service/image 16.png",
     rightImage: "/service/image 15.png",
-    centerTitle: "Web Development",
+    centerTitle: "Web Development",
     centerDescription:
-      "Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration. App Development.",
+      "Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration.",
     bg: ["#FBB486", "#FCD8E2"],
   },
   {
@@ -26,7 +26,7 @@ const services = [
     rightImage: "/service/image 14.png",
     centerTitle: "Logo & Branding",
     centerDescription:
-      "Logo Design, Full Branding, Business Branding, 3d logo, Custom Logo, Visual Identity, Brand Strategy, Social Media Branding, and Brand Guidelines.",
+      "Logo Design, Full Branding, Business Branding, 3D Logo, Custom Logo, Visual Identity, Brand Strategy, Social Media Branding, and Brand Guidelines.",
     bg: ["#013d3e", "#111f22"],
   },
   {
@@ -34,7 +34,7 @@ const services = [
     rightImage: "/service/image 51.png",
     centerTitle: "Framer",
     centerDescription:
-      "Framer Prototypes, Framer Material, Framer App, CMS Integration, Rapid Development. Framer Prototypes, Framer Material, Framer App, CMS Integration, Rapid Development.",
+      "Framer Prototypes, Framer Material, Framer App, CMS Integration, Rapid Development.",
     bg: ["#E3628166", "#BA009E36"],
   },
 ];
@@ -43,7 +43,7 @@ const ServicesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="px-6 md:px-24 py-16 text-center text-[#515151]">
+    <section className="px-4 sm:px-6 md:px-24 py-8 sm:py-12 md:py-16 text-center text-[#515151] bg-gray-50">
       <Title
         title={
           <>
@@ -51,10 +51,61 @@ const ServicesSection = () => {
             that truly engage your audience.
           </>
         }
-        desc={`We craft engaging digital experiences through UI/UX design, web development, logo & branding, and Framer-powered websites.`}
+        desc="We craft engaging digital experiences through UI/UX design, web development, logo & branding, and Framer-powered websites."
       />
 
-      <div className="flex gap-5 mt-16">
+      {/* Small Screen Layout (<768px) */}
+      <div className="md:hidden mt-8 sm:mt-12 space-y-12 sm:space-y-16">
+        {services.map((service, i) => {
+          const { ref, inView } = useInView({
+            threshold: 0.5,
+            triggerOnce: false,
+            onChange: (inView) => {
+              if (inView) setActiveIndex(i);
+            },
+          });
+
+          return (
+            <div
+              key={`service-${i}`}
+              ref={ref}
+              className="flex flex-col gap-4 sm:gap-6 max-w-xl mx-auto"
+            >
+              <h3
+                className={`text-lg sm:text-xl font-bold text-blue-900 ${inView ? "opacity-100" : "opacity-50"
+                  } transition-opacity duration-300`}
+              >
+                {service.centerTitle}
+              </h3>
+              <div className="flex flex-col gap-4 sm:gap-6">
+                <div
+                  className="h-[200px] sm:h-[250px] rounded-lg p-2 sm:p-3 flex items-center justify-center bg-gradient-to-br"
+                  style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
+                >
+                  <img
+                    src={service.leftImage}
+                    alt={`${service.centerTitle} left image`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div
+                  className="h-[200px] sm:h-[250px] rounded-lg p-2 sm:p-3 flex items-center justify-center bg-gradient-to-br"
+                  style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
+                >
+                  <img
+                    src={service.rightImage}
+                    alt={`${service.centerTitle} right image`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Large Screen Layout (>=768px) */}
+      <div className="hidden md:flex gap-5 mt-16 max-w-7xl mx-auto">
         {/* Left Column */}
         <div className="w-1/3 flex flex-col gap-8">
           {services.map((service, i) => {
@@ -70,12 +121,12 @@ const ServicesSection = () => {
               <div
                 key={`left-${i}`}
                 ref={ref}
-                className={`h-[60vh] rounded-lg p-4 flex items-center justify-center`}
-                // style={{ backgroundColor: service.bg[0] }}
+                className="h-[60vh] rounded-lg p-4 flex items-center justify-center"
+                style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
               >
                 <img
                   src={service.leftImage}
-                  alt="Left"
+                  alt={`${service.centerTitle} left image`}
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -100,7 +151,10 @@ const ServicesSection = () => {
               <p className="text-gray-700 mt-2">
                 {services[activeIndex].centerDescription}
               </p>
-              <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-blue-700">
+              <button
+                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-blue-700"
+                aria-label={`See all ${services[activeIndex].centerTitle} services`}
+              >
                 <FaEye /> See All
               </button>
             </motion.div>
@@ -121,12 +175,12 @@ const ServicesSection = () => {
               <div
                 key={`right-${i}`}
                 ref={ref}
-                className={`h-[60vh] rounded-lg p-4 flex items-center justify-center`}
-                // style={{ backgroundColor: service.bg[1] }}
+                className="h-[60vh] rounded-lg p-4 flex items-center justify-center"
+                style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
               >
                 <img
                   src={service.rightImage}
-                  alt="Right"
+                  alt={`${service.centerTitle} right image`}
                   className="w-full h-full object-contain"
                 />
               </div>

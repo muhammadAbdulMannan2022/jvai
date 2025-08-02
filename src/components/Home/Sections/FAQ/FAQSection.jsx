@@ -103,7 +103,7 @@ export default function FAQTeamSection() {
 
   return (
     <section className="py-12 md:py-16 lg:py-20">
-      <div className="container mx-auto px-4">
+      <div className="container max-w-7xl mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
           {/* Team Section */}
           <div>

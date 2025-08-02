@@ -10,7 +10,7 @@ import {
 const Footer = () => {
   return (
     <footer className="text-[#0F172A] pt-8 w-full bg-[#E4EAF1] open-sans-text">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start gap-8 w-full border-t border-b border-blue-500 py-4">
+      <div className="container max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-start gap-8 w-full border-t border-b border-blue-500 py-4">
         {/* Logo and Description */}
         <div className="flex flex-col items-center md:items-start w-full md:w-1/5">
           <div className="text-2xl font-bold text-blue-500 mb-2">

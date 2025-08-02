@@ -48,9 +48,9 @@ const projectsData = [
 ];
 export default function Home() {
   return (
-    <div className="h-screen relative">
+    <div className="h-screen relative w-full">
       {/* header */}
-      <div className="bg-blue-950 bg-[url('/HeroBg.png')] bg-cover bg-no-repeat bg-center h-full">
+      <div className="bg-blue-950 bg-[url('/HeroBg.png')] bg-cover bg-no-repeat bg-center h-fit md:h-full w-full">
         <Hero />
       </div>
       <TrustSection />
@@ -59,7 +59,7 @@ export default function Home() {
       <TechStack />
       <Proces />
       {/*  */}
-      <div className="bg-[#F3F5F9] pt-40 px-40">
+      <div className="bg-[#F3F5F9] pt-40 px-10 md:px-40">
         <Title
           title={
             <>
