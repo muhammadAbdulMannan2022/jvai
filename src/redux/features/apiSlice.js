@@ -2,15 +2,22 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://10.10.13.91:8111/' }),
     endpoints: (builder) => ({
-        getPosts: builder.query({
-            query: () => 'posts',
+        getAllCategories: builder.query({
+            query: () => 'api/category/get_all_categories/',
         }),
-        getPostById: builder.query({
-            query: (id) => `posts/${id}`,
+        getJobs: builder.query({
+            query: () => `api/jobs/all_job/`,
         }),
+        applyOnJob: builder.mutation({
+            query: (id) => ({
+                method: "POST",
+                url: "api/jobs/submit_application/",
+                body: id
+            })
+        })
     }),
 })
 
-export const { useGetPostsQuery, useGetPostByIdQuery } = apiSlice
+export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation } = apiSlice

@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
-import VideoPlayer from "../../../Helpers/VideoPlayer";
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-} from "react-icons/md";
-import Button from "../../../Helpers/Button";
-import { FaCircle, FaPlay } from "react-icons/fa";
+"use client"
 
-// Your data
+import { useEffect, useState, useRef } from "react"
+
+import { ChevronLeft, ChevronRight, Play } from "lucide-react"
+import VideoPlayer from "../../../Helpers/VideoPlayer"
+import Button from "../../../Helpers/Button"
+
+
 // data
 const data = [
   {
@@ -95,7 +94,8 @@ const data = [
     videoSrc:
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
   },
-];
+]
+
 // INDIVIDUAL CARD COMPONENT
 const VideoCard = ({
   data,
@@ -108,99 +108,55 @@ const VideoCard = ({
   index,
   setActiveIndex,
 }) => {
-  const { title, desc, videoSrc, image, services, color } = data;
-
+  const { title, desc, videoSrc, image, services, color } = data
   return (
     <div
-      className={`transition-all h-[70vh] duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center ${!isActive && "hover:cursor-pointer"
-        }`}
+      className={`
+        transition-all duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center
+        ${!isActive ? "hover:cursor-pointer" : ""}
+        ${isActive ? "w-full h-[70vh]" : "w-full h-[100px] md:w-[100px] md:h-[70vh]"}
+      `}
       onClick={() => !isActive && setActiveIndex(index)}
-      style={{
-        width: isActive ? "100%" : "100px",
-        backgroundImage: `url(${image})`,
-      }}
+      style={{ backgroundImage: `url(${image})` }}
     >
-      <div className="bg-black/60 px-[10%] backdrop-blur-sm border h-full">
-        <div
-          className={`w-full h-[10%] relative flex items-center justify-end py-4 ${!isActive && "h-full"
-            }`}
-        >
-          {isActive ? (
-            <div
-              className={`w-full flex items-center  gap-4 ${!isActive ? "rotate-90 justify-center" : "justify-end"
-                }`}
-            >
-              <span
-                className="w-4 h-4 rounded-full block"
-                style={{ backgroundColor: color }}
-              />
-              <span
-                className={`font-bold ${!isActive && "hidden"}`}
-                style={{ color: color }}
-              >
-                {title}
-              </span>
-            </div>
-          ) : (
-            <div className="w-16 h-full flex flex-col items-center gap-4 overflow-hidden">
-              {/* Green circle icon */}
-              <div className="">
-                <FaCircle
-                  style={{ color: color }}
-                  className={`w-[30px] h-[30px] `}
-                />
-              </div>
-
-              {/* Vertical text using Tailwind */}
-              <div className="flex flex-col items-center">
-                <div
-                  style={{
-                    writingMode: "vertical-rl",
-                    textOrientation: "mixed",
-                    letterSpacing: "0.1em",
-                    color: color,
-                  }}
-                  className={` font-medium tracking-wide`}
-                >
+      <div className="bg-black/60 backdrop-blur-sm border h-full flex flex-col ">
+        {isActive ? (
+          <>
+            {/* Active Header */}
+            <div className="w-full h-[10%] relative flex items-center justify-end py-4 px-6 lg:px-10">
+              <div className="w-full flex items-center justify-end gap-4">
+                <span className="w-4 h-4 rounded-full block" style={{ backgroundColor: color }} />
+                <span className="font-bold text-white" style={{ color: color }}>
                   {title}
+                </span>
+              </div>
+            </div>
+
+            {/* Active Content */}
+            <div className="w-full flex-1 overflow-y-auto md:overflow-visible">
+              {" "}
+              {/* Changed overflow-y-auto to be responsive */}
+              <div className="p-4 sm:p-6 text-white relative z-10 flex flex-col md:flex-row gap-4 md:gap-10 items-center">
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-2xl lg:text-5xl font-bold mb-2" style={{ color: color }}>
+                    {title}
+                  </h2>
+                  <p className="text-sm lg:text-[16px] my-8">{desc}</p>
+                  <ul className="list-decimal list-inside space-y-1 text-sm lg:text-lg font-bold mb-6">
+                    {services.map((service, i) => (
+                      <li key={i}>{service}</li>
+                    ))}
+                  </ul>
+                  <Button to={"/contact"} text={"Contact Us"} />
+                </div>
+                <div className="w-full md:w-1/2 h-[25vh] md:h-[30vh] flex items-center justify-center">
+                  <VideoPlayer src={videoSrc} isPlaying={isPlaying} onToggle={onToggle} />
                 </div>
               </div>
             </div>
-          )}
-        </div>
-        <div className="w-full h-[80%]">
-          {isActive && (
-            <div className=" p-6 text-white relative z-10 flex gap-10 items-center">
-              <div className="w-1/2">
-                <h2
-                  className="text-2xl lg:text-5xl font-bold mb-2"
-                  style={{ color: color }}
-                >
-                  {title}
-                </h2>
-                <p className="text-sm lg:text-[16px] my-8">{desc}</p>
-                <ul className="list-decimal list-inside space-y-1 text-sm lg:text-lg font-bold mb-6">
-                  {services.map((service, i) => (
-                    <li key={i}>{service}</li>
-                  ))}
-                </ul>
-                <Button to={"/contact"} text={"Contact Us"} />
-              </div>
 
-              <div className="w-1/2 h-[30vh] max-w-md flex items-center justify-center">
-                <VideoPlayer
-                  src={videoSrc}
-                  isPlaying={isPlaying}
-                  onToggle={onToggle}
-                />
-              </div>
-            </div>
-          )}
-        </div>
-        {isActive && (
-          <>
+            {/* Active Footer/Controls */}
             <div className="w-full h-[10%] flex relative">
-              {/* Progress Bar */}
               <div className="absolute bottom-3 left-6 right-6 flex items-center justify-center">
                 <div className="w-[70%] h-2 bg-white/20 rounded-full overflow-hidden mb-4">
                   <div
@@ -212,101 +168,124 @@ const VideoCard = ({
                   />
                 </div>
               </div>
-
-              {/* Controls Inside Card */}
-              <div className="absolute bottom-3 right-0 flex  justify-end items- w-fit px-4 gap-4 z-50">
+              <div className="absolute bottom-3 right-0 flex justify-end items-center w-fit px-4 gap-4 z-50">
                 <button
                   onClick={goToPrev}
                   className="bg-white/30 hover:bg-white/60 hover:cursor-pointer text-black p-2 rounded-full"
                 >
-                  <MdOutlineKeyboardArrowLeft size={24} />
+                  <ChevronLeft size={24} />
                 </button>
                 <button
                   onClick={goToNext}
                   className="bg-white/30 hover:cursor-pointer hover:bg-white/60 text-black p-2 rounded-full"
                 >
-                  <MdOutlineKeyboardArrowRight size={24} />
+                  <ChevronRight size={24} />
                 </button>
               </div>
             </div>
           </>
-        )}
-        {!isActive && (
-          <div className="absolute bottom-3 w-full flex justify-center">
-            {/* terget */}
-            <div
-              onClick={() => setActiveIndex(index)}
-              className="w-[40px] h-[40px] bg-white/50 hover:cursor-pointer hover:bg-white/60 text-white flex items-center justify-center rounded-full"
-            >
-              <FaPlay />
+        ) : (
+          <>
+            {/* Inactive state content - Mobile (horizontal) */}
+            <div className="flex items-center justify-center h-full px-4 md:hidden">
+              <div className="flex items-center gap-4">
+                <div className="w-[30px] h-[30px] rounded-full shrink-0" style={{ backgroundColor: color }} />
+                <span className="font-medium tracking-wide text-white" style={{ color: color }}>
+                  {title}
+                </span>
+              </div>
             </div>
-          </div>
+
+            {/* Inactive state content - Desktop (vertical) */}
+            <div className="hidden md:flex flex-col items-center justify-center h-full px-4">
+              <div className="w-[30px] h-[30px] rounded-full shrink-0 mb-2" style={{ backgroundColor: color }} />
+              <div
+                style={{
+                  writingMode: "vertical-rl",
+                  textOrientation: "mixed",
+                  letterSpacing: "0.1em",
+                  color: color,
+                }}
+                className="font-medium tracking-wide text-white"
+              >
+                {title}
+              </div>
+            </div>
+
+            {/* Play button for inactive state (common for both mobile/desktop) */}
+            <div className="absolute bottom-3 w-full md:flex justify-center hidden">
+              <div
+                onClick={() => setActiveIndex(index)}
+                className="w-[40px] h-[40px] bg-white/50 hover:cursor-pointer hover:bg-white/60 text-white flex items-center justify-center rounded-full"
+              >
+                <Play size={20} />
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 // MAIN SECTION
 export default function VideoSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  const intervalRef = useRef(null);
-  const progressRef = useRef(0);
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const intervalRef = useRef(null)
+  const progressRef = useRef(0)
 
   const goToIndex = (index) => {
-    setActiveIndex(index);
-    setProgress(0);
-    progressRef.current = 0;
-    setIsPlaying(false);
-  };
+    setActiveIndex(index)
+    setProgress(0)
+    progressRef.current = 0
+    setIsPlaying(false)
+  }
 
   const goToNext = () => {
-    goToIndex((activeIndex + 1) % data.length);
-  };
+    goToIndex((activeIndex + 1) % data.length)
+  }
 
   const goToPrev = () => {
-    goToIndex((activeIndex - 1 + data.length) % data.length);
-  };
+    goToIndex((activeIndex - 1 + data.length) % data.length)
+  }
 
   // PROGRESS TIMER EFFECT
   useEffect(() => {
     if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+      clearInterval(intervalRef.current)
+      intervalRef.current = null
     }
 
+    // Only start interval if not playing (i.e., auto-advance)
     if (!isPlaying) {
       intervalRef.current = setInterval(() => {
-        progressRef.current += 2;
-
+        progressRef.current += 2
         if (progressRef.current >= 100) {
-          clearInterval(intervalRef.current);
-          intervalRef.current = null;
-          progressRef.current = 0;
-
-          setProgress(0);
-          setIsPlaying(false);
-          setActiveIndex((prev) => (prev + 1) % data.length);
+          clearInterval(intervalRef.current)
+          intervalRef.current = null
+          progressRef.current = 0
+          setProgress(0)
+          setIsPlaying(false) // Reset playing state for next card
+          setActiveIndex((prev) => (prev + 1) % data.length)
         } else {
-          setProgress(progressRef.current);
+          setProgress(progressRef.current)
         }
-      }, 100);
+      }, 100)
     }
 
     return () => {
       if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
       }
-    };
-  }, [activeIndex, isPlaying]);
+    }
+  }, [activeIndex, isPlaying]) // Re-run when activeIndex or isPlaying changes
 
   return (
-    <div className="flex gap-4 items-stretch px-5 md:px-24 py-40 overflow-hidden relative">
-      <div className="flex w-full gap-4 mx-5 md:mx-10">
+    <div className="flex flex-col md:flex-row gap-4 items-center px-5 md:px-24 py-40 overflow-hidden relative">
+      <div className="flex flex-col md:flex-row w-full gap-4 mx-5 md:mx-10">
         {data.map((item, index) => (
           <VideoCard
             key={index}
@@ -315,7 +294,7 @@ export default function VideoSection() {
             isPlaying={index === activeIndex && isPlaying}
             onToggle={() => {
               if (index === activeIndex) {
-                setIsPlaying((prev) => !prev);
+                setIsPlaying((prev) => !prev)
               }
             }}
             progress={index === activeIndex ? progress : 0}
@@ -327,5 +306,5 @@ export default function VideoSection() {
         ))}
       </div>
     </div>
-  );
+  )
 }
