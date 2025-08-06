@@ -6,106 +6,46 @@ import {
   Mousewheel,
   Autoplay,
 } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
-
-import VideoPlayer from "../../../../Helpers/VideoPlayer";
-import { useInView } from "react-intersection-observer";
 import { useRef, useState } from "react";
 import Title from "../../../../Helpers/Title";
+import { baseUri, useGetClientReviewsQuery } from "../../../../redux/features/apiSlice";
+import Flag from "react-world-flags";
 
-const testimonials = [
-  {
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-    logo: "/logoB.png",
-    name: "Jane Doe",
-    title: "Product Manager",
-    location: "San Francisco, CA",
-    quote:
-      "This product completely transformed our workflow and has made our processes significantly more efficient and streamlined, saving us a lot of time and resources.",
-  },
-  {
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-    logo: "/logoB.png",
-    name: "John Smith",
-    title: "CTO",
-    location: "Berlin, Germany",
-    quote:
-      "The support and performance of this platform are unmatched. It’s been a game-changer for our team and allowed us to scale our operations effectively.",
-  },
-  {
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-    logo: "/logoB.png",
-    name: "Alice Johnson",
-    title: "CEO",
-    location: "Tokyo, Japan",
-    quote:
-      "I highly recommend this service for any growing company. It’s easy to integrate, reliable, and has greatly improved our internal communication and project management processes.",
-  },
-  {
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-    logo: "/logoB.png",
-    name: "John Smith",
-    title: "CTO",
-    location: "Berlin, Germany",
-    quote:
-      "The support and performance are truly unparalleled. This platform has significantly optimized our workflow and improved collaboration across teams, especially in our remote work environment.",
-  },
-  {
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-    logo: "/logoB.png",
-    name: "Alice Johnson",
-    title: "CEO",
-    location: "Tokyo, Japan",
-    quote:
-      "We’ve had an incredible experience with this product. It’s user-friendly, effective, and has made a huge difference in how we manage our business operations across departments.",
-  },
-  {
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-    logo: "/logoB.png",
-    name: "John Smith",
-    title: "CTO",
-    location: "Berlin, Germany",
-    quote:
-      "This platform has exceeded our expectations. The performance, security, and ease of use have made it a crucial tool for our business, and the support is exceptional.",
-  },
-  {
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4",
-    logo: "/logoB.png",
-    name: "Alice Johnson",
-    title: "CEO",
-    location: "Tokyo, Japan",
-    quote:
-      "I can't recommend this enough. The impact it's had on our operations is immense. It's fast, efficient, and has greatly enhanced our team's productivity and coordination.",
-  },
-];
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [playingIndex, setPlayingIndex] = useState(null);
-  const swiperRef = useRef(null); // <-- NEW
+  const swiperRef = useRef(null);
+  const { data, isLoading, isError } = useGetClientReviewsQuery();
 
-  const onToggle = (index) => {
-    const newPlayingIndex = playingIndex === index ? null : index;
-    setPlayingIndex(newPlayingIndex);
+  // Map API data to the component's expected structure
+  const testimonials = data?.Data?.map((item) => ({
+    logo: "",
+    quote: item.client_feedback,
+    name: item.client_name,
+    title: item.client_profession,
+    location: item.client_country,
+    client_picture: item.client_picture
+  })) || [];
 
-    if (swiperRef.current?.autoplay) {
-      if (newPlayingIndex !== null) {
-        swiperRef.current.autoplay.stop();
-      } else {
-        swiperRef.current.autoplay.start();
-      }
-    }
-  };
+  // Handle loading and error states
+  if (isLoading) {
+    return (
+      <section className="w-full min-h-[80vh] flex flex-col justify-center items-center bg-[#F3F5F9]">
+        <p>Loading testimonials...</p>
+      </section>
+    );
+  }
+
+  if (isError || !testimonials.length) {
+    return (
+      <section className="w-full min-h-[80vh] flex flex-col justify-center items-center bg-[#F3F5F9]">
+        <p>No testimonials available.</p>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full min-h-[80vh] flex flex-col justify-center items-center bg-[#F3F5F9]">
@@ -116,7 +56,7 @@ const Testimonials = () => {
             Recommend Us.
           </>
         }
-        desc={`Trusted by clients for delivering results that speak for themselves.`}
+        desc="Trusted by clients for delivering results that speak for themselves."
       />
       <div className="w-full">
         <Swiper
@@ -127,14 +67,8 @@ const Testimonials = () => {
           keyboard={{ enabled: true }}
           navigation={true}
           autoplay={{ delay: 4000 }}
-          modules={[
-            EffectCoverflow,
-            Navigation,
-            Keyboard,
-            Mousewheel,
-            Autoplay,
-          ]}
-          onSwiper={(swiper) => (swiperRef.current = swiper)} // <-- Capture swiper instance
+          modules={[EffectCoverflow, Navigation, Keyboard, Mousewheel, Autoplay]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           coverflowEffect={{
             rotate: 0,
@@ -150,50 +84,47 @@ const Testimonials = () => {
             1024: { slidesPerView: 2.5 },
           }}
           className="w-full"
+          role="region"
+          aria-label="Client testimonials carousel"
         >
-          {testimonials.map((testimonial, index) => {
-            const [ref, inView] = useInView({ threshold: 0.6 });
-            const isPlaying = activeIndex === index && inView;
+          {testimonials.map((testimonial, index) => (
 
-            return (
-              <SwiperSlide key={index} className="flex justify-center">
-                <div ref={ref}>
-                  <div className="card bg-white flex flex-row-reverse rounded-xl shadow-lg p-4 w-[700px] h-[400px] text-left space-x-4 space-x-reverse">
-                    <div className="md:w-1/2 hidden md:block">
-                      <VideoPlayer
-                        src={testimonial.video}
-                        isPlaying={playingIndex === index && isPlaying}
-                        onToggle={() => onToggle(index)} // Toggle autoplay on video interaction
+            <SwiperSlide key={index} className="flex justify-center">
+              <div>
+                <div className="card bg-white flex flex-row-reverse rounded-xl shadow-lg p-4 w-[700px] h-[400px] text-left space-x-4 space-x-reverse">
+                  <div className="md:w-1/2 w-full h-full">
+                    <img
+                      src={baseUri + testimonial.client_picture}
+                      alt={`${testimonial.name}'s company logo`}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="md:w-1/2 w-full flex flex-col justify-between space-y-2">
+                    <div className="h-16 mb-2">
+                      <img
+                        src="/logoB.png"
+                        alt={`${testimonial.name}'s company logo`}
+                        className="h-full w-auto object-contain"
                       />
                     </div>
-                    <div className="md:w-1/2 w-full flex flex-col justify-between space-y-2">
-                      <div className="h-16 mb-2">
-                        <img
-                          src={testimonial.logo}
-                          alt="Company logo"
-                          className="h-full w-auto object-contain"
-                        />
-                      </div>
-                      <p className="text-sm text-gray-700 italic line-clamp-6">
-                        "{testimonial.quote}"
+                    <p className="text-sm text-gray-700 italic line-clamp-6">
+                      "{testimonial.quote}"
+                    </p>
+                    <div className="mt-2">
+                      <p className="font-semibold text-sm">
+                        {testimonial.name}
                       </p>
-                      <div className="mt-2">
-                        <p className="font-semibold text-sm">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-xs text-gray-600">
-                          {testimonial.title}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          {testimonial.location}
-                        </p>
-                      </div>
+                      <p className="text-xs text-gray-600">
+                        {testimonial.title}
+                      </p>
+                      <Flag code={testimonial.location} style={{ width: '32px', height: '20px' }} />
                     </div>
                   </div>
                 </div>
-              </SwiperSlide>
-            );
-          })}
+              </div>
+            </SwiperSlide>
+
+          ))}
         </Swiper>
       </div>
     </section>
