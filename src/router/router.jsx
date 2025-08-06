@@ -84,15 +84,15 @@ const IntroVideo = ({ onVideoEnd }) => {
 const Root = () => {
   const [showIntro, setShowIntro] = useState(true);
   const handleVideoEnd = () => {
-    setShowIntro(false); // Optional: kept for potential future use
+    setShowIntro(false);
   };
 
   return (
     <div className="relative">
       <Suspense fallback={<div>Loading...</div>}>
-        <MainLayout /> {/* Always render MainLayout behind the video */}
+        <MainLayout />
       </Suspense>
-      {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />}
+      {/* {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />} */}
     </div>
   );
 };

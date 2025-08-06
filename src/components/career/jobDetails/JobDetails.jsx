@@ -86,6 +86,7 @@ export default function JobDetails() {
           <Link
             to="/career/apply"
             state={{
+              id: job.id,
               title: job.title,
               time: job.working_hours_start && job.working_hours_end
                 ? `${job.working_hours_start} - ${job.working_hours_end}`

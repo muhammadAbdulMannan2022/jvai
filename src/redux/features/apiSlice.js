@@ -11,10 +11,10 @@ export const apiSlice = createApi({
             query: () => `api/jobs/all_job/`,
         }),
         applyOnJob: builder.mutation({
-            query: (id) => ({
+            query: (data) => ({
                 method: "POST",
                 url: "api/jobs/submit_application/",
-                body: id
+                body: data
             })
         })
     }),
