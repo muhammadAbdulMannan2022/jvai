@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { LuCalendarClock } from "react-icons/lu";
 import VideoPlayer from "../../../../Helpers/VideoPlayer";
 import { Link } from "react-router";
+import { baseUri } from "../../../../redux/features/apiSlice";
 
 export default function ProjectsCard({
   data,
@@ -82,7 +83,7 @@ export default function ProjectsCard({
           {/* Image */}
           <div className="rounded-lg overflow-hidden w-full sm:w-[35%] h-48 sm:h-full">
             <img
-              src={coverImage}
+              src={baseUri + coverImage}
               alt={title}
               className="w-full h-full object-cover rounded-lg"
             />
@@ -91,7 +92,7 @@ export default function ProjectsCard({
           {/* Video (hidden on mobile) */}
           <div className="hidden sm:block w-full sm:w-[64%] h-auto sm:h-full">
             <VideoPlayer
-              src={video}
+              src={baseUri + video}
               isPlaying={isPlaying}
               onToggle={togglePlayback}
             />

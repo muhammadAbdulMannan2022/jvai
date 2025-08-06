@@ -7,41 +7,24 @@ import "./team.css";
 
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import Title from "../../../../Helpers/Title";
-
-const data = [
-  {
-    id: 1,
-    img: "/team.png",
-    name: "Rafsun Ahmed",
-    position: "AI Engineer",
-  },
-  {
-    id: 2,
-    img: "/team.png",
-    name: "Sara Rahman",
-    position: "Machine Learning Engineer",
-  },
-  {
-    id: 3,
-    img: "/team.png",
-    name: "Tom Hardy",
-    position: "Data Scientist",
-  },
-  {
-    id: 4,
-    img: "/team.png",
-    name: "Nina Lee",
-    position: "AI Researcher",
-  },
-  {
-    id: 5,
-    img: "/team.png",
-    name: "Leo Zhang",
-    position: "AI Strategist",
-  },
-];
+import { baseUri, useGetExpertsQuery } from "../../../../redux/features/apiSlice";
 
 export default function TeamSlider() {
+  const { data, isLoading, isError } = useGetExpertsQuery();
+
+  // Handle loading and error states
+  if (isLoading) {
+    return <div className="text-center py-16">Loading...</div>;
+  }
+
+  if (isError || !data?.Data) {
+    return (
+      <div className="text-center py-16 text-red-500">
+        Failed to load team data.
+      </div>
+    );
+  }
+
   return (
     <div className="team_slide flex flex-col justify-center items-center w-full py-16">
       <Title
@@ -53,7 +36,7 @@ export default function TeamSlider() {
         desc={`Our team of AI specialists, data scientists, and engineers are passionate about creating innovative solutions.`}
       />
 
-      <div className="w-full max-w-[1100px] ">
+      <div className="w-full max-w-[1100px]">
         <Swiper
           modules={[EffectCoverflow, Pagination]}
           effect={"coverflow"}
@@ -83,17 +66,17 @@ export default function TeamSlider() {
             },
           }}
         >
-          {data.map((member) => (
+          {data.Data.map((member) => (
             <SwiperSlide key={member.id}>
               <div className="relative h-[600px] w-[400px] border border-gray-200 rounded-xl overflow-hidden shadow-xl">
                 <img
-                  src={member.img}
-                  alt={member.name}
+                  src={baseUri + member.expert_picture}
+                  alt={member.expert_name}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-black via-black to-transparent p-4 text-white text-center flex flex-col justify-end pb-10">
-                  <h3 className="text-xl font-bold">{member.name}</h3>
-                  <p className="text-sm text-blue-500">{member.position}</p>
+                  <h3 className="text-xl font-bold">{member.expert_name}</h3>
+                  <p className="text-sm text-blue-500">{member.expert_designation}</p>
                 </div>
               </div>
             </SwiperSlide>

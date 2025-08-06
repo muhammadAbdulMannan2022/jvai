@@ -8,9 +8,10 @@ function App() {
   return (
     <>
       <Provider store={store}>
+
         <RouterProvider router={router} />
+
       </Provider>
-      {/* all route starts here */}
     </>
   );
 }

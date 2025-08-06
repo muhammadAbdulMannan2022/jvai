@@ -24,10 +24,20 @@ export const apiSlice = createApi({
         getExperts: builder.query({
             query: () => `api/experts/get_all_experts/`
         }),
-        momentsInJvai: builder.query({
-            query: `api/what_we_do_everyday/get_what_we_do/`
+        getMomentsInJvai: builder.query({
+            query: () => `api/what_we_do_everyday/get_what_we_do/`
+        }),
+        getProjects: builder.query({
+            query: () => `api/projects/get_all_projects/`,
+            transformResponse: res => res.Data
+        }),
+        getOneProject: builder.query({
+            query: id => `api/projects/get_individual_project/${id}/`
+        }),
+        getSeo: builder.query({
+            query: () => `api/seo/get_seo_content/`
         })
     }),
 })
 
-export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useMomentsInJvaiQuery } = apiSlice
+export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery } = apiSlice

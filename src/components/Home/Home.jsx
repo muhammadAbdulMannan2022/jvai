@@ -14,51 +14,34 @@ import Moments from "./Sections/moments/Moments";
 import FAQSection from "./Sections/FAQ/FAQSection";
 import Testimonials from "./Sections/Testimonials/Testimonials";
 import Title from "../../Helpers/Title";
-const projectsData = [
-  {
-    id: 1,
-    title: "Project Title 1",
-    description:
-      "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    date: "April 2025",
-    coverImage: "/projects/1.png",
-  },
-  {
-    id: 2,
-    title: "Project Title 2",
-    description:
-      "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    date: "April 2025",
-    coverImage: "/projects/2.png",
-  },
-  {
-    id: 2,
-    title: "Project Title 3",
-    description:
-      "Complete design solution: brand, UI/UX, web, mobile, and dashboard.",
-    video:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    date: "April 2025",
-    coverImage: "/projects/3.png",
-  },
-];
+import { useGetProjectsQuery } from "../../redux/features/apiSlice";
+
 export default function Home() {
+  const { data, isLoading, error } = useGetProjectsQuery();
+
+  // Optional: map API fields to expected format
+  const mappedProjects = data?.map((item) => ({
+    id: item.id,
+    title: item.project_title,
+    description: item.project_short_description,
+    video: item.project_video,
+    date: item.project_duration,
+    coverImage: item.project_picture,
+  })) ?? [];
+
   return (
     <div className="h-screen relative w-full">
       {/* header */}
       <div className="bg-blue-950 bg-[url('/HeroBg.png')] bg-cover bg-no-repeat bg-center h-fit md:h-full w-full">
         <Hero />
       </div>
+
       <TrustSection />
       <Intro />
       <ServicesSection />
       <TechStack />
       <Proces />
-      {/*  */}
+
       <div className="bg-[#F3F5F9] pt-40 px-10 md:px-40">
         <Title
           title={
@@ -69,19 +52,20 @@ export default function Home() {
           }
           desc={`Discover the latest projects we've completed, where innovation meets real-world results. Each project reflects our dedication to delivering high-quality, impactful software solutions.`}
         />
-        <RecentProjects projectsData={projectsData} />
+        {isLoading ? (
+          <p>Loading projects...</p>
+        ) : error ? (
+          <p className="text-red-500">Failed to load projects</p>
+        ) : (
+          <RecentProjects projectsData={mappedProjects} />
+        )}
       </div>
-      {/*  */}
+
       <SupportSection />
-      {/*  */}
       <Testimonials />
-      {/*  */}
       <TeamSlider />
-      {/*  */}
       <Moments />
-      {/*  */}
       <FAQSection />
-      {/* footer */}
       <Footer />
     </div>
   );

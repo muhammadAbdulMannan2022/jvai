@@ -1,46 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaEye } from "react-icons/fa";
 import Title from "../../../Helpers/Title";
-
-const services = [
-  {
-    leftImage: "/service/image 11.png",
-    rightImage: "/service/Image 12.png",
-    centerTitle: "UI/UX Design",
-    centerDescription:
-      "We design user interfaces and experiences that are functional, beautiful, and user-friendly.",
-    bg: ["#FAD7A1", "#99AFE8"],
-  },
-  {
-    leftImage: "/service/image 16.png",
-    rightImage: "/service/image 15.png",
-    centerTitle: "Web Development",
-    centerDescription:
-      "Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration.",
-    bg: ["#FBB486", "#FCD8E2"],
-  },
-  {
-    leftImage: "/service/image 13.png",
-    rightImage: "/service/image 14.png",
-    centerTitle: "Logo & Branding",
-    centerDescription:
-      "Logo Design, Full Branding, Business Branding, 3D Logo, Custom Logo, Visual Identity, Brand Strategy, Social Media Branding, and Brand Guidelines.",
-    bg: ["#013d3e", "#111f22"],
-  },
-  {
-    leftImage: "/service/image 50.png",
-    rightImage: "/service/image 51.png",
-    centerTitle: "Framer",
-    centerDescription:
-      "Framer Prototypes, Framer Material, Framer App, CMS Integration, Rapid Development.",
-    bg: ["#E3628166", "#BA009E36"],
-  },
-];
+import { useGetAllCategoriesQuery } from "../../../redux/features/apiSlice";
+import { useNavigate } from "react-router";
 
 const ServicesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { data, isLoading } = useGetAllCategoriesQuery();
+  const navigation = useNavigate()
+
+  // Transform API data to match expected structure
+  const services = useMemo(() => {
+    if (!data?.Data) return [];
+
+    return data.Data.map((category) => ({
+      centerTitle: category.category_name,
+      centerDescription: category.category_description,
+      leftImage: category.category_left_picture || category.category_background_image,
+      rightImage: category.category_right_picture || category.category_background_image,
+      bg: ["#E0EAFD", "#FFFFFF"], // default gradient colors; can be dynamic if needed
+    }));
+  }, [data]);
+
+  if (isLoading || services.length === 0) return null;
 
   return (
     <section className="px-4 sm:px-6 md:px-24 py-8 sm:py-12 md:py-16 text-center text-[#515151] bg-gray-50">
@@ -80,7 +64,9 @@ const ServicesSection = () => {
               <div className="flex flex-col gap-4 sm:gap-6">
                 <div
                   className="h-[200px] sm:h-[250px] rounded-lg p-2 sm:p-3 flex items-center justify-center bg-gradient-to-br"
-                  style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
+                  style={{
+                    background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})`,
+                  }}
                 >
                   <img
                     src={service.leftImage}
@@ -90,7 +76,9 @@ const ServicesSection = () => {
                 </div>
                 <div
                   className="h-[200px] sm:h-[250px] rounded-lg p-2 sm:p-3 flex items-center justify-center bg-gradient-to-br"
-                  style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
+                  style={{
+                    background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})`,
+                  }}
                 >
                   <img
                     src={service.rightImage}
@@ -121,8 +109,10 @@ const ServicesSection = () => {
               <div
                 key={`left-${i}`}
                 ref={ref}
-                className="h-[60vh] rounded-lg p-4 flex items-center justify-center"
-                style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
+                className="h-[60vh] rounded-lg p-4 flex items-center justify-center shadow-blue-100 shadow-xl"
+                style={{
+                  background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})`,
+                }}
               >
                 <img
                   src={service.leftImage}
@@ -146,14 +136,15 @@ const ServicesSection = () => {
               className="absolute w-full h-[40vh] bg-[#E6EDFF] rounded-lg text-center flex flex-col items-center justify-center p-6 shadow-md"
             >
               <h3 className="text-2xl font-bold text-blue-900">
-                {services[activeIndex].centerTitle}
+                {services[activeIndex]?.centerTitle}
               </h3>
-              <p className="text-gray-700 mt-2">
-                {services[activeIndex].centerDescription}
+              <p title={services[activeIndex]?.centerDescription} className="text-gray-700 mt-2 line-clamp-6">
+                {services[activeIndex]?.centerDescription}
               </p>
               <button
-                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-blue-700"
-                aria-label={`See all ${services[activeIndex].centerTitle} services`}
+                onClick={() => navigation("/services")}
+                className="mt-4 bg-blue-600 text-white hover:cursor-pointer px-4 py-2 rounded-full flex items-center gap-2 hover:bg-blue-700"
+                aria-label={`See all ${services[activeIndex]?.centerTitle} services`}
               >
                 <FaEye /> See All
               </button>
@@ -162,7 +153,7 @@ const ServicesSection = () => {
         </div>
 
         {/* Right Column */}
-        <div className="w-1/3 flex flex-col gap-8">
+        <div className="w-1/3 flex flex-col gap-8 ">
           {services.map((service, i) => {
             const { ref } = useInView({
               threshold: 0.6,
@@ -171,12 +162,15 @@ const ServicesSection = () => {
                 if (inView) setActiveIndex(i);
               },
             });
+
             return (
               <div
                 key={`right-${i}`}
                 ref={ref}
-                className="h-[60vh] rounded-lg p-4 flex items-center justify-center"
-                style={{ background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})` }}
+                className="h-[60vh] rounded-lg p-4 flex items-center justify-center shadow-blue-100 shadow-xl"
+                style={{
+                  background: `linear-gradient(to bottom right, ${service.bg[0]}, ${service.bg[1]})`,
+                }}
               >
                 <img
                   src={service.rightImage}

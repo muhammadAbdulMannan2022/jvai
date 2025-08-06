@@ -28,7 +28,8 @@ export default function RecentProjects({ projectsData }) {
   }, []);
 
   return (
-    <div ref={container} className="relative bg-[#F3F5F9] min-h-[50vh]">
+
+    <div ref={container} className="bg-[#F3F5F9] relative min-h-[50vh]">
       {loading ? (
         <div className="w-full text-center py-20 text-xl font-semibold text-gray-500 animate-pulse">
           Loading recent projects...

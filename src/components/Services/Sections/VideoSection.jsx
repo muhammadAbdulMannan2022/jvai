@@ -1,100 +1,10 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
-
 import { ChevronLeft, ChevronRight, Play } from "lucide-react"
 import VideoPlayer from "../../../Helpers/VideoPlayer"
 import Button from "../../../Helpers/Button"
-
-
-// data
-const data = [
-  {
-    title: "UX UI Design",
-    desc: "At JVAI, we believe everyone should have a great user experience, whether at work or in their free time. create memorable products for businesses consumers, and we provide easy-to-use design systems for smooth product..",
-    services: [
-      "UX UI Design",
-      "UX UI Consulting",
-      "UX Audit",
-      "UX Research",
-      "Usability Testing",
-      "Wireframe & UI Prototyping",
-      "Design System",
-    ],
-    image: "/servicesImage/ui.jpg",
-    color: "#F86925",
-    videoSrc:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
-  },
-  {
-    title: "Web Development",
-    desc: "At JVAI, we build modern, scalable, and high-performing websites that help businesses grow online. From responsive designs to robust backend architecture, our web development services ensure your digital presence is strong, secure, and user-friendly.",
-    services: [
-      "Custom Website Development",
-      "Responsive Web Design",
-      "E-commerce Development",
-      "Content Management Systems (CMS)",
-      "API Integration",
-      "Performance Optimization",
-      "Maintenance & Support",
-    ],
-    image: "/servicesImage/webdev.jpg",
-    color: "#1E40AF", // Tailwind: blue-800
-    videoSrc:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
-  },
-  {
-    title: "Mobile App Design",
-    desc: "We specialize in creating intuitive and visually stunning mobile app interfaces. Our design approach focuses on enhancing user interaction while aligning with business goals to deliver seamless mobile experiences across iOS and Android platforms.",
-    services: [
-      "iOS & Android App Design",
-      "Mobile UX/UI Strategy",
-      "Wireframing & Prototyping",
-      "Design Systems for Mobile",
-      "Cross-Platform Design",
-      "Usability Testing",
-      "App Redesign Services",
-    ],
-    image: "/servicesImage/mobile.jpg",
-    color: "#0EA5E9", // Tailwind: sky-500
-    videoSrc:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-  },
-  {
-    title: "Graphics Design",
-    desc: "Our graphic design team crafts compelling visuals that capture attention and communicate brand stories. From marketing materials to brand identity, we deliver designs that resonate with your audience and strengthen your brand presence.",
-    services: [
-      "Brand Identity Design",
-      "Social Media Graphics",
-      "Marketing Collateral",
-      "Logo & Icon Design",
-      "Infographic Design",
-      "Packaging Design",
-      "Presentation Design",
-    ],
-    image: "/servicesImage/graphic.jpg",
-    color: "#DB2777", // Tailwind: pink-600
-    videoSrc:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-  },
-  {
-    title: "Digital Marketing",
-    desc: "We help brands connect with their audience through data-driven digital marketing strategies. From SEO to social media and paid advertising, our tailored campaigns boost visibility, engagement, and conversions across all digital channels.",
-    services: [
-      "Search Engine Optimization (SEO)",
-      "Social Media Marketing (SMM)",
-      "Pay-Per-Click Advertising (PPC)",
-      "Content Marketing",
-      "Email Marketing",
-      "Conversion Rate Optimization",
-      "Analytics & Reporting",
-    ],
-    image: "/servicesImage/digital.jpg",
-    color: "#16A34A", // Tailwind: green-600
-    videoSrc:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-  },
-]
+import { useGetAllCategoriesQuery } from "../../../redux/features/apiSlice"
 
 // INDIVIDUAL CARD COMPONENT
 const VideoCard = ({
@@ -109,6 +19,7 @@ const VideoCard = ({
   setActiveIndex,
 }) => {
   const { title, desc, videoSrc, image, services, color } = data
+
   return (
     <div
       className={`
@@ -134,14 +45,12 @@ const VideoCard = ({
 
             {/* Active Content */}
             <div className="w-full flex-1 overflow-y-auto md:overflow-visible">
-              {" "}
-              {/* Changed overflow-y-auto to be responsive */}
               <div className="p-4 sm:p-6 text-white relative z-10 flex flex-col md:flex-row gap-4 md:gap-10 items-center">
                 <div className="w-full md:w-1/2">
                   <h2 className="text-2xl lg:text-5xl font-bold mb-2" style={{ color: color }}>
                     {title}
                   </h2>
-                  <p className="text-sm lg:text-[16px] my-8">{desc}</p>
+                  <p className="text-sm lg:text-[16px] my-8 line-clamp-6">{desc}</p>
                   <ul className="list-decimal list-inside space-y-1 text-sm lg:text-lg font-bold mb-6">
                     {services.map((service, i) => (
                       <li key={i}>{service}</li>
@@ -186,7 +95,7 @@ const VideoCard = ({
           </>
         ) : (
           <>
-            {/* Inactive state content - Mobile (horizontal) */}
+            {/* Inactive state content - Mobile */}
             <div className="flex items-center justify-center h-full px-4 md:hidden">
               <div className="flex items-center gap-4">
                 <div className="w-[30px] h-[30px] rounded-full shrink-0" style={{ backgroundColor: color }} />
@@ -196,7 +105,7 @@ const VideoCard = ({
               </div>
             </div>
 
-            {/* Inactive state content - Desktop (vertical) */}
+            {/* Inactive state content - Desktop */}
             <div className="hidden md:flex flex-col items-center justify-center h-full px-4">
               <div className="w-[30px] h-[30px] rounded-full shrink-0 mb-2" style={{ backgroundColor: color }} />
               <div
@@ -212,7 +121,7 @@ const VideoCard = ({
               </div>
             </div>
 
-            {/* Play button for inactive state (common for both mobile/desktop) */}
+            {/* Play button */}
             <div className="absolute bottom-3 w-full md:flex justify-center hidden">
               <div
                 onClick={() => setActiveIndex(index)}
@@ -236,6 +145,20 @@ export default function VideoSection() {
   const intervalRef = useRef(null)
   const progressRef = useRef(0)
 
+  const { data: apiResponse, isLoading } = useGetAllCategoriesQuery()
+
+  const categories =
+    apiResponse?.Data?.map((item, i) => ({
+      title: item.category_name,
+      desc: item.category_description,
+      services: item.key_points?.map((point) => point.point_name) || [],
+      image: item.category_background_image,
+      color: "#fff", // 🔧 Optional: derive per category
+      videoSrc:
+        item.category_video ||
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    })) || []
+
   const goToIndex = (index) => {
     setActiveIndex(index)
     setProgress(0)
@@ -244,22 +167,21 @@ export default function VideoSection() {
   }
 
   const goToNext = () => {
-    goToIndex((activeIndex + 1) % data.length)
+    if (categories.length) goToIndex((activeIndex + 1) % categories.length)
   }
 
   const goToPrev = () => {
-    goToIndex((activeIndex - 1 + data.length) % data.length)
+    if (categories.length) goToIndex((activeIndex - 1 + categories.length) % categories.length)
   }
 
-  // PROGRESS TIMER EFFECT
+  // PROGRESS AUTO-ADVANCE
   useEffect(() => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current)
       intervalRef.current = null
     }
 
-    // Only start interval if not playing (i.e., auto-advance)
-    if (!isPlaying) {
+    if (!isPlaying && categories.length > 0) {
       intervalRef.current = setInterval(() => {
         progressRef.current += 2
         if (progressRef.current >= 100) {
@@ -267,8 +189,8 @@ export default function VideoSection() {
           intervalRef.current = null
           progressRef.current = 0
           setProgress(0)
-          setIsPlaying(false) // Reset playing state for next card
-          setActiveIndex((prev) => (prev + 1) % data.length)
+          setIsPlaying(false)
+          setActiveIndex((prev) => (prev + 1) % categories.length)
         } else {
           setProgress(progressRef.current)
         }
@@ -281,12 +203,16 @@ export default function VideoSection() {
         intervalRef.current = null
       }
     }
-  }, [activeIndex, isPlaying]) // Re-run when activeIndex or isPlaying changes
+  }, [activeIndex, isPlaying, categories.length])
+
+  if (isLoading) {
+    return <div className="text-center py-20 text-xl">Loading categories...</div>
+  }
 
   return (
     <div className="flex flex-col md:flex-row gap-4 items-center px-5 md:px-24 py-40 overflow-hidden relative">
-      <div className="flex flex-col md:flex-row w-full gap-4 mx-5 md:mx-10">
-        {data.map((item, index) => (
+      <div className="flex flex-col md:flex-row w-full gap-1 mx-5 md:mx-10">
+        {categories.map((item, index) => (
           <VideoCard
             key={index}
             data={item}

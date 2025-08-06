@@ -3,51 +3,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import { Calendar } from "lucide-react";
 import Title from "../../../../Helpers/Title";
-
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "./moments.css";
-
-const activitySlides = [
-  {
-    id: 1,
-    title: "Tracking the Momentum of Our Day Conversation.",
-    date: "April 2025",
-    images: [
-      { id: 1, src: "/moments/1.jpg", alt: "Team meeting" },
-      { id: 2, src: "/moments/2.jpg", alt: "Collaboration" },
-      { id: 3, src: "/moments/3.jpg", alt: "Sticky notes" },
-    ],
-  },
-  {
-    id: 2,
-    title: "Innovative Planning Sessions.",
-    date: "April 2025",
-    images: [
-      { id: 4, src: "/moments/4.jpg", alt: "Discussion" },
-      { id: 5, src: "/moments/5.jpg", alt: "Review" },
-    ],
-  },
-  {
-    id: 3,
-    title: "Sharing Product Demos.",
-    date: "April 2025",
-    images: [{ id: 6, src: "/moments/6.jpg", alt: "Demo" }],
-  },
-  {
-    id: 4,
-    title: "Team Collaboration Continues.",
-    date: "April 2025",
-    images: [
-      { id: 7, src: "/moments/7.jpg", alt: "Lunch" },
-      { id: 8, src: "/moments/2.jpg", alt: "Chat" },
-      { id: 9, src: "/moments/3.jpg", alt: "Whiteboarding" },
-    ],
-  },
-];
+import { baseUri, useGetMomentsInJvaiQuery, } from "../../../../redux/features/apiSlice";
 
 export default function MomentsSwiper() {
+  const { data, isLoading } = useGetMomentsInJvaiQuery()
   const renderImages = (images) => {
     const count = images.length;
 
@@ -118,67 +81,81 @@ export default function MomentsSwiper() {
       </div>
     );
   };
+  if (isLoading) {
+    return <div className="text-center py-10">Loading Moments...</div>;
+  } else {
+    console.log(data)
+    return (
+      <div className="team_slide flex flex-col justify-center items-center w-full py-16 bg-[#F3F5F9]">
+        <Title
+          title={
+            <>
+              What We Do <span className="text-blue-500">Every Day</span>
+            </>
+          }
+          desc={`Tracking the Momentum of Our Day with Every Commit and Conversation.`}
+        />
 
-  return (
-    <div className="team_slide flex flex-col justify-center items-center w-full py-16 bg-[#F3F5F9]">
-      <Title
-        title={
-          <>
-            What We Do <span className="text-blue-500">Every Day</span>
-          </>
-        }
-        desc={`Tracking the Momentum of Our Day with Every Commit and Conversation.`}
-      />
-
-      <div className="w-full max-w-[1100px] ">
-        <Swiper
-          modules={[EffectCoverflow, Pagination, Autoplay]}
-          effect="coverflow"
-          grabCursor={true}
-          centeredSlides={true}
-          loop={true}
-          slidesPerView={3}
-          spaceBetween={0}
-          autoplay={{
-            delay: 3000,
-          }}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 150,
-            modifier: 2,
-            slideShadows: false,
-          }}
-          pagination={{ clickable: true }}
-          className="teamSwiper"
-          breakpoints={{
-            0: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 2,
-            },
-          }}
-        >
-          {activitySlides.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <div className="bg-[#B2C7FF] rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[600px] text-left p-5 h-fit md:h-[700px]">
-                <div className="pb-5">
-                  <h3 className="text-xl font-semibold">{slide.title}</h3>
-                  <div className="flex items-center text-sm text-blue-950 mt-1">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    <span>{slide.date}</span>
+        <div className="w-full max-w-[1100px] ">
+          <Swiper
+            modules={[EffectCoverflow, Pagination, Autoplay]}
+            effect="coverflow"
+            grabCursor={true}
+            centeredSlides={true}
+            loop={true}
+            slidesPerView={3}
+            spaceBetween={0}
+            autoplay={{
+              delay: 3000,
+            }}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 150,
+              modifier: 2,
+              slideShadows: false,
+            }}
+            pagination={{ clickable: true }}
+            className="teamSwiper"
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 2,
+              },
+            }}
+          >
+            {(data?.Data || []).map((activity) => (
+              <SwiperSlide key={activity.id}>
+                <div className="bg-[#B2C7FF] rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[600px] text-left p-5 h-fit md:h-[700px]">
+                  <div className="pb-5">
+                    <h3 className="text-xl font-semibold">{activity.activity_title}</h3>
+                    <div className="flex items-center text-sm text-blue-950 mt-1">
+                      <Calendar className="h-4 w-4 mr-1" />
+                      <span>{new Date(activity.activity_date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                      })}</span>
+                    </div>
                   </div>
+                  {renderImages(
+                    activity.activity_pictures.map((pic) => ({
+                      id: pic.id,
+                      src: baseUri + pic.file,
+                      alt: "Activity Image",
+                    }))
+                  )}
                 </div>
-                {renderImages(slide.images)}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+
+          </Swiper>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
