@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useMemo } from "react"
 import { ChevronLeft, ChevronRight, Play } from "lucide-react"
 import VideoPlayer from "../../../Helpers/VideoPlayer"
 import Button from "../../../Helpers/Button"
@@ -147,17 +147,20 @@ export default function VideoSection() {
 
   const { data: apiResponse, isLoading } = useGetAllCategoriesQuery()
 
-  const categories =
-    apiResponse?.Data?.map((item, i) => ({
-      title: item.category_name,
-      desc: item.category_description,
-      services: item.key_points?.map((point) => point.point_name) || [],
-      image: item.category_background_image,
-      color: "#fff", // 🔧 Optional: derive per category
-      videoSrc:
-        item.category_video ||
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-    })) || []
+  const categories = useMemo(() => {
+    return (
+      apiResponse?.Data?.map((item, i) => ({
+        title: item.category_name,
+        desc: item.category_description,
+        services: item.key_points?.map((point) => point.point_name) || [],
+        image: item.category_background_image,
+        color: `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0")}`,
+        videoSrc:
+          item.category_video ||
+          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+      })) || []
+    )
+  }, [apiResponse])
 
   const goToIndex = (index) => {
     setActiveIndex(index)

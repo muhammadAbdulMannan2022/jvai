@@ -54,7 +54,7 @@ export default function TechStack() {
                 <motion.div
                   key={key}
                   ref={ref}
-                  className="relative h-[80px] w-[80px] flex items-center justify-center"
+                  className="relative h-[80px] w-[80px] flex items-center justify-center hover:scale-150 transition-all hover:drop-shadow-xl hover:drop-shadow-blue-400"
                   initial={{ opacity: 0, x: 0, y: 0 }} // Initially stacked in one place
                   animate={{
                     opacity: inView ? 1 : 0,

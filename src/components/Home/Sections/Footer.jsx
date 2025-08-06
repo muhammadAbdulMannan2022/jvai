@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaPhone,
   FaEnvelope,
@@ -6,8 +6,19 @@ import {
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa";
+import { useSubscribeUpdateMutation } from "../../../redux/features/apiSlice";
 
 const Footer = () => {
+  const [email, setEmail] = useState("")
+  const [subscribe] = useSubscribeUpdateMutation()
+  const submit = async () => {
+    if (!email) {
+      alert("type your email")
+    } else {
+      await subscribe({ email })
+      setEmail("")
+    }
+  }
   return (
     <footer className="text-[#0F172A] pt-8 w-full bg-[#E4EAF1] open-sans-text">
       <div className="container max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-start gap-8 w-full border-t border-b border-blue-500 py-4">
@@ -96,10 +107,12 @@ const Footer = () => {
           <div className="flex bg-white rounded-l-md">
             <input
               type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               placeholder="Enter your email"
               className="p-2 rounded-l-md text-black w-full focus:outline-0"
             />
-            <button className="bg-blue-600 text-white p-2 rounded-r-md hover:bg-blue-700">
+            <button onClick={() => submit()} className="bg-blue-600 text-white p-2 rounded-r-md hover:bg-blue-700">
               Subscribe
             </button>
           </div>

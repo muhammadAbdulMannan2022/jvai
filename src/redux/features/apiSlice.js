@@ -36,8 +36,15 @@ export const apiSlice = createApi({
         }),
         getSeo: builder.query({
             query: () => `api/seo/get_seo_content/`
+        }),
+        subscribeUpdate: builder.mutation({
+            query: (email) => ({
+                method: "POST",
+                url: "api/newsletter/subscribe/",
+                body: email
+            })
         })
     }),
 })
 
-export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery } = apiSlice
+export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery, useSubscribeUpdateMutation } = apiSlice

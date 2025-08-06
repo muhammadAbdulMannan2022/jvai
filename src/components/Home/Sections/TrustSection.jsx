@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   motion,
   useMotionValue,
@@ -19,7 +19,14 @@ const logos = [
   "/Tesla.png",
 ];
 const LogoMarquee = ({ direction = "left" }) => {
+  const [isMount, setIsMount] = useState(false)
   const repeated = [...logos, ...logos];
+
+  useEffect(() => {
+    setIsMount(true);
+  }, []);
+
+  if (!isMount) return null;
 
   return (
     <div className="marquee-fade">

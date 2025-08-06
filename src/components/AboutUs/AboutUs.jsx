@@ -19,7 +19,7 @@ export default function AboutUs() {
           </>
         }
         desc={
-          "Javai is a digital agency specializing in creative solutions that elevate brands online. From web design and development to digital marketing and strategy, we help businesses grow through innovative and impactful digital experiences."
+          "We are a pioneering AI solutions agency dedicated to elevating brands in the digital era. From intelligent web platforms to strategic AI-driven applications, we empower businesses to grow through innovative and impactful digital experiences that are built for the future."
         }
         bgImag={"/aboutus/aboutus.png"}
       />
@@ -47,7 +47,7 @@ export default function AboutUs() {
         <div className="md:w-[50%] w-full md:pe-20">
           <div className="h-[150px]">
             <GradientTitle
-              text="We are leader in digital solutions"
+              text="Our Leadership in Digital Solutions"
               className="bg-gradient-to-l from-blue-500 to-purple-500 text-3xl lg:text-5xl font-bold leading-tight"
             />
           </div>
@@ -55,16 +55,10 @@ export default function AboutUs() {
             <div className="flex items-start gap-5">
               <div className="space-y-4 text-[#515151] text-lg">
                 <p className="text-xl leading-8">
-                  Bring new digital ideas to life. We are a global technology
-                  provider who assists businesses to accelerate their digital
-                  transformation journey while achieving efficiency,
-                  scalability, and lower cost of ownership.
+                  We bring intelligent digital ideas to life. As a global provider of AI-powered technology, we assist businesses in accelerating their digital transformation journey, helping them achieve greater efficiency, scalability, and a lower cost of ownership.
                 </p>
                 <p className="text-xl leading-8">
-                  Whatever your ambition may be—from embracing new digital
-                  capabilities to reimagining how your business operates—we can
-                  help you set a new standard of excellence and achieve
-                  unprecedented levels of value.
+                  Whatever your ambition may be—from embracing new generative AI capabilities to completely reimagining how your business operates—we can help you set a new standard of excellence and unlock unprecedented levels of value.
                 </p>
                 <Button text="Contact Us" />
               </div>
