@@ -43,8 +43,21 @@ export const apiSlice = createApi({
                 url: "api/newsletter/subscribe/",
                 body: email
             })
+        }),
+        getAllBlog: builder.query({
+            query: () => `api/jvai_insider/get_all_articles/`
+        }),
+        getOneBlog: builder.query({
+            query: (id) => `api/jvai_insider/get_individual_article/${id}/`
+        }),
+        submitContact: builder.mutation({
+            query: (data) => ({
+                method: "POST",
+                url: `api/contact/send_contact_request/`,
+                body: data
+            })
         })
     }),
 })
 
-export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery, useSubscribeUpdateMutation } = apiSlice
+export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery, useSubscribeUpdateMutation, useGetOneBlogQuery, useGetAllBlogQuery, useSubmitContactMutation } = apiSlice

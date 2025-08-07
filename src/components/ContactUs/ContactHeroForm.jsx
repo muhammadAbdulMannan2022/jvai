@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaStarOfLife } from "react-icons/fa";
+import { useSubmitContactMutation } from "../../redux/features/apiSlice";
 
 export default function ContactHeroForm({ dark = true }) {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function ContactHeroForm({ dark = true }) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [postContact, { isLoading }] = useSubmitContactMutation()
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,17 +29,41 @@ export default function ContactHeroForm({ dark = true }) {
       [name]: value,
     }));
   };
+  const formatBudget = (value) => {
+    switch (value) {
+      case "less-1k":
+        return "Less than $1,000";
+      case "1k-5k":
+        return "$1,000 - $5,000";
+      case "5k-10k":
+        return "$5,000 - $10,000";
+      case "10k-25k":
+        return "$10,000 - $25,000";
+      case "25k-plus":
+        return "$25,000+";
+      default:
+        return value;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const payload = {
+      full_name: formData.fullName,
+      email: formData.email,
+      service: formData.service,
+      project_budget: formatBudget(formData.budget),
+      project_details: formData.details,
+      whatsapp_number: formData.whatsapp || undefined,
+    };
+
     try {
-      console.log("Form data:", formData);
-
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
+      console.log("submiting..")
+      const res = await postContact(payload).unwrap();
       alert("Message sent successfully!");
+      console.log(res)
       setFormData({
         fullName: "",
         whatsapp: "",
@@ -53,6 +79,7 @@ export default function ContactHeroForm({ dark = true }) {
       setIsSubmitting(false);
     }
   };
+
 
   const RequiredStar = () => (
     <FaStarOfLife className="inline-block text-red-500 text-[8px] ml-1" />
@@ -189,11 +216,10 @@ export default function ContactHeroForm({ dark = true }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition ${
-          isSubmitting
-            ? "opacity-50 cursor-not-allowed"
-            : "hover:cursor-pointer"
-        }`}
+        className={`bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition ${isSubmitting
+          ? "opacity-50 cursor-not-allowed"
+          : "hover:cursor-pointer"
+          }`}
       >
         {isSubmitting ? "Sending..." : "Contact Us"}
       </button>
