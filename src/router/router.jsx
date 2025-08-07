@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Home from "../components/Home/Home";
-
+import AboutUs from "../components/AboutUs/AboutUs";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
-const AboutUs = lazy(() => import("../components/AboutUs/AboutUs"));
+
 const Career = lazy(() => import("../components/career/Career"));
 const CareerMain = lazy(() => import("../components/career/CareerMain"));
 const JobDetails = lazy(() => import("../components/career/jobDetails/JobDetails"));
@@ -117,9 +117,7 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AboutUs />
-          </Suspense>
+          <AboutUs />
         ),
       },
       {
@@ -159,9 +157,9 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <ContactUs />
-          </Suspense>
+
+          <ContactUs />
+
         ),
       },
       {
