@@ -30,7 +30,7 @@ const Intro = () => {
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.1, delay: 0.2, ease: "easeIn" }}
           >
             <img
               src="/new/landing/landingSi5.png"
@@ -43,7 +43,7 @@ const Intro = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.1, delay: 0.6, ease: "easeIn" }}
           >
             <img
               src="/new/landing/landingSi2.png"

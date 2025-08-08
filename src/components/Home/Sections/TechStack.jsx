@@ -1,6 +1,8 @@
-import React from "react";
+'use client'
+
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer"; // Import the IntersectionObserver
+import { useInView } from "react-intersection-observer";
 import Title from "../../../Helpers/Title";
 
 export default function TechStack() {
@@ -26,63 +28,80 @@ export default function TechStack() {
     { name: "Vue.js", src: "/icons/image 345.png" },
   ];
 
-  // Split icons into two rows
-  const firstRow = techIcons.slice(0, 10);
-  const secondRow = techIcons.slice(10);
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  const hexagonalClipPath = "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)";
 
   return (
-    <div className="px-6 md:px-24 py-16 bg-[#F3F5F9]">
+    <div
+      ref={containerRef}
+      className="relative px-6 md:px-24 py-16 bg-[#F3F5F9] overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
+    >
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0, 0, 250, 0.3) 0%, transparent 50%)`,
+          filter: "blur(50px)",
+          zIndex: 0,
+        }}
+      />
       <Title
         title={
           <>
             Advanced <span className="text-blue-500">Technology</span> Stack
           </>
         }
-        desc={`We leverage the latest technologies across AI, web, and Phone platforms to build robust, scalable solutions.`}
+        desc="We leverage the latest technologies across AI, web, and Phone platforms to build robust, scalable solutions."
       />
-
-      <div className="flex flex-wrap justify-center mt-8">
-        {[firstRow, secondRow].map((row, rowIndex) => (
-          <div key={rowIndex} className="flex justify-center gap-4 flex-wrap">
-            {row.map((icon, key) => {
-              const { ref, inView } = useInView({
-                triggerOnce: false, // Make it trigger each time the section comes into view
-                threshold: 0.1, // Adjust visibility percentage
-              });
-
-              return (
-                <motion.div
-                  key={key}
-                  ref={ref}
-                  className="relative h-[80px] w-[80px] flex items-center justify-center hover:scale-150 transition-all hover:drop-shadow-xl hover:drop-shadow-blue-400"
-                  initial={{ opacity: 0, x: 0, y: 0 }} // Initially stacked in one place
-                  animate={{
-                    opacity: inView ? 1 : 0,
-                    x: inView ? 0 : Math.random() * 100 - 50, // Random horizontal position for initial stacking
-                    y: inView ? 0 : Math.random() * 100 - 50, // Random vertical position for initial stacking
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 25,
-                    delay: key * 0.05, // Stagger the animations for a nice effect
-                  }}
-                >
-                  <img
-                    src="/icons/Polygon 5.png"
-                    className="absolute h-full w-full"
-                    alt=""
-                  />
-                  <img
-                    src={icon.src}
-                    className="z-20 w-[40px] h-[40px]"
-                    alt={icon.name}
-                  />
-                </motion.div>
-              );
-            })}
-          </div>
-        ))}
+      <div className="flex flex-row flex-wrap justify-center max-w-6xl mx-auto mt-8 relative z-10">
+        {techIcons.map((icon, key) => {
+          const { ref, inView } = useInView({
+            triggerOnce: false,
+            threshold: 0.1,
+          });
+          return (
+            <motion.div
+              key={key}
+              ref={ref}
+              className="relative h-[100px] w-[100px] flex items-center justify-center hover:scale-110 transition-all hover:drop-shadow-xl hover:drop-shadow-blue-400 overflow-hidden bg-white"
+              style={{ clipPath: hexagonalClipPath }}
+              initial={{ opacity: 0, x: 0, y: 0 }}
+              animate={{
+                opacity: inView ? 1 : 0,
+                x: inView ? 0 : Math.random() * 50 - 10,
+                y: inView ? 0 : Math.random() * 50 - 10,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 25,
+                delay: key * 0.05,
+              }}
+            >
+              <img
+                src={icon.src || "/placeholder.svg"}
+                className="z-20 w-10 h-10 object-cover"
+                alt={icon.name}
+              />
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

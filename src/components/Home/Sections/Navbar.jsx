@@ -51,7 +51,7 @@ export default function Navbar() {
             return item.child ? (
               <div key={item.name} className="relative group">
                 <div
-                  className={`flex items-center gap-1 cursor-pointer hover:text-blue-400 transition ${isActive ? "text-blue-400 underline" : ""}`}
+                  className={`flex items-center gap-1 cursor-pointer hover:text-blue-600 transition ${isActive ? "text-blue-600 underline" : ""}`}
                 >
                   <span>
                     {isChildActive ? item.child.find((child) => currentPath.startsWith(child.path))?.text : item.name}
@@ -63,7 +63,7 @@ export default function Navbar() {
                     <li key={child.text}>
                       <Link
                         to={child.path}
-                        className="block px-4 py-2 text-sm hover:text-blue-400 hover:bg-gray-800/50 transition"
+                        className="block px-4 py-2 text-sm hover:text-blue-600 hover:bg-gray-800/50 transition"
                       >
                         {child.text}
                       </Link>
@@ -75,7 +75,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`hover:text-blue-400 hover:underline transition ${isActive ? "text-blue-400 underline" : ""}`}
+                className={`hover:text-blue-600 hover:underline transition ${isActive ? "text-blue-600 underline" : ""}`}
               >
                 {item.name}
               </Link>

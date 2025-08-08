@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Home from "../components/Home/Home";
 import AboutUs from "../components/AboutUs/AboutUs";
+import GradientCursor from "../Helpers/WebCursor";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
@@ -16,6 +17,7 @@ const Projects = lazy(() => import("../components/Projects/Projects"));
 const Blog = lazy(() => import("../components/Blog/Blog"));
 const BlogMain = lazy(() => import("../components/Blog/BlogMain"));
 const BlogDetails = lazy(() => import("../components/BlogDetails/BlogDetails"));
+const ProjectHome = lazy(() => import("../components/Projects/ProjectHome"))
 
 // Intro video component with 5-second playback, fade-out effect, and scroll prevention
 const IntroVideo = ({ onVideoEnd }) => {
@@ -63,7 +65,7 @@ const IntroVideo = ({ onVideoEnd }) => {
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-1000 max-w-screen ${fadeOut ? "opacity-0" : "opacity-100"
+      className={`fixed cursor-pointer inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-1000 max-w-screen ${fadeOut ? "opacity-0" : "opacity-100"
         }`}
     >
       <video
@@ -90,6 +92,7 @@ const Root = () => {
   return (
     <div className="relative">
       <Suspense fallback={<div>Loading...</div>}>
+        <GradientCursor />
         <MainLayout />
       </Suspense>
       {/* {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />} */}
@@ -169,6 +172,12 @@ const router = createBrowserRouter([
             <Work />
           </Suspense>
         ),
+      },
+      {
+        path: "/projects",
+        element: <Suspense fallback={<div>Loading...</div>}>
+          <ProjectHome />
+        </Suspense>
       },
       {
         path: "/project/:id",

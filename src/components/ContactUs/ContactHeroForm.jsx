@@ -114,7 +114,7 @@ export default function ContactHeroForm({ dark = true }) {
             onChange={handleInputChange}
             placeholder="Jubayer Ahmad"
             required
-            className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 ${inputText} ${placeholderColor}`}
+            className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 mt-2 ${inputText} ${placeholderColor}`}
           />
         </div>
         <div className="space-y-2">
@@ -127,7 +127,7 @@ export default function ContactHeroForm({ dark = true }) {
             value={formData.whatsapp}
             onChange={handleInputChange}
             placeholder="01234567890"
-            className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 ${inputText} ${placeholderColor}`}
+            className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 mt-2 ${inputText} ${placeholderColor}`}
           />
         </div>
       </div>
@@ -145,7 +145,7 @@ export default function ContactHeroForm({ dark = true }) {
           onChange={handleInputChange}
           placeholder="youremail@gmail.com"
           required
-          className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 ${inputText} ${placeholderColor}`}
+          className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 mt-2 ${inputText} ${placeholderColor}`}
         />
       </div>
 
@@ -159,7 +159,7 @@ export default function ContactHeroForm({ dark = true }) {
             name="service"
             value={formData.service}
             onChange={(e) => handleSelectChange("service", e.target.value)}
-            className={`w-full appearance-none ${inputBg} border ${inputBorder} rounded px-4 py-2 ${inputText} focus:outline-none`}
+            className={`w-full appearance-none ${inputBg} border ${inputBorder} rounded px-4 py-2 mt-2 ${inputText} focus:outline-none`}
             required
           >
             <option value="" disabled>
@@ -181,7 +181,7 @@ export default function ContactHeroForm({ dark = true }) {
             name="budget"
             value={formData.budget}
             onChange={(e) => handleSelectChange("budget", e.target.value)}
-            className={`w-full appearance-none ${inputBg} border ${inputBorder} rounded px-4 py-2 ${inputText} focus:outline-none`}
+            className={`w-full appearance-none ${inputBg} border ${inputBorder} rounded px-4 py-2 mt-2 ${inputText} focus:outline-none`}
             required
           >
             <option value="" disabled>
@@ -208,7 +208,7 @@ export default function ContactHeroForm({ dark = true }) {
           onChange={handleInputChange}
           placeholder="Tell us about your idea..."
           rows={5}
-          className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 ${inputText} ${placeholderColor} resize-none focus:outline-0`}
+          className={`w-full ${inputBg} border ${inputBorder} rounded px-4 py-2 mt-2 ${inputText} ${placeholderColor} resize-none focus:outline-0`}
         />
       </div>
 
