@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import Tree from 'react-d3-tree';
 import DetailsModal from './modal/Modal';
 import GradientTitle from '../../../Helpers/GradientTitle';
+import { FaPlay } from 'react-icons/fa';
 
 const organizationData = {
     name: 'TechCorp Industries',
@@ -91,7 +92,7 @@ const CustomNodeElement = ({ nodeDatum, toggleNode }) => {
                     onClick={toggleNode}
                     className="p-4 bg-white border-2 border-gray-200 shadow-lg rounded-lg cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
                 >
-                    <div className="flex items-center space-x-4">
+                    <div className={`flex items-center space-x-4 ${isPeopleType ? "flex-row" : "flex-col gap-5"}`}>
                         {/* Profile Image */}
                         <div className="relative flex-shrink-0">
                             <img
@@ -101,7 +102,12 @@ const CustomNodeElement = ({ nodeDatum, toggleNode }) => {
                                 height={64}
                                 className="w-16 h-16 rounded-full object-cover border-2 border-blue-400"
                             />
-                            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-white"></div>
+                            {
+                                isPeopleType && <><div className='absolute top-0 right-0 left-0 w-full h-full bg-gray-400/0 hover:bg-gray-400/50 transition-colors rounded-full flex items-center justify-center' onClick={() => setIsOpen(true)}>
+                                    <FaPlay className='h-5 w-5 text-blue-600' />
+                                </div>
+                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-white"></div></>
+                            }
                         </div>
                         {/* Details */}
                         <div className="flex-1 min-w-0">
@@ -167,7 +173,7 @@ const OrganizationalTree = () => {
                         pathFunc="diagonal"
                         separation={{ siblings: 1.2, nonSiblings: 2 }}
                         nodeSize={{ x: 320, y: 200 }}
-                        initialDepth={1}
+                        initialDepth={2}
                         collapsible={true}
                         zoomable={false}
                         draggable={true}

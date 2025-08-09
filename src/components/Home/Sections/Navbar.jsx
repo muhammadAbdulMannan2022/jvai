@@ -20,6 +20,9 @@ export default function Navbar() {
         { path: "/about", text: "About Us" },
         { path: "/career", text: "Career" },
         { path: "/contact", text: "Contact Us" },
+        {
+          path: "/team", text: "Our Team"
+        }
       ],
     },
     { name: "Work", path: "/work" },
