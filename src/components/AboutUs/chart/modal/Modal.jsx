@@ -61,6 +61,7 @@ export default function DetailsModal({ isOpen, onClose, person }) {
                         image={person.image}
                         position={person.position}
                         info={person.info}
+                        email={person.email}
                     />
                 </div>
             </div>

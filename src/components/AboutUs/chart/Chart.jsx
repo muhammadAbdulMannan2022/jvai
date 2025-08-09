@@ -7,49 +7,57 @@ import { FaPlay } from 'react-icons/fa';
 const organizationData = {
     name: 'TechCorp Industries',
     attributes: {
-        position: 'Chief Executive Officer',
-        name: 'Sarah Johnson',
+        position: 'Head of JVAI',
+        name: 'Gazi Alauddin',
         info: '15+ years experience in tech leadership',
-        image: '/ceoCopy.jpg',
-        department: 'Executive'
+        image: '/mainTeam/Gazi vai.png',
+        department: 'Executive',
+        video: "",
+        email: "gazi@exampl.com"
     },
     children: [
         {
             name: 'Oparation',
             attributes: {
-                image: '/ceoCopy.jpg',
+                image: '/mainTeam/op.jpg',
                 type: "team"
             },
             children: [
 
                 {
-                    name: 'Alex Rodriguez',
+                    name: 'Rufsun Ahmed',
                     attributes: {
-                        position: 'Senior Software Engineer',
-                        name: 'Alex Rodriguez',
+                        position: 'Head of Oparation',
+                        name: 'Rufsun Ahmed',
                         info: 'Full-stack development and system design',
-                        image: '/ceoCopy.jpg',
-                        department: 'Engineering'
+                        image: '/mainTeam/image.png',
+                        department: 'Engineering',
+                        video: "",
+                        email: "gazi@exampl.com"
                     }
                 },
                 {
-                    name: 'Emma Thompson',
+                    name: 'Palash',
                     attributes: {
-                        position: 'Frontend Developer',
-                        name: 'Emma Thompson',
-                        info: 'React specialist and UI/UX implementation',
-                        image: '/ceoCopy.jpg',
-                        department: 'Engineering'
+                        position: 'Head of Oparation',
+                        name: 'Palash',
+                        info: 'Full-stack development and system design',
+                        image: '/mainTeam/Palash vai.png',
+                        department: 'Engineering',
+                        video: "",
+                        email: "gazi@exampl.com"
                     }
                 },
                 {
-                    name: 'Emma Thompson',
+                    name: 'Fahad',
                     attributes: {
-                        position: 'Frontend Developer',
-                        name: 'Emma Thompson',
+                        position: 'Head of Oparation',
+                        name: 'Fahad',
                         info: 'React specialist and UI/UX implementation',
-                        image: '/ceoCopy.jpg',
-                        department: 'Engineering'
+                        image: '/mainTeam/Istiaq kflghlfk.png',
+                        department: 'Engineering',
+                        video: "",
+                        email: "gazi@exampl.com"
                     }
                 }
 
@@ -58,18 +66,20 @@ const organizationData = {
         {
             name: 'Sales',
             attributes: {
-                image: '/ceoCopy.jpg',
+                image: '/mainTeam/sl.jpg',
                 type: "team"
             },
             children: [
                 {
                     name: 'David Park',
                     attributes: {
-                        position: 'Digital Marketing Specialist',
-                        name: 'David Park',
+                        position: 'Head of Sales',
+                        name: 'Mushfiqur Rahman',
                         info: 'SEO, social media, and content marketing',
-                        image: '/ceoCopy.jpg',
-                        department: 'Marketing'
+                        image: '/mainTeam/Mushfiqur Rahman_.png',
+                        department: 'Marketing',
+                        video: "",
+                        email: "gazi@exampl.com"
                     }
                 }
             ]
@@ -77,18 +87,20 @@ const organizationData = {
         {
             name: 'Business Development',
             attributes: {
-                image: '/ceoCopy.jpg',
+                image: '/mainTeam/op.jpg',
                 type: "team"
             },
             children: [
                 {
-                    name: 'David Park',
+                    name: 'Tushar',
                     attributes: {
-                        position: 'Digital Marketing Specialist',
+                        position: 'Head of Business Development',
                         name: 'David Park',
                         info: 'SEO, social media, and content marketing',
-                        image: '/ceoCopy.jpg',
-                        department: 'Marketing'
+                        image: '/mainTeam/Tushar vai.png',
+                        department: 'Marketing',
+                        video: "",
+                        email: "gazi@exampl.com"
                     }
                 }
             ]
@@ -119,8 +131,13 @@ const CustomNodeElement = ({ nodeDatum, toggleNode }) => {
                                 className="w-16 h-16 rounded-full object-cover border-2 border-blue-400"
                             />
                             {
-                                isPeopleType && <><div className='absolute top-0 right-0 left-0 w-full h-full bg-gray-400/0 hover:bg-gray-400/50 transition-colors rounded-full flex items-center justify-center' onClick={() => setIsOpen(true)}>
-                                    <FaPlay className='h-5 w-5 text-blue-600' />
+                                isPeopleType && <><div className='absolute top-0 right-0 left-0 w-full h-full bg-gray-400/30 hover:bg-gray-400/50 transition-colors rounded-full flex items-center justify-center' onClick={() => setIsOpen(true)}>
+                                    <FaPlay
+                                        className="h-5 w-5 text-blue-600"
+                                        style={{
+                                            animation: 'scalePulse 1s ease-in-out infinite',
+                                        }}
+                                    />
                                 </div>
                                     <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-white"></div></>
                             }
@@ -148,6 +165,14 @@ const CustomNodeElement = ({ nodeDatum, toggleNode }) => {
                     {isPeopleType && <DetailsModal isOpen={isOpen} onClose={() => setIsOpen(false)} person={attributes} />}
                 </div>
             </foreignObject>
+            <style>
+                {`
+@keyframes scalePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+`}
+            </style>
         </g>
     );
 };
@@ -189,7 +214,7 @@ const OrganizationalTree = () => {
                         pathFunc="diagonal"
                         separation={{ siblings: 1.2, nonSiblings: 2 }}
                         nodeSize={{ x: 320, y: 200 }}
-                        initialDepth={2}
+                        initialDepth={1}
                         collapsible={true}
                         zoomable={false}
                         draggable={true}
