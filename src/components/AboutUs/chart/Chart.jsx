@@ -15,54 +15,51 @@ const organizationData = {
     },
     children: [
         {
-            name: 'Technology',
+            name: 'Oparation',
             attributes: {
-                position: 'Chief Technology Officer',
-                name: 'Michael Chen',
-                info: 'Leading our technical innovation and architecture',
                 image: '/ceoCopy.jpg',
-                department: 'Technology'
+                type: "team"
             },
             children: [
+
                 {
-                    name: 'Engineering Team',
+                    name: 'Alex Rodriguez',
                     attributes: {
+                        position: 'Senior Software Engineer',
+                        name: 'Alex Rodriguez',
+                        info: 'Full-stack development and system design',
                         image: '/ceoCopy.jpg',
-                        type: "team"
-                    },
-                    children: [
-                        {
-                            name: 'Alex Rodriguez',
-                            attributes: {
-                                position: 'Senior Software Engineer',
-                                name: 'Alex Rodriguez',
-                                info: 'Full-stack development and system design',
-                                image: '/ceoCopy.jpg',
-                                department: 'Engineering'
-                            }
-                        },
-                        {
-                            name: 'Emma Thompson',
-                            attributes: {
-                                position: 'Frontend Developer',
-                                name: 'Emma Thompson',
-                                info: 'React specialist and UI/UX implementation',
-                                image: '/ceoCopy.jpg',
-                                department: 'Engineering'
-                            }
-                        }
-                    ]
+                        department: 'Engineering'
+                    }
+                },
+                {
+                    name: 'Emma Thompson',
+                    attributes: {
+                        position: 'Frontend Developer',
+                        name: 'Emma Thompson',
+                        info: 'React specialist and UI/UX implementation',
+                        image: '/ceoCopy.jpg',
+                        department: 'Engineering'
+                    }
+                },
+                {
+                    name: 'Emma Thompson',
+                    attributes: {
+                        position: 'Frontend Developer',
+                        name: 'Emma Thompson',
+                        info: 'React specialist and UI/UX implementation',
+                        image: '/ceoCopy.jpg',
+                        department: 'Engineering'
+                    }
                 }
+
             ]
         },
         {
-            name: 'Marketing',
+            name: 'Sales',
             attributes: {
-                position: 'Marketing Director',
-                name: 'Jennifer Williams',
-                info: 'Brand strategy and digital marketing campaigns',
                 image: '/ceoCopy.jpg',
-                department: 'Marketing'
+                type: "team"
             },
             children: [
                 {
@@ -76,7 +73,26 @@ const organizationData = {
                     }
                 }
             ]
-        }
+        },
+        {
+            name: 'Business Development',
+            attributes: {
+                image: '/ceoCopy.jpg',
+                type: "team"
+            },
+            children: [
+                {
+                    name: 'David Park',
+                    attributes: {
+                        position: 'Digital Marketing Specialist',
+                        name: 'David Park',
+                        info: 'SEO, social media, and content marketing',
+                        image: '/ceoCopy.jpg',
+                        department: 'Marketing'
+                    }
+                }
+            ]
+        },
     ]
 };
 

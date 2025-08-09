@@ -1,6 +1,6 @@
 import React from 'react'
-import OrganizationalTree from './chart/Chart'
 import TeamHero from './TeamHero'
+import OrganizationalTree from '../../../AboutUs/chart/Chart'
 
 
 export default function Team() {

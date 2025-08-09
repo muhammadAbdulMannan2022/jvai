@@ -47,7 +47,7 @@ export default function RecentProjects({ projectsData }) {
               i={i}
               data={project}
               progress={scrollYProgress}
-              range={[i * 0.25, 1]}
+              range={[i * 0.16, 1]}
               targetScale={targetScale}
             />
           );

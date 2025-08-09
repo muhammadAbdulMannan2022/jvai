@@ -3,7 +3,7 @@ import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Home from "../components/Home/Home";
 import AboutUs from "../components/AboutUs/AboutUs";
 import GradientCursor from "../Helpers/WebCursor";
-import Team from "../components/team/Team";
+import Team from "../components/Home/Sections/team/Team";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
@@ -177,12 +177,6 @@ const router = createBrowserRouter([
             <Work />
           </Suspense>
         ),
-      },
-      {
-        path: "/projects",
-        element: <Suspense fallback={<div>Loading...</div>}>
-          <ProjectHome />
-        </Suspense>
       },
       {
         path: "/project/:id",

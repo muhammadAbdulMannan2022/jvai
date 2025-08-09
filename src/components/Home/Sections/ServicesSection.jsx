@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaEye } from "react-icons/fa";
 import Title from "../../../Helpers/Title"; // Adjust path if necessary
-import { useGetAllCategoriesQuery } from "../../../redux/features/apiSlice"; // Adjust path if necessary
+import { baseUri, useGetAllCategoriesQuery } from "../../../redux/features/apiSlice"; // Adjust path if necessary
 import { useNavigate } from "react-router";
 
 // Child Component for Mobile Viewport
@@ -144,7 +144,7 @@ const ServicesSection = () => {
             <DesktopImageColumn
               key={`left-${i}`}
               service={service}
-              image={service.leftImage}
+              image={baseUri + service.leftImage}
               altText={`${service.centerTitle} left image`}
               index={i}
               setActiveIndex={setActiveIndex}
@@ -186,7 +186,7 @@ const ServicesSection = () => {
             <DesktopImageColumn
               key={`right-${i}`}
               service={service}
-              image={service.rightImage}
+              image={baseUri + service.rightImage}
               altText={`${service.centerTitle} right image`}
               index={i}
               setActiveIndex={setActiveIndex}

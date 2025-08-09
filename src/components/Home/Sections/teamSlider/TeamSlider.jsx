@@ -30,7 +30,7 @@ export default function TeamSlider() {
       <Title
         title={
           <>
-            Meet Our <span className="text-blue-500">AI Experts</span>
+            Meet Our <span className="text-blue-500">Experts</span>
           </>
         }
         desc={`Our team of AI specialists, data scientists, and engineers are passionate about creating innovative solutions.`}
