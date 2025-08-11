@@ -7,10 +7,8 @@ import { gsap } from "gsap";
 export default function TeamHero({
     teamName = "Team JVAI",
     tagline = "Building the future, one line of code at a time.",
-    leaderName = "Rafsun Ahmed",
-    leaderTitle = "Team Lead",
     bgImage =
-    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80",
+    "/IMG_1692.jpg",
 }) {
     const heroRef = useRef(null);
     const bgRef = useRef(null);
@@ -92,23 +90,19 @@ export default function TeamHero({
                 <p className="hero-tagline mt-6 text-lg md:text-2xl max-w-xl mx-auto md:mx-0 drop-shadow-md tracking-wide">
                     {tagline}
                 </p>
-
-                <div className="hero-leader mt-12 inline-flex items-center gap-4 bg-white/20 rounded-lg px-6 py-4 backdrop-blur-sm max-w-md mx-auto md:mx-0 shadow-lg">
-                    <User className="w-10 h-10 text-indigo-400" />
-                    <div className="text-left">
-                        <p className="font-semibold text-white text-xl">{leaderName}</p>
-                        <p className="text-white/80 text-base">{leaderTitle}</p>
-                    </div>
-                </div>
             </div>
 
             {/* Scroll Down Icon */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <div
+                onClick={() => window.scrollBy({ top: 500, behavior: 'smooth' })}
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+            >
                 <ChevronDown
                     className="scroll-icon w-10 h-10 text-indigo-400 drop-shadow-lg"
                     aria-label="Scroll down"
                 />
             </div>
+
         </section>
     );
 }

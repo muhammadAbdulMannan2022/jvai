@@ -2,9 +2,12 @@ import { useState, useCallback } from 'react';
 import Tree from 'react-d3-tree';
 import DetailsModal from './modal/Modal';
 import GradientTitle from '../../../Helpers/GradientTitle';
+import { motion } from "framer-motion";
+import { Briefcase, Play, Star } from 'lucide-react';
 import { FaPlay } from 'react-icons/fa';
 
-const organizationData = {
+// ---- INITIAL DATA ----
+const initialOrganizationData = {
     name: 'TechCorp Industries',
     attributes: {
         position: 'Head of JVAI',
@@ -13,17 +16,42 @@ const organizationData = {
         image: '/mainTeam/Gazi vai.png',
         department: 'Executive',
         video: "",
-        email: "gazi@exampl.com"
+        email: "gazi@exampl.com",
+        description: "",
+        isNumOne: true
     },
     children: [
+        {
+            name: 'Sales',
+            attributes: {
+                image: '/mainTeam/sl.jpg',
+                type: "team"
+            },
+            collapsed: true,  // COLLAPSED initially
+            children: [
+                {
+                    name: 'Mushfiqur Rahman',
+                    attributes: {
+                        position: 'Head of Sales',
+                        name: 'Mushfiqur Rahman',
+                        info: 'SEO, social media, and content marketing',
+                        image: '/mainTeam/Mushfiqur Rahman_.png',
+                        department: 'Marketing',
+                        video: "",
+                        email: "mushfiqur@exampl.com",
+                        description: ""
+                    }
+                }
+            ]
+        },
         {
             name: 'Oparation',
             attributes: {
                 image: '/mainTeam/op.jpg',
                 type: "team"
             },
+            collapsed: false, // EXPANDED initially
             children: [
-
                 {
                     name: 'Rufsun Ahmed',
                     attributes: {
@@ -33,7 +61,8 @@ const organizationData = {
                         image: '/mainTeam/image.png',
                         department: 'Engineering',
                         video: "",
-                        email: "gazi@exampl.com"
+                        email: "rufsun@exampl.com",
+                        description: ""
                     }
                 },
                 {
@@ -45,7 +74,8 @@ const organizationData = {
                         image: '/mainTeam/Palash vai.png',
                         department: 'Engineering',
                         video: "",
-                        email: "gazi@exampl.com"
+                        email: "palash@exampl.com",
+                        description: ""
                     }
                 },
                 {
@@ -57,29 +87,8 @@ const organizationData = {
                         image: '/mainTeam/Istiaq kflghlfk.png',
                         department: 'Engineering',
                         video: "",
-                        email: "gazi@exampl.com"
-                    }
-                }
-
-            ]
-        },
-        {
-            name: 'Sales',
-            attributes: {
-                image: '/mainTeam/sl.jpg',
-                type: "team"
-            },
-            children: [
-                {
-                    name: 'David Park',
-                    attributes: {
-                        position: 'Head of Sales',
-                        name: 'Mushfiqur Rahman',
-                        info: 'SEO, social media, and content marketing',
-                        image: '/mainTeam/Mushfiqur Rahman_.png',
-                        department: 'Marketing',
-                        video: "",
-                        email: "gazi@exampl.com"
+                        email: "fahad@exampl.com",
+                        description: ""
                     }
                 }
             ]
@@ -90,96 +99,146 @@ const organizationData = {
                 image: '/mainTeam/op.jpg',
                 type: "team"
             },
+            collapsed: true,  // COLLAPSED initially
             children: [
                 {
                     name: 'Tushar',
                     attributes: {
                         position: 'Head of Business Development',
-                        name: 'David Park',
+                        name: 'Tushar',
                         info: 'SEO, social media, and content marketing',
                         image: '/mainTeam/Tushar vai.png',
                         department: 'Marketing',
                         video: "",
-                        email: "gazi@exampl.com"
+                        email: "tushar@exampl.com",
+                        description: ""
                     }
                 }
             ]
-        },
+        }
     ]
 };
 
+// ---- PERSON CARD ----
+const PersonCard = ({ person, onClick, delay = 0, isGM = false }) => {
+    const cardSize = isGM ? "w-24 h-24" : "w-20 h-20";
+    const cardPadding = isGM ? "p-5" : "p-4";
 
-const CustomNodeElement = ({ nodeDatum, toggleNode }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const attributes = nodeDatum.attributes || {};
-    const isPeopleType = attributes.type !== "team" ? true : false;
     return (
-        <g>
-            <foreignObject width="280" height="140" x="-140" y="-70" style={{ overflow: 'visible' }}>
-                <div
-                    onClick={toggleNode}
-                    className="p-4 bg-white border-2 border-gray-200 shadow-lg rounded-lg cursor-pointer hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
-                >
-                    <div className={`flex items-center space-x-4 ${isPeopleType ? "flex-row" : "flex-col gap-5"}`}>
-                        {/* Profile Image */}
-                        <div className="relative flex-shrink-0">
-                            <img
-                                src={attributes.image || "/placeholder.svg?height=64&width=64&query=profile image"}
-                                alt={attributes.name || nodeDatum.name || "Profile"}
-                                width={64}
-                                height={64}
-                                className="w-16 h-16 rounded-full object-cover border-2 border-blue-400"
-                            />
-                            {
-                                isPeopleType && <><div className='absolute top-0 right-0 left-0 w-full h-full bg-gray-400/30 hover:bg-gray-400/50 transition-colors rounded-full flex items-center justify-center' onClick={() => setIsOpen(true)}>
-                                    <FaPlay
-                                        className="h-5 w-5 text-blue-600"
-                                        style={{
-                                            animation: 'scalePulse 1s ease-in-out infinite',
-                                        }}
-                                    />
-                                </div>
-                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full border-2 border-white"></div></>
-                            }
-                        </div>
-                        {/* Details */}
-                        <div className="flex-1 min-w-0">
-                            <h3 className="font-bold text-base text-gray-800 truncate">
-                                {attributes.name || nodeDatum.name}
-                            </h3>
-                            {isPeopleType && (
-                                <>
-                                    <div className="text-xs font-semibold inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded-full my-1">
-                                        {attributes.position || "Unknown Position"}
-                                    </div>
-                                    <p className="text-xs text-gray-600 leading-snug">
-                                        {attributes.info || "No additional information."}
-                                    </p>
-                                    <button onClick={() => setIsOpen(true)} className="mt-2 p-1 hover:cursor-pointer hover:bg-blue-500 text-xs rounded-xl bg-blue-600 text-white">
-                                        Details
-                                    </button>
-                                </>
-                            )}
+        <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+                duration: 0.8,
+                delay,
+                type: "spring",
+                stiffness: 100,
+                damping: 15
+            }}
+            whileHover={{
+                scale: 1.05,
+                y: -8,
+                transition: { duration: 0.3 }
+            }}
+            className="relative group cursor-pointer"
+            onClick={onClick}
+        >
+            <div className={`relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 ${cardPadding} border-2 border-blue-600 backdrop-blur-sm`}>
+                {/* Experience badge */}
+                <div className="absolute -top-1 -left-1 z-10">
+                    <span className="inline-flex items-center bg-gradient-to-r from-yellow-400 to-orange-400 text-white border-0 shadow-md text-xs px-2 py-1 rounded-md">
+                        <Star className="w-2 h-2 mr-1" />
+                        {person.experience || "15+ yrs"}
+                    </span>
+                </div>
+
+                <div className="mb-4">
+                    <div className={`${cardSize} mx-auto relative rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg group-hover:ring-4 group-hover:ring-blue-300 transition-all duration-500`}>
+                        <img
+                            src={person.image || "/placeholder.svg"}
+                            alt={person.name}
+                            className="w-full h-full object-cover"
+                        />
+                        <div className='absolute top-0 left-0 right-0 flex items-center justify-center w-full h-full z-20 bg-black/80'>
+                            <FaPlay className='h-5 w-5 animatePlay text-blue-600' />
                         </div>
                     </div>
-                    {isPeopleType && <DetailsModal isOpen={isOpen} onClose={() => setIsOpen(false)} person={attributes} />}
                 </div>
+
+                <div className="text-center space-y-2">
+                    <h3 className={`font-bold ${isGM ? 'text-lg' : 'text-base'} text-gray-800`}>
+                        {person.name}
+                    </h3>
+
+                    <span
+                        className={`inline-block bg-gradient-to-r from-blue-500 to-indigo-500 text-white border-0 shadow-md px-3 py-1 text-xs rounded-md`}
+                    >
+                        {person.position}
+                    </span>
+
+                    <p className={`text-xs text-gray-600 leading-relaxed ${isGM ? 'text-sm' : ''}`}>
+                        {person.description || person.info}
+                    </p>
+
+                    <div className="flex items-center justify-center gap-1 mt-2 text-blue-600 font-medium text-xs">
+                        <Briefcase className="w-3 h-3" />
+                        {person.department}
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
+// ---- CUSTOM NODE ELEMENT ----
+const CustomNodeElement = ({ nodeDatum, toggleNode, hierarchyPointNode }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const attributes = nodeDatum.attributes || {};
+    const isPerson = attributes.type !== "team";
+
+    // Detect depth
+    const isDepth1 = hierarchyPointNode.depth === 1;
+
+    return (
+        <g>
+            <foreignObject width="280" height="200" x="-140" y="-50" style={{ overflow: 'visible' }}>
+                {isPerson ? (
+                    <>
+                        <PersonCard
+                            person={attributes}
+                            isGM={attributes.isNumOne}
+                            onClick={() => setIsOpen(true)}
+                        />
+                        <DetailsModal
+                            isOpen={isOpen}
+                            onClose={() => setIsOpen(false)}
+                            person={attributes}
+                        />
+                    </>
+                ) : (
+                    <div
+                        className="p-4 bg-white border rounded-xl shadow-lg text-center cursor-pointer hover:scale-105 transition"
+                        onClick={() => {
+                            if (isDepth1) {
+                                // call prop function injected by parent to toggle depth1 node
+                                toggleNode();
+                            } else {
+                                toggleNode();
+                            }
+                        }}
+                    >
+                        <p className="font-semibold text-gray-800">{nodeDatum.name}</p>
+                    </div>
+                )}
             </foreignObject>
-            <style>
-                {`
-@keyframes scalePulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-}
-`}
-            </style>
         </g>
     );
 };
 
-
-// --- Main OrganizationalTree Component ---
+// ---- MAIN COMPONENT ----
 const OrganizationalTree = () => {
+    const [treeData, setTreeData] = useState(initialOrganizationData);
+
     const [translate, setTranslate] = useState({ x: 0, y: 0 });
     const treeContainerRef = useCallback((container) => {
         if (container) {
@@ -188,10 +247,51 @@ const OrganizationalTree = () => {
         }
     }, []);
 
+    // Function to toggle only one depth-1 node open at a time
+    const toggleNodeAtDepth1 = (nodeName) => {
+        const newTreeData = { ...treeData };
+
+        if (!newTreeData.children) return;
+
+        newTreeData.children = newTreeData.children.map(child => {
+            if (child.name === nodeName) {
+                return { ...child, collapsed: false };
+            } else {
+                return { ...child, collapsed: true };
+            }
+        });
+
+        setTreeData(newTreeData);
+    };
+
+    // Override CustomNodeElement to handle depth 1 toggle
+    const renderCustomNodeElement = (rd3tProps) => {
+        const { nodeDatum, toggleNode, hierarchyPointNode } = rd3tProps;
+
+        const isPerson = (nodeDatum.attributes?.type !== "team");
+        const isDepth1 = hierarchyPointNode.depth === 1;
+
+        // Custom toggle that enforces one open at depth 1
+        const handleToggle = () => {
+            if (isDepth1) {
+                toggleNodeAtDepth1(nodeDatum.name);
+            } else {
+                toggleNode();
+            }
+        };
+
+        return (
+            <CustomNodeElement
+                {...rd3tProps}
+                toggleNode={handleToggle}
+            />
+        );
+    };
+
     return (
-        <div className="w-full bg-gray-50 font-sans">
+        <div className="w-[100vw] bg-gray-50 font-sans">
             <div className="container mx-auto px-4 py-16">
-                <div className="text-center mb-12">
+                <div className="text-center">
                     <GradientTitle
                         text="Meet Our Team"
                         className="bg-gradient-to-l from-blue-500 to-purple-500 text-3xl lg:text-6xl font-bold leading-tight mb-8"
@@ -204,17 +304,17 @@ const OrganizationalTree = () => {
                 <div
                     id="tree-wrapper"
                     ref={treeContainerRef}
-                    className="w-full h-[700px] bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden"
+                    className="w-full h-[120vh] rounded-2xl overflow-hidden"
                 >
                     <Tree
-                        data={organizationData}
-                        translate={translate}
+                        data={treeData}
+                        // translate={translate}
+                        translate={{ x: window.screen.width / 2.59, y: 100 }}
                         orientation="vertical"
-                        renderCustomNodeElement={(rd3tProps) => <CustomNodeElement {...rd3tProps} />}
+                        renderCustomNodeElement={renderCustomNodeElement}
                         pathFunc="diagonal"
-                        separation={{ siblings: 1.2, nonSiblings: 2 }}
-                        nodeSize={{ x: 320, y: 200 }}
-                        initialDepth={1}
+                        separation={{ siblings: 1, nonSiblings: 1 }}
+                        nodeSize={{ x: 300, y: 300 }}
                         collapsible={true}
                         zoomable={false}
                         draggable={true}
