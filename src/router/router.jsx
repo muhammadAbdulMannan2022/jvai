@@ -96,7 +96,7 @@ const Root = () => {
         <GradientCursor />
         <MainLayout />
       </Suspense>
-      {/* {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />} */}
+      {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />}
     </div>
   );
 };

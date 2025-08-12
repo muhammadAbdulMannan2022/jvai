@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Button from "../../../Helpers/Button";
 import { useNavigate } from "react-router";
@@ -13,45 +12,36 @@ const Intro = () => {
         {/* Left Image */}
         <div className="grid grid-cols-2 grid-rows-2 gap-2 sm:gap-3 md:gap-4 w-full md:w-1/2 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[620px]">
           {/* Image 1 - From Left */}
-          <motion.div
-            className="row-span-2"
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+
+          <div className="row-span-2">
             <img
               src="/new/landing/landingSi.png"
               alt="Team working"
               className="w-full h-full object-cover rounded-lg"
             />
-          </motion.div>
+          </div>
+
 
           {/* Image 2 - From Top */}
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.1, delay: 0.2, ease: "easeIn" }}
-          >
+
+          <div>
             <img
               src="/new/landing/landingSi5.png"
               alt="Team meeting"
               className="w-full h-full object-cover rounded-lg"
             />
-          </motion.div>
+          </div>
+
 
           {/* Image 3 - From Bottom */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.1, delay: 0.6, ease: "easeIn" }}
-          >
+
+          <div>
             <img
               src="/new/landing/landingSi2.png"
               alt="Office space"
               className="w-full h-full object-cover rounded-lg"
             />
-          </motion.div>
-
+          </div>
         </div>
 
 

@@ -15,9 +15,9 @@ const initialOrganizationData = {
         info: '15+ years experience in tech leadership',
         image: '/mainTeam/Gazi vai.png',
         department: 'Executive',
-        video: "",
+        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995354/Gazi_via_lqtqbe.mp4",
         email: "gazi@exampl.com",
-        description: "",
+        description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor dicta praesentium consequatur earum vel autem nisi quas rem officia voluptates, ratione molestiae sequi voluptas itaque ea totam eligendi, necessitatibus neque.",
         isNumOne: true
     },
     children: [
@@ -37,7 +37,7 @@ const initialOrganizationData = {
                         info: 'SEO, social media, and content marketing',
                         image: '/mainTeam/Mushfiqur Rahman_.png',
                         department: 'Marketing',
-                        video: "",
+                        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995345/Sales_agm-_wwstjq.mp4",
                         email: "mushfiqur@exampl.com",
                         description: ""
                     }
@@ -53,14 +53,14 @@ const initialOrganizationData = {
             collapsed: false, // EXPANDED initially
             children: [
                 {
-                    name: 'Rufsun Ahmed',
+                    name: 'Rafsun Ahmad',
                     attributes: {
                         position: 'Head of Oparation',
-                        name: 'Rufsun Ahmed',
+                        name: 'Rafsun Ahmad',
                         info: 'Full-stack development and system design',
                         image: '/mainTeam/image.png',
                         department: 'Engineering',
-                        video: "",
+                        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995342/Rafsun_k291tv.mp4",
                         email: "rufsun@exampl.com",
                         description: ""
                     }
@@ -73,7 +73,7 @@ const initialOrganizationData = {
                         info: 'Full-stack development and system design',
                         image: '/mainTeam/Palash vai.png',
                         department: 'Engineering',
-                        video: "",
+                        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995328/Palash_r9zpjq.mp4",
                         email: "palash@exampl.com",
                         description: ""
                     }
@@ -86,7 +86,7 @@ const initialOrganizationData = {
                         info: 'React specialist and UI/UX implementation',
                         image: '/mainTeam/Istiaq kflghlfk.png',
                         department: 'Engineering',
-                        video: "",
+                        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995332/FAHAD_INTRO_kokuck.mp4",
                         email: "fahad@exampl.com",
                         description: ""
                     }
@@ -109,7 +109,7 @@ const initialOrganizationData = {
                         info: 'SEO, social media, and content marketing',
                         image: '/mainTeam/Tushar vai.png',
                         department: 'Marketing',
-                        video: "",
+                        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995343/Tushar_bhai_sd5gsc.mp4",
                         email: "tushar@exampl.com",
                         description: ""
                     }
@@ -177,7 +177,7 @@ const PersonCard = ({ person, onClick, delay = 0, isGM = false }) => {
                     </span>
 
                     <p className={`text-xs text-gray-600 leading-relaxed ${isGM ? 'text-sm' : ''}`}>
-                        {person.description || person.info}
+                        {person.info}
                     </p>
 
                     <div className="flex items-center justify-center gap-1 mt-2 text-blue-600 font-medium text-xs">
@@ -309,7 +309,7 @@ const OrganizationalTree = () => {
                     <Tree
                         data={treeData}
                         // translate={translate}
-                        translate={{ x: window.screen.width / 2.59, y: 100 }}
+                        translate={{ x: window.screen.width / 2.55, y: 100 }}
                         orientation="vertical"
                         renderCustomNodeElement={renderCustomNodeElement}
                         pathFunc="diagonal"

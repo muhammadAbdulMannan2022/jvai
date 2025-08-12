@@ -26,7 +26,7 @@ export default function Navbar() {
       ],
     },
     { name: "Work", path: "/work" },
-    { name: "Jvai Insider", path: "/blog" },
+    { name: "JVAI Insider", path: "/blog" },
   ]
 
   const toggleDropdown = (menu) => {

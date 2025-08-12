@@ -4,11 +4,8 @@ import { motion, useTransform } from "framer-motion";
 const SupportCard = ({
   title = "24/7 Customer Support",
   description = "Have a question or need to reschedule? Our friendly support team is available round the clock to help you anytime.",
-  buttonText = "Book Now",
   bgColor = "bg-cyan-100",
   textColor = "text-teal-700",
-  buttonBgColor = "bg-teal-600",
-  buttonTextColor = "text-white",
   imageSrc,
   progress, // Added
   range, // Added
@@ -34,11 +31,6 @@ const SupportCard = ({
       <div className="w-full md:w-1/2 p-6 flex flex-col justify-center items-start">
         <h2 className={`text-3xl font-bold mb-4 ${textColor}`}>{title}</h2>
         <p className={`text-lg mb-6 ${textColor}`}>{description}</p>
-        <button
-          className={`px-6 py-2 rounded-full ${buttonBgColor} ${buttonTextColor} hover:opacity-90 transition-opacity`}
-        >
-          {buttonText} →
-        </button>
       </div>
     </motion.div>
   );

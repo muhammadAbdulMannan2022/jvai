@@ -1,6 +1,6 @@
 
 
-export default function PersonDetails({ name, image, position, info, email = "example@abc.com" }) {
+export default function PersonDetails({ name, image, position, info, email = "example@abc.com", description }) {
     return (
         <div className="flex flex-col items-start text-center p-3 bg-gray-50 rounded-b-lg"> {/* Reduced padding, added light background */}
             <div className="flex items-start gap-4">
@@ -19,8 +19,8 @@ export default function PersonDetails({ name, image, position, info, email = "ex
                     <p>{email}</p>
                 </div>
             </div>
-            <p className="text-sm text-start text-gray-700 leading-snug px-2 indent-6">
-                {` ${info.length > 150 ? info.slice(0, 150) + '...' : info}`}
+            <p className="text-sm text-start text-gray-700 leading-snug px-2 indent-6 line-clamp-3">
+                {description}
             </p>
         </div>
     );
