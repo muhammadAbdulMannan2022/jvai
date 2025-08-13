@@ -53,7 +53,7 @@ export default function DetailsModal({ isOpen, onClose, person }) {
                 </button>
 
                 <div className="w-full aspect-video bg-black flex items-center justify-center overflow-hidden rounded-t-lg">
-                    <VideoPlayer muted={false} src={person.video} isPlaying={isPlaying} onToggle={() => setIsPlaying(!isPlaying)} />
+                    <VideoPlayer thum={person.thum || ""} muted={false} src={person.video} isPlaying={isPlaying} onToggle={() => setIsPlaying(!isPlaying)} />
                 </div>
                 <div className="p-6">
                     <PersonDetails

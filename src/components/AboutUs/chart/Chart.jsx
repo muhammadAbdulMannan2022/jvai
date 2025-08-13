@@ -18,7 +18,8 @@ const initialOrganizationData = {
         video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995354/Gazi_via_lqtqbe.mp4",
         email: "gazi@exampl.com",
         description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor dicta praesentium consequatur earum vel autem nisi quas rem officia voluptates, ratione molestiae sequi voluptas itaque ea totam eligendi, necessitatibus neque.",
-        isNumOne: true
+        isNumOne: true,
+        thum: "/gagi.png"
     },
     children: [
         {
@@ -39,7 +40,8 @@ const initialOrganizationData = {
                         department: 'Marketing',
                         video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995345/Sales_agm-_wwstjq.mp4",
                         email: "mushfiqur@exampl.com",
-                        description: ""
+                        description: "",
+                        thum: "/mus.png"
                     }
                 }
             ]
@@ -62,7 +64,8 @@ const initialOrganizationData = {
                         department: 'Engineering',
                         video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995342/Rafsun_k291tv.mp4",
                         email: "rufsun@exampl.com",
-                        description: ""
+                        description: "",
+                        thum: "/ruf.png"
                     }
                 },
                 {
@@ -75,7 +78,8 @@ const initialOrganizationData = {
                         department: 'Engineering',
                         video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995328/Palash_r9zpjq.mp4",
                         email: "palash@exampl.com",
-                        description: ""
+                        description: "",
+                        thum: "/pol.png"
                     }
                 },
                 {
@@ -88,7 +92,8 @@ const initialOrganizationData = {
                         department: 'Engineering',
                         video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995332/FAHAD_INTRO_kokuck.mp4",
                         email: "fahad@exampl.com",
-                        description: ""
+                        description: "",
+                        thum: "/fahad.png"
                     }
                 }
             ]
@@ -111,7 +116,8 @@ const initialOrganizationData = {
                         department: 'Marketing',
                         video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995343/Tushar_bhai_sd5gsc.mp4",
                         email: "tushar@exampl.com",
-                        description: ""
+                        description: "",
+                        thum: "/tush.png"
                     }
                 }
             ]

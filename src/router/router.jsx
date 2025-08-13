@@ -40,7 +40,7 @@ const IntroVideo = ({ onVideoEnd }) => {
 
       // Monitor video progress to stop at 5 seconds and trigger fade-out
       const handleTimeUpdate = () => {
-        if (video.currentTime >= 5) {
+        if (video.currentTime >= 3.5) {
           video.pause();
           setFadeOut(true);
           // Hide video and re-enable scrolling after fade-out
@@ -76,7 +76,7 @@ const IntroVideo = ({ onVideoEnd }) => {
         ref={videoRef}
         className="w-full h-full object-cover"
       >
-        <source src="/intro.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dglh0rizj/video/upload/v1755089298/intro_p9xm4n.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 
-export default function VideoPlayer({ src, isPlaying, onToggle, muted = true }) {
+export default function VideoPlayer({ src, isPlaying, onToggle, muted = true, thum }) {
   const videoRef = useRef(null);
   const progressRef = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -58,6 +58,9 @@ export default function VideoPlayer({ src, isPlaying, onToggle, muted = true }) 
         playsInline
         onTimeUpdate={handleTimeUpdate}
       />
+      {
+        !isPlaying && <img src={thum} alt="thum" className="absolute top-0 left-0 right-0 h-full w-full" />
+      }
 
       {/* Play icon only shown when paused */}
       {!isPlaying && (

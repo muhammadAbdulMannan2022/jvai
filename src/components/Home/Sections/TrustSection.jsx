@@ -59,9 +59,9 @@ export default function TrustSection() {
       <div className="mb-6">
         <LogoMarquee direction="left" />
       </div>
-      <div>
+      {/* <div>
         <LogoMarquee direction="right" />
-      </div>
+      </div> */}
     </div>
   );
 }
