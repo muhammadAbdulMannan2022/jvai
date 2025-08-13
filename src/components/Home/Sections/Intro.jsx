@@ -15,7 +15,7 @@ const Intro = () => {
 
           <div className="row-span-2">
             <img
-              src="/new/landing/landingSi.png"
+              src="https://res.cloudinary.com/dglh0rizj/image/upload/v1755092089/landingSi_azryhg.png"
               alt="Team working"
               className="w-full h-full object-cover rounded-lg"
             />
@@ -37,7 +37,7 @@ const Intro = () => {
 
           <div>
             <img
-              src="/new/landing/landingSi2.png"
+              src="https://res.cloudinary.com/dglh0rizj/image/upload/v1755092090/landingSi2_e8ajej.png"
               alt="Office space"
               className="w-full h-full object-cover rounded-lg"
             />

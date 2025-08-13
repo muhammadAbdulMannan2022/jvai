@@ -4,6 +4,7 @@ import Home from "../components/Home/Home";
 import AboutUs from "../components/AboutUs/AboutUs";
 import GradientCursor from "../Helpers/WebCursor";
 import Team from "../components/Home/Sections/team/Team";
+import ScrollToTop from "../lib/ScrollToTop";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
@@ -93,6 +94,7 @@ const Root = () => {
   return (
     <div className="relative">
       <Suspense fallback={<div>Loading...</div>}>
+        <ScrollToTop />
         <GradientCursor />
         <MainLayout />
       </Suspense>

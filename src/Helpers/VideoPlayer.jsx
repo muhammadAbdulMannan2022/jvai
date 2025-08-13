@@ -59,7 +59,7 @@ export default function VideoPlayer({ src, isPlaying, onToggle, muted = true, th
         onTimeUpdate={handleTimeUpdate}
       />
       {
-        !isPlaying && <img src={thum} alt="thum" className="absolute top-0 left-0 right-0 h-full w-full" />
+        !isPlaying && thum && <img src={thum} alt="thum" className="absolute top-0 left-0 right-0 h-full w-full" />
       }
 
       {/* Play icon only shown when paused */}
