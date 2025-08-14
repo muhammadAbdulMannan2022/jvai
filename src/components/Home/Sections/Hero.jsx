@@ -15,7 +15,7 @@ export default function Hero() {
           <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl font-semibold ">
             We're <span className="">JVAI</span>-
           </h1>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[100px] font-bold mt-1 sm:mt-2 mb-4 sm:mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[80px] font-bold mt-1 sm:mt-2 mb-4 sm:mb-6">
             <span className="text-blue-500">Empowering</span>
             <br />
             Innovation with AI

@@ -1,14 +1,16 @@
 import { createBrowserRouter } from "react-router";
 import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Home from "../components/Home/Home";
-import AboutUs from "../components/AboutUs/AboutUs";
+// import AboutUs from "../components/AboutUs/AboutUs";
 import GradientCursor from "../Helpers/WebCursor";
 import Team from "../components/Home/Sections/team/Team";
 import ScrollToTop from "../lib/ScrollToTop";
 import BlogEdit from "../components/Blog/addBlog/BlogEdit";
+import Error from "../components/Error/Error";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
+const AboutUs = lazy(() => import("../components/AboutUs/AboutUs"));
 
 const Career = lazy(() => import("../components/career/Career"));
 const CareerMain = lazy(() => import("../components/career/CareerMain"));
@@ -108,6 +110,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -124,7 +127,9 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <AboutUs />
+          <Suspense fallback={<div>Loading...</div>}>
+            <AboutUs />
+          </Suspense>
         ),
       },
       {
@@ -164,9 +169,9 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: (
-
-          <ContactUs />
-
+          <Suspense fallback={<div>loading.....</div>}>
+            <ContactUs />
+          </Suspense>
         ),
       },
       {

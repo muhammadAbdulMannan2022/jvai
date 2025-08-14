@@ -7,6 +7,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { useSubscribeUpdateMutation } from "../../../redux/features/apiSlice";
+import { Link } from "react-router";
 
 const Footer = () => {
   const [email, setEmail] = useState("")
@@ -42,39 +43,39 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4 text-blue-600">Services</h3>
           <ul className="space-y-2 list-disc text-gray-800 ml-4">
             <li>
-              <a href="#" className="hover:text-blue-700">
+              <Link href="/services" className="hover:text-blue-700">
                 Web Development
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-700">
+              <Link href="/services" className="hover:text-blue-700">
                 AI Development
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-700">
+              <Link href="/services" className="hover:text-blue-700">
                 Mobile App Development
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-700">
+              <Link href="/services" className="hover:text-blue-700">
                 SaaS Design
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-700">
+              <Link href="/services" className="hover:text-blue-700">
                 WordPress Development
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-700">
+              <Link href="/services" className="hover:text-blue-700">
                 Shopify Store
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-700">
+              <Link href="/services" className="hover:text-blue-700">
                 Graphic Design
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -90,9 +91,9 @@ const Footer = () => {
           </p>
           <p className="flex items-center gap-2 mb-2">
             <FaEnvelope className="text-blue-500" />
-            <span>info@weform.com</span>
+            <span>info@joinventureai.com/</span>
           </p>
-          <p>123 City Street, NY 10001</p>
+          <p>Aqua Tower, 43 Mohakhali C/A, Level 12-13, Dhaka 1212</p>
         </div>
 
         {/* Newsletter + Follow Us */}
@@ -120,15 +121,15 @@ const Footer = () => {
           <div className="text-gray-800 mt-6">
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4 text-lg">
-              <a href="#" className="bg-blue-500 text-white p-2 rounded-full">
+              <Link href="#" className="bg-blue-500 text-white p-2 rounded-full">
                 <FaFacebookF />
-              </a>
-              <a href="#" className="bg-blue-500 text-white p-2 rounded-full">
+              </Link>
+              <Link href="#" className="bg-blue-500 text-white p-2 rounded-full">
                 <FaInstagram />
-              </a>
-              <a href="#" className="bg-blue-500 text-white p-2 rounded-full">
+              </Link>
+              <Link href="#" className="bg-blue-500 text-white p-2 rounded-full">
                 <FaTwitter />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
