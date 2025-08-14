@@ -5,6 +5,7 @@ import AboutUs from "../components/AboutUs/AboutUs";
 import GradientCursor from "../Helpers/WebCursor";
 import Team from "../components/Home/Sections/team/Team";
 import ScrollToTop from "../lib/ScrollToTop";
+import BlogEdit from "../components/Blog/addBlog/BlogEdit";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
@@ -212,6 +213,10 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
+          {
+            path: "create",
+            element: <BlogEdit />
+          }
         ],
       },
     ],
