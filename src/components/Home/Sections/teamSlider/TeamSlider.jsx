@@ -5,14 +5,13 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "./team.css";
 
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import Title from "../../../../Helpers/Title";
 import { baseUri, useGetExpertsQuery } from "../../../../redux/features/apiSlice";
 
 export default function TeamSlider() {
   const { data, isLoading, isError } = useGetExpertsQuery();
 
-  // Handle loading and error states
   if (isLoading) {
     return <div className="text-center py-16">Loading...</div>;
   }
@@ -30,21 +29,26 @@ export default function TeamSlider() {
       <Title
         title={
           <>
-            Meet Our <span className="text-blue-500">AI Experts</span>
+            Meet Our <span className="text-blue-500">Experts</span>
           </>
         }
         desc={`Our team of AI specialists, data scientists, and engineers are passionate about creating innovative solutions.`}
       />
 
-      <div className="w-full max-w-[1100px]">
+      <div className="w-full max-w-[1200px]">
         <Swiper
-          modules={[EffectCoverflow, Pagination]}
+          modules={[EffectCoverflow, Pagination, Autoplay]} // ✅ added Autoplay
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
           loop={true}
           slidesPerView={3}
           spaceBetween={0}
+          autoplay={{
+            delay: 3000, // ✅ change every 3s
+            disableOnInteraction: false, // ✅ keep autoplay after interaction
+            pauseOnMouseEnter: true,
+          }}
           coverflowEffect={{
             rotate: 20,
             stretch: 0,

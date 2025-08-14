@@ -7,7 +7,6 @@ import Button from "../../Helpers/Button";
 import AboutDisplay from "./display/AboutDisplay";
 import AboutLead from "./lead/AboutLead";
 import Quality from "./quality/Quality";
-import OrganizationChart from "./chart/Chart";
 
 export default function AboutUs() {
   return (
@@ -82,8 +81,7 @@ export default function AboutUs() {
       <AboutDisplay />
       {/*  */}
       <AboutLead />
-      {/*  */}
-      <OrganizationChart />
+
       {/*  */}
       <Quality />
       {/*  */}

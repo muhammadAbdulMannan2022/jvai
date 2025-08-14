@@ -6,7 +6,7 @@ import Title from "../../../../Helpers/Title";
 
 const supportFeatures = [
   {
-    title: "24/7 Customer Support",
+    title: "Chatbots",
     description:
       "Have a question or need to reschedule? Our friendly support team is available round the clock to help you anytime.",
     buttonText: "Book Now",
@@ -84,10 +84,10 @@ export default function SupportSection() {
         <Title
           title={
             <>
-              Why <span className="text-blue-500">Choose Us?</span>
+              Indurstries <span className="text-blue-500">We Work On</span>
             </>
           }
-          desc={`We’re committed to unmatched quality and excellence.`}
+          desc={`Empowering diverse industries through innovative and scalable AI Powered software solutions.`}
         />
         {supportFeatures.map((features, i) => {
           const targetScale = 1 - (supportFeatures.length - i) * 0.04;

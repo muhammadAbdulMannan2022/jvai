@@ -96,7 +96,7 @@ const Testimonials = () => {
                     <img
                       src={baseUri + testimonial.client_picture}
                       alt={`${testimonial.name}'s company logo`}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover rounded-xl"
                     />
                   </div>
                   <div className="md:w-1/2 w-full flex flex-col justify-between space-y-2">

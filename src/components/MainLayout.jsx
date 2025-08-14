@@ -28,26 +28,26 @@ export default function MainLayout() {
     }
   }, [seoContent]);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <span className="text-lg font-medium">Loading...</span>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <span className="text-lg font-medium">Loading...</span>
+  //     </div>
+  //   );
+  // }
 
-  if (!seoContent) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <span className="text-lg font-medium text-red-500">
-          Failed to load SEO data
-        </span>
-      </div>
-    );
-  }
+  // if (!seoContent) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <span className="text-lg font-medium text-red-500">
+  //         Failed to load SEO data
+  //       </span>
+  //     </div>
+  //   );
+  // }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col cursor-pointer">
       <Navbar />
       <div className="flex-grow">
         <Outlet />

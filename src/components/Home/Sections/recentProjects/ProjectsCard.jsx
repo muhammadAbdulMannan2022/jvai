@@ -92,7 +92,7 @@ export default function ProjectsCard({
           {/* Video (hidden on mobile) */}
           <div className="hidden sm:block w-full sm:w-[64%] h-auto sm:h-full">
             <VideoPlayer
-              src={baseUri + video}
+              src={video}
               isPlaying={isPlaying}
               onToggle={togglePlayback}
             />

@@ -36,7 +36,7 @@ export default function Projects() {
       <p className="text-lg text-gray-700 mb-6">{project.project_short_description}</p>
       {
         project.project_video ? <div className="mt-10 space-y-4">
-          <VideoPlayer onToggle={() => setIsPlaying(!isPlaying)} src={baseUri + project.project_video} isPlaying={isPlaying} />
+          <VideoPlayer onToggle={() => setIsPlaying(!isPlaying)} src={project.project_video} isPlaying={isPlaying} />
         </div> : project.project_picture ? <div className="mb-8">
           <img
             src={baseUri + project.project_picture}
@@ -48,14 +48,10 @@ export default function Projects() {
 
       {project.project_description && (
         <div
-          className="prose max-w-none text-gray-800"
+          className="prose max-w-none text-gray-800 mt-10"
           dangerouslySetInnerHTML={{ __html: project.project_description }}
         />
       )}
-
-
-
-
 
       {project.project_duration && (
         <p className="mt-8 text-sm text-gray-500">

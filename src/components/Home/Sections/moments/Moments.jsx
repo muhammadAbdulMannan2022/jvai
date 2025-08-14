@@ -84,7 +84,7 @@ export default function MomentsSwiper() {
   if (isLoading) {
     return <div className="text-center py-10">Loading Moments...</div>;
   } else {
-    console.log(data)
+    // console.log(data)
     return (
       <div className="team_slide flex flex-col justify-center items-center w-full py-16 bg-[#F3F5F9]">
         <Title

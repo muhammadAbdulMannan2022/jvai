@@ -1,10 +1,16 @@
 import { createBrowserRouter } from "react-router";
 import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Home from "../components/Home/Home";
-import AboutUs from "../components/AboutUs/AboutUs";
+// import AboutUs from "../components/AboutUs/AboutUs";
+import GradientCursor from "../Helpers/WebCursor";
+import Team from "../components/Home/Sections/team/Team";
+import ScrollToTop from "../lib/ScrollToTop";
+import BlogEdit from "../components/Blog/addBlog/BlogEdit";
+import Error from "../components/Error/Error";
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
+const AboutUs = lazy(() => import("../components/AboutUs/AboutUs"));
 
 const Career = lazy(() => import("../components/career/Career"));
 const CareerMain = lazy(() => import("../components/career/CareerMain"));
@@ -16,6 +22,7 @@ const Projects = lazy(() => import("../components/Projects/Projects"));
 const Blog = lazy(() => import("../components/Blog/Blog"));
 const BlogMain = lazy(() => import("../components/Blog/BlogMain"));
 const BlogDetails = lazy(() => import("../components/BlogDetails/BlogDetails"));
+const ProjectHome = lazy(() => import("../components/Projects/ProjectHome"))
 
 // Intro video component with 5-second playback, fade-out effect, and scroll prevention
 const IntroVideo = ({ onVideoEnd }) => {
@@ -37,7 +44,7 @@ const IntroVideo = ({ onVideoEnd }) => {
 
       // Monitor video progress to stop at 5 seconds and trigger fade-out
       const handleTimeUpdate = () => {
-        if (video.currentTime >= 5) {
+        if (video.currentTime >= 3.5) {
           video.pause();
           setFadeOut(true);
           // Hide video and re-enable scrolling after fade-out
@@ -63,7 +70,7 @@ const IntroVideo = ({ onVideoEnd }) => {
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-1000 max-w-screen ${fadeOut ? "opacity-0" : "opacity-100"
+      className={`fixed cursor-pointer inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-1000 max-w-screen ${fadeOut ? "opacity-0" : "opacity-100"
         }`}
     >
       <video
@@ -73,7 +80,7 @@ const IntroVideo = ({ onVideoEnd }) => {
         ref={videoRef}
         className="w-full h-full object-cover"
       >
-        <source src="/intro.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/dglh0rizj/video/upload/v1755089298/intro_p9xm4n.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -90,9 +97,11 @@ const Root = () => {
   return (
     <div className="relative">
       <Suspense fallback={<div>Loading...</div>}>
+        <ScrollToTop />
+        <GradientCursor />
         <MainLayout />
       </Suspense>
-      {/* {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />} */}
+      {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />}
     </div>
   );
 };
@@ -101,6 +110,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -117,7 +127,9 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <AboutUs />
+          <Suspense fallback={<div>Loading...</div>}>
+            <AboutUs />
+          </Suspense>
         ),
       },
       {
@@ -157,10 +169,14 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: (
-
-          <ContactUs />
-
+          <Suspense fallback={<div>loading.....</div>}>
+            <ContactUs />
+          </Suspense>
         ),
+      },
+      {
+        path: "/team",
+        element: <Team />
       },
       {
         path: "/work",
@@ -202,6 +218,10 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
+          {
+            path: "create",
+            element: <BlogEdit />
+          }
         ],
       },
     ],

@@ -15,6 +15,7 @@ import FAQSection from "./Sections/FAQ/FAQSection";
 import Testimonials from "./Sections/Testimonials/Testimonials";
 import Title from "../../Helpers/Title";
 import { useGetProjectsQuery } from "../../redux/features/apiSlice";
+import ParticleBackground from "../../lib/ParticleBackground";
 
 export default function Home() {
   const { data, isLoading, error } = useGetProjectsQuery();
@@ -32,7 +33,16 @@ export default function Home() {
   return (
     <div className="h-screen relative w-full">
       {/* header */}
-      <div className="bg-blue-950 bg-[url('/HeroBg.png')] bg-cover bg-no-repeat bg-center h-fit md:h-full w-full">
+      <div className="h-screen relative w-full">
+        {/* <video
+          className="absolute w-screen h-screen object-cover z-[-1]"
+          src="/logo.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        ></video> */}
+
         <Hero />
       </div>
 

@@ -44,7 +44,7 @@ export default function DetailsModal({ isOpen, onClose, person }) {
             >
                 {/* Close Button */}
                 <button
-                    className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 z-10"
+                    className="absolute z-50 right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     onClick={onClose}
                     aria-label="Close"
                 >
@@ -53,7 +53,7 @@ export default function DetailsModal({ isOpen, onClose, person }) {
                 </button>
 
                 <div className="w-full aspect-video bg-black flex items-center justify-center overflow-hidden rounded-t-lg">
-                    <VideoPlayer src={person.video} isPlaying={isPlaying} onToggle={() => setIsPlaying(!isPlaying)} />
+                    <VideoPlayer thum={person.thum || ""} muted={false} src={person.video} isPlaying={isPlaying} onToggle={() => setIsPlaying(!isPlaying)} />
                 </div>
                 <div className="p-6">
                     <PersonDetails
@@ -61,6 +61,8 @@ export default function DetailsModal({ isOpen, onClose, person }) {
                         image={person.image}
                         position={person.position}
                         info={person.info}
+                        email={person.email}
+                        description={person?.description}
                     />
                 </div>
             </div>
