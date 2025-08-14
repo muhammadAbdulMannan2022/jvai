@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import {
   FaThumbsUp,
@@ -10,6 +10,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import { useGetOneBlogQuery } from "../../redux/features/apiSlice";
+import { Linkedin } from "lucide-react";
 
 export default function BlogDetails() {
   const { id } = useParams();
@@ -66,25 +67,19 @@ export default function BlogDetails() {
             </div>
 
             {/* Social buttons */}
-            <button className="flex hover:cursor-pointer items-center space-x-1 hover:text-blue-600">
+
+            <Link target="_blank" to="https://www.facebook.com/hello.jvai" className="flex hover:cursor-pointer items-center space-x-1 hover:text-blue-600">
               <FaFacebookF />
               <span>Facebook</span>
-            </button>
-
-            <button className="flex hover:cursor-pointer items-center space-x-1 hover:text-pink-500">
+            </Link>
+            <Link target="_blank" to="https://www.instagram.com/joinventure.ai/" className="flex hover:cursor-pointer items-center space-x-1 hover:text-pink-500">
               <FaInstagram />
               <span>Instagram</span>
-            </button>
-
-            <button className="flex hover:cursor-pointer items-center space-x-1 hover:text-blue-400">
-              <FaTwitter />
-              <span>Twitter</span>
-            </button>
-
-            <button className="flex hover:cursor-pointer items-center space-x-1 hover:text-blue-700">
+            </Link>
+            <Link target="_blank" to="https://www.linkedin.com/company/joinventureai/" className="flex hover:cursor-pointer items-center space-x-1 hover:text-blue-700">
               <FaLinkedinIn />
               <span>LinkedIn</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
