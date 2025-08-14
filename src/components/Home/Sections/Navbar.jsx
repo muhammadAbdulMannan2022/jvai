@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { ChevronDown, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Link, useLocation } from "react-router"
+import { Link, useLocation, useNavigate } from "react-router"
 
 export default function Navbar() {
   const currentPath = useLocation().pathname
@@ -38,13 +38,13 @@ export default function Navbar() {
     visible: { x: 0, opacity: 1 },
     exit: { x: "100%", opacity: 0 },
   }
-
+  const navigate = useNavigate()
   return (
     <nav className=" flex items-center justify-center fixed top-0 left-0 w-full sm:px-8 lg:px-20 z-50 w-fi">
       <div className="w-full flex justify-between items-center max-w-7xl bg-[#00000046] backdrop-blur-md font-sans p-4 px-8 rounded-full mt-4">
         {/* Logo */}
         <div className="flex items-center">
-          <img className="w-16 sm:w-20 md:w-24" src="/logo.png" alt="JVAI" />
+          <img onClick={() => navigate("/")} className="w-16 sm:w-20 md:w-24" src="/logo.png" alt="JVAI" />
         </div>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6 text-white text-sm lg:text-base">
@@ -54,7 +54,7 @@ export default function Navbar() {
             return item.child ? (
               <div key={item.name} className="relative group">
                 <div
-                  className={`flex items-center gap-1 cursor-pointer hover:text-blue-400 transition ${isActive ? "text-blue-400 underline" : ""}`}
+                  className={`flex items-center gap-1 cursor-pointer transition ${isActive ? "text-blue-400 " : ""}`}
                 >
                   <span>
                     {isChildActive ? item.child.find((child) => currentPath.startsWith(child.path))?.text : item.name}
@@ -66,7 +66,7 @@ export default function Navbar() {
                     <li key={child.text}>
                       <Link
                         to={child.path}
-                        className="block px-4 py-2 text-sm hover:text-blue-400 hover:bg-gray-800/50 transition"
+                        className="block px-4 py-2 text-sm  transition"
                       >
                         {child.text}
                       </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`hover:text-blue-400 hover:underline transition ${isActive ? "bg-gradient-to-tr from-blue-800 to-blue-400 px-2 py-1 rounded-xl" : ""}`}
+                className={` transition ${isActive ? "bg-gradient-to-tr from-blue-800 to-blue-400 px-2 py-1 rounded-xl" : ""}`}
               >
                 {item.name}
               </Link>
