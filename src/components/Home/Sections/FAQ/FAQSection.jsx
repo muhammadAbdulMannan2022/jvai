@@ -1,35 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiPlus, FiMinus } from "react-icons/fi";
+import { useGetFaQQuery } from "../../../../redux/features/apiSlice";
+import { useNavigate } from "react-router";
 
-// FAQ data
-const faqData = [
-  {
-    question: "How Long Does a Design Project Take?",
-    answer:
-      "The timeline for a design project varies depending on scope and complexity. Typically, small projects take 2-4 weeks, while larger projects may take 1-3 months. We'll provide a detailed timeline during our initial consultation.",
-  },
-  {
-    question: "What design tools do you use?",
-    answer:
-      "Our team uses industry-standard tools including Figma, Adobe Creative Suite, Sketch, and various prototyping tools. We select the best tools for each specific project to ensure optimal results.",
-  },
-  {
-    question: "How Long Does a Design Project Take?",
-    answer:
-      "Project timelines depend on requirements and complexity. We work efficiently to deliver quality results within agreed timeframes, typically ranging from a few weeks to a few months.",
-  },
-  {
-    question: "How Much Does a Design Project Cost at Your Agency?",
-    answer:
-      "Our pricing is customized based on project requirements, scope, and timeline. We offer competitive rates and transparent pricing. Contact us for a detailed quote tailored to your specific needs.",
-  },
-  {
-    question: "Why is JVAI Different?",
-    answer:
-      "We combine creative expertise with strategic thinking, focusing on results-driven design. Our collaborative approach, attention to detail, and commitment to excellence set us apart from other agencies.",
-  },
-];
+
 
 // Team data
 const teamData = [
@@ -62,6 +37,7 @@ const teamData = [
 
 // FAQ Accordion Item component
 const AccordionItem = ({ question, answer, isOpen, onClick }) => {
+
   return (
     <div className="border-b border-gray-200">
       <button
@@ -95,7 +71,9 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
 };
 
 export default function FAQTeamSection() {
+  const { data: faqData, isLoading, isError } = useGetFaQQuery();
   const [openIndex, setOpenIndex] = useState(null);
+  const navigate = useNavigate()
 
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -167,6 +145,7 @@ export default function FAQTeamSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => navigate("/contact")}
                 className="rounded-md bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow-md transition-colors hover:bg-blue-700  focus:ring-2  md:text-base hover:cursor-pointer"
               >
                 Book a Quick Call
@@ -181,15 +160,23 @@ export default function FAQTeamSection() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6"
           >
-            {faqData.map((item, index) => (
-              <AccordionItem
-                key={index}
-                question={item.question}
-                answer={item.answer}
-                isOpen={openIndex === index}
-                onClick={() => handleToggle(index)}
-              />
-            ))}
+            {isLoading ? (
+              <div className="text-center py-8 text-gray-500">Loading FAQs...</div>
+            ) : isError || !faqData?.length ? (
+              <div className="text-center py-8 text-red-500">
+                Failed to load FAQs.
+              </div>
+            ) : (
+              faqData.map((item, index) => (
+                <AccordionItem
+                  key={index}
+                  question={item.question}
+                  answer={item.answer}
+                  isOpen={openIndex === index}
+                  onClick={() => handleToggle(index)}
+                />
+              ))
+            )}
           </motion.div>
         </div>
       </div>

@@ -56,7 +56,7 @@ export default function TechStack() {
         className="absolute inset-0 pointer-events-none transition-opacity duration-300"
         style={{
           opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0, 0, 250, 0.3) 0%, transparent 50%)`,
+          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0, 0, 250, 0.5) 0%, transparent 50%)`,
           filter: "blur(50px)",
           zIndex: 0,
         }}

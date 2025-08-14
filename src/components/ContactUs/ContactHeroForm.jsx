@@ -165,11 +165,12 @@ export default function ContactHeroForm({ dark = true }) {
             <option value="" disabled>
               Select Service
             </option>
-            <option value="web-development">🌐 Web Development</option>
-            <option value="mobile-app">📱 Mobile App Development</option>
-            <option value="ui-ux">🎨 UI/UX Design</option>
-            <option value="branding">🏷️ Branding</option>
-            <option value="marketing">📈 Digital Marketing</option>
+            <option value="web-development">Web Development</option>
+            <option value="mobile-app">Mobile App Development</option>
+            <option value="ui-ux">UI/UX Design</option>
+            <option value="branding">Branding</option>
+            <option value="marketing">Digital Marketing</option>
+            <option value="others">Others</option>
           </select>
         </div>
 

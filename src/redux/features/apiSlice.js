@@ -56,8 +56,11 @@ export const apiSlice = createApi({
                 url: `api/contact/send_contact_request/`,
                 body: data
             })
+        }),
+        getFaQ: builder.query({
+            query: () => "api/faq/get_all_faq/"
         })
     }),
 })
 
-export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery, useSubscribeUpdateMutation, useGetOneBlogQuery, useGetAllBlogQuery, useSubmitContactMutation } = apiSlice
+export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery, useSubscribeUpdateMutation, useGetOneBlogQuery, useGetAllBlogQuery, useSubmitContactMutation, useGetFaQQuery } = apiSlice
