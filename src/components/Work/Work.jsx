@@ -74,12 +74,12 @@ export default function Work() {
 
       {/* Projects Section */}
       <div className="bg-gray-100 px-2 sm:px-4 md:px-8 lg:px-40 pt-4 sm:pt-8 md:pt-12 lg:pt-16">
-        <div ref={ref} className="mb-3 sm:mb-4 md:mb-5">
+        <div ref={ref} className="mb-3 sm:mb-4 md:mb-5 flex flex-col items-center justify-center">
           <GradientTitle
             text={"Our Case Study"}
-            className={`bg-gradient-to-r from-blue-500 to-blue-900 text-2xl sm:text-2xl md:text-3xl font-bold`}
+            className={`bg-gradient-to-r from-blue-500 to-blue-900 text-2xl sm:text-2xl md:text-5xl font-bold`}
           />
-          <p className="text-[#505050] text-xs sm:text-sm md:text-base">
+          <p className="text-[#505050] text-xs sm:text-sm md:text-base mt-5">
             An experience design agency building high-end products and
             experiences that grow your business exponentially.
           </p>
@@ -96,7 +96,7 @@ export default function Work() {
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-black font-bold leading-tight">
               Start your{" "}
               <span className="text-blue-500">
-                project <br /> journey
+                journey<br />
               </span>{" "}
               with us.
             </h1>

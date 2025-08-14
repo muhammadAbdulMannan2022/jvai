@@ -19,7 +19,7 @@ export default function Navbar() {
       child: [
         { path: "/about", text: "About Us" },
         { path: "/career", text: "Career" },
-        { path: "/contact", text: "Contact Us" },
+
         {
           path: "/team", text: "Our Team"
         }
