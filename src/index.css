@@ -22,6 +22,26 @@ body::-webkit-scrollbar,
   display: none;
 }
 
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Edge */
+}
+
+.scroll-container {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Edge */
+}
+
 /* Hide scrollbar for IE, Edge and Firefox */
 body,
 #root {
