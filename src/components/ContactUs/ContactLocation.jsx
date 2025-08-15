@@ -73,13 +73,7 @@ export default function ContactLocation() {
 
       {/* Right - Map */}
       <div className="w-full lg:w-1/2 h-[40vh] sm:h-[50vh] md:h-[60vh]">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d912.9202162945402!2d90.4281952696209!3d23.758757226112728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjPCsDQ1JzMxLjUiNiA5MMKwMjUnNDMuOCJF!5e0!3m2!1sen!2sbd!4v1747394828452!5m2!1sen!2sbd"
-          frameBorder="0"
-          className="rounded-xl w-full h-full border-4 border-blue-800 shadow-md"
-          allowFullScreen=""
-          loading="lazy"
-        ></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0606618653414!2d90.40497267602359!3d23.780854087605178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c71f812bea6b%3A0xc289a221fd0c83e5!2sAQUA%20Tower!5e0!3m2!1sen!2sbd!4v1755239011079!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   );
