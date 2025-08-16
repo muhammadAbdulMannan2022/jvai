@@ -55,7 +55,7 @@ export default function GradientCursor() {
     return (
         <div
             ref={cursorRef}
-            className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 border-[#6CE4ED] pointer-events-none z-[9999]"
+            className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 border-[#0044ff] pointer-events-none z-[9999]"
             style={{
                 transition: "none",
             }}

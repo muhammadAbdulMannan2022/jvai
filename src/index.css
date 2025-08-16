@@ -55,6 +55,7 @@ body,
   animation: animatePlayan 1s linear infinite;
 }
 
+
 @keyframes animatePlayan {
   0% {
     transform: scale(1);

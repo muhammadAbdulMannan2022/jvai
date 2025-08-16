@@ -59,8 +59,15 @@ export const apiSlice = createApi({
         }),
         getFaQ: builder.query({
             query: () => "api/faq/get_all_faq/"
+        }),
+        sendToBot: builder.mutation({
+            query: (data) => ({
+                method: "POST",
+                url: "api/chatbot/send_message/",
+                body: data
+            })
         })
     }),
 })
 
-export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery, useSubscribeUpdateMutation, useGetOneBlogQuery, useGetAllBlogQuery, useSubmitContactMutation, useGetFaQQuery } = apiSlice
+export const { useGetAllCategoriesQuery, useGetJobsQuery, useApplyOnJobMutation, useGetClientReviewsQuery, useGetExpertsQuery, useGetMomentsInJvaiQuery, useGetProjectsQuery, useGetOneProjectQuery, useGetSeoQuery, useSubscribeUpdateMutation, useGetOneBlogQuery, useGetAllBlogQuery, useSubmitContactMutation, useGetFaQQuery, useSendToBotMutation } = apiSlice

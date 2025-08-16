@@ -7,6 +7,7 @@ import Team from "../components/Home/Sections/team/Team";
 import ScrollToTop from "../lib/ScrollToTop";
 import BlogEdit from "../components/Blog/addBlog/BlogEdit";
 import Error from "../components/Error/Error";
+const SupportChat = lazy(() => import("../components/Bot/SupportChat"));
 // Lazy-loaded components
 const MainLayout = lazy(() => import("../components/MainLayout"));
 const Services = lazy(() => import("../components/Services/Services"));
@@ -100,6 +101,7 @@ const Root = () => {
         <ScrollToTop />
         <GradientCursor />
         <MainLayout />
+        <SupportChat />
       </Suspense>
       {showIntro && <IntroVideo onVideoEnd={handleVideoEnd} />}
     </div>
