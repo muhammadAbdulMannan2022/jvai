@@ -15,7 +15,8 @@ const logos = [
   "/logo/valr.png",
   "/logo/fondify.png",
   "/logo/ramis.png",
-  "/logo/calz.png"
+  "/logo/calz.png",
+  "/logo/curieCell.png"
 ];
 
 const LogoMarquee = ({ direction = "left" }) => {
