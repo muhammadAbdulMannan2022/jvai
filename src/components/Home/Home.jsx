@@ -31,9 +31,9 @@ export default function Home() {
   })) ?? [];
 
   return (
-    <div className="h-screen relative w-full">
+    <div className="md:h-screen h-[200vh] relative w-full">
       {/* header */}
-      <div className="h-screen relative w-full">
+      <div className="md:h-screen h-[200vh] relative w-full">
         {/* <video
           className="absolute w-screen h-screen object-cover z-[-1]"
           src="/logo.mp4"

@@ -8,9 +8,9 @@ import { useNavigate } from "react-router";
 export default function Hero() {
   const navigate = useNavigate()
   return (
-    <div className="text-[#F3F3F3] bg-black/60 px-4 sm:px-8 md:px-12 lg:px-16 w-full mx-auto flex flex-col justify-center min-h-[60vh] sm:min-h-[70vh] md:h-full absolute top-0 left-0 right-0" >
+    <div className="text-[#F3F3F3] bg-black/60 px-4 sm:px-8 md:px-12 lg:px-16 w-full mx-auto flex flex-col justify-center h-screen min-h-[60vh] sm:min-h-[70vh] md:h-full absolute top-0 left-0 right-0" >
       <TsParticles />
-      <div className="max-w-7xl flex justify-between w-full mx-auto text-left z-40">
+      <div className="max-w-7xl flex justify-between w-full mx-auto text-left z-40 md:flex-row flex-col-reverse">
         <div className="w-fit flex flex-col items-start justify-start ">
           <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl font-semibold ">
             We're <span className="">JVAI</span>-

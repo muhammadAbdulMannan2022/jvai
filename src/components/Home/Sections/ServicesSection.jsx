@@ -36,7 +36,7 @@ const MobileServiceItem = ({ service, index, setActiveIndex }) => {
         >
           <img
             loading="lazy"
-            src={service.leftImage}
+            src={baseUri + service.leftImage}
             alt={`${service.centerTitle} left image`}
             className="w-full h-full object-contain"
           />
@@ -49,7 +49,7 @@ const MobileServiceItem = ({ service, index, setActiveIndex }) => {
         >
           <img
             loading="lazy"
-            src={service.rightImage}
+            src={baseUri + service.rightImage}
             alt={`${service.centerTitle} right image`}
             className="w-full h-full object-contain"
           />
