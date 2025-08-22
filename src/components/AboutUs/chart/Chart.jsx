@@ -15,7 +15,7 @@ const initialOrganizationData = {
         info: '15+ years experience in tech leadership',
         image: '/mainTeam/Gazi vai.png',
         department: 'Executive',
-        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1754995354/Gazi_via_lqtqbe.mp4",
+        video: "https://res.cloudinary.com/dglh0rizj/video/upload/v1755848516/Gazi_via.mp4_final_aoqsno.mp4",
         email: "gazi@exampl.com",
         description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor dicta praesentium consequatur earum vel autem nisi quas rem officia voluptates, ratione molestiae sequi voluptas itaque ea totam eligendi, necessitatibus neque.",
         isNumOne: true,
