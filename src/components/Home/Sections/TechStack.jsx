@@ -25,7 +25,7 @@ export default function TechStack() {
     { name: "React", src: "/icons/image 30.png" },
     { name: "Vue.js", src: "/icons/image 32.png" },
     { name: "Vue.js", src: "/icons/image 33.png" },
-    { name: "Vue.js", src: "/icons/image 345.png" },
+    { name: "Vue.js", src: "/icons/image 34.png" },
   ];
 
   const [isHovered, setIsHovered] = useState(false);
