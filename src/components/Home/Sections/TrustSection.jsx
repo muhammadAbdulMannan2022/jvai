@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Marquee from "react-fast-marquee";
 
 // Sample 20 logos (replace with actual logo URLs)
@@ -19,9 +18,24 @@ const logos = [
   "/logo/curieCell.png"
 ];
 
-const LogoMarquee = ({ direction = "left" }) => {
-  const [isMount, setIsMount] = useState(false)
-  const repeated = [...logos, ...logos];
+const logos1 = [
+  "/logo/1.png",
+  "/logo/2.png",
+  "/logo/3.png",
+  "/logo/4.png",
+  "/logo/5.png",
+  "/logo/6.png",
+  "/logo/7.png",
+  "/logo/8.png",
+  "/logo/9.png",
+  "/logo/10.png",
+  "/logo/11.png",
+  "/logo/12.png",
+];
+
+const LogoMarquee = ({ direction = "left", items = [] }) => {
+  const [isMount, setIsMount] = useState(false);
+  const repeated = [...items, ...items];
 
   useEffect(() => {
     setIsMount(true);
@@ -55,15 +69,18 @@ export default function TrustSection() {
   return (
     <div className="bg-white py-12 px-5 md:px-24">
       <div className="text-center text-2xl md:text-4xl font-bold mb-8 text-gray-900">
-        TRUSTED BY <span className="text-blue-600">100+</span> GLOBAL <br /><p className="mt-3">BRANDS</p>
+        TRUSTED BY <span className="text-blue-600">100+</span> GLOBAL <br />
+        <p className="mt-3">BRANDS</p>
       </div>
 
       <div className="mb-6">
-        <LogoMarquee direction="left" />
+        {/* left marquee uses logos */}
+        <LogoMarquee direction="left" items={logos} />
       </div>
-      {/* <div>
-        <LogoMarquee direction="right" />
-      </div> */}
+      <div>
+        {/* right marquee uses logos1 */}
+        <LogoMarquee direction="right" items={logos1} />
+      </div>
     </div>
   );
 }
