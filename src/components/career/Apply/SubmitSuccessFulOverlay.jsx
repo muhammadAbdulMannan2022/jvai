@@ -28,7 +28,7 @@ export default function SubmitSuccessFulOverlay({ isOpen, onClose }) {
     >
       <div className="w-[90%] max-w-md bg-white rounded-2xl p-8 relative shadow-2xl border border-gray-200 transition-all">
         <div className="flex flex-col items-center justify-center text-center space-y-4">
-          <img src="/check.png" alt="Success Icon" className="w-20 h-20" />
+          <img loading="lazy" src="/check.png" alt="Success Icon" className="w-20 h-20" />
           <h1 className="text-2xl font-semibold text-gray-800">
             Thanks for Applying
           </h1>

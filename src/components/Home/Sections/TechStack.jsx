@@ -95,6 +95,7 @@ export default function TechStack() {
               }}
             >
               <img
+                loading="lazy"
                 src={icon.src || "/placeholder.svg"}
                 className="z-20 w-10 h-10 object-cover"
                 alt={icon.name}

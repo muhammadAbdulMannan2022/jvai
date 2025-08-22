@@ -50,6 +50,7 @@ export default function AboutLead() {
           className={`bg-gradient-to-l from-blue-500 to-blue-900 text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold pb-4 sm:pb-5 md:pb-[20px]`}
         />
         <img
+          loading="lazy"
           className="absolute top-0 right-0 h-[60px] sm:h-[80px] md:h-[100px] w-auto max-w-[100px] sm:max-w-[150px] md:max-w-[200px]"
           src="/aboutus/aboutS2Tb.png"
           alt=""
@@ -71,6 +72,7 @@ export default function AboutLead() {
           <div className="flex gap-2 w-full h-auto">
             <div className="w-1/2 rounded-xl overflow-hidden">
               <img
+                loading="lazy"
                 src="/aboutus/lead2.png"
                 className="w-full h-full object-cover"
                 alt=""
@@ -78,6 +80,7 @@ export default function AboutLead() {
             </div>
             <div className="w-1/2 rounded-xl overflow-hidden">
               <img
+                loading="lazy"
                 src="/aboutus/lead1.png"
                 className="w-full h-full object-cover"
                 alt=""
@@ -87,6 +90,7 @@ export default function AboutLead() {
           </div>
           <div className="w-full rounded-xl h-[350px] overflow-hidden">
             <img
+              loading="lazy"
               src="/aboutus/lead2.png"
               className="w-full"
               alt=""
@@ -101,7 +105,7 @@ export default function AboutLead() {
               We are a team of expert AI specialists, developers, and strategists who have been delivering digital success for more than a decade. We excel at creating intelligent websites, innovative web apps, and powerful mobile applications that deliver results.
             </p>
             <div className="flex items-center h-[60px] sm:h-[80px] md:h-[100px] gap-4 sm:gap-6 md:gap-10">
-              <img src="/arrowG.png" alt="" className="h-[60%] sm:h-[70%] md:h-[80%]" />
+              <img loading="lazy" src="/arrowG.png" alt="" className="h-[60%] sm:h-[70%] md:h-[80%]" />
               <GradientTitle
                 text={"Creative & digital ideas"}
                 className="bg-gradient-to-l from-blue-500 to-purple-400 text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-none pb-2 sm:pb-3 md:pb-4"
@@ -114,6 +118,7 @@ export default function AboutLead() {
                 {/* <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[70px] md:h-[60px] p-2 bg-blue-100 rounded-xl flex items-center justify-center"> */}
 
                 <img
+                  loading="lazy"
                   src={info?.icon}
                   alt=""
                   className="h-[50px] w-[50px] "

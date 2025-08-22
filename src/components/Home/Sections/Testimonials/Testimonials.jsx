@@ -94,6 +94,7 @@ const Testimonials = () => {
                 <div className="card bg-white flex flex-row-reverse rounded-xl shadow-lg p-4 w-[700px] h-[400px] text-left space-x-4 space-x-reverse">
                   <div className="md:w-1/2 w-full h-full">
                     <img
+                      loading="lazy"
                       src={baseUri + testimonial.client_picture}
                       alt={`${testimonial.name}'s company logo`}
                       className="w-full h-full object-cover rounded-xl"

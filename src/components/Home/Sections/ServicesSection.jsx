@@ -35,6 +35,7 @@ const MobileServiceItem = ({ service, index, setActiveIndex }) => {
           }}
         >
           <img
+            loading="lazy"
             src={service.leftImage}
             alt={`${service.centerTitle} left image`}
             className="w-full h-full object-contain"
@@ -47,6 +48,7 @@ const MobileServiceItem = ({ service, index, setActiveIndex }) => {
           }}
         >
           <img
+            loading="lazy"
             src={service.rightImage}
             alt={`${service.centerTitle} right image`}
             className="w-full h-full object-contain"
@@ -76,6 +78,7 @@ const DesktopImageColumn = ({ service, image, altText, index, setActiveIndex }) 
       }}
     >
       <img
+        loading="lazy"
         src={image}
         alt={altText}
         className="w-full h-full object-contain"

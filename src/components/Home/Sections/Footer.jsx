@@ -29,6 +29,7 @@ const Footer = () => {
         <div className="flex flex-col items-center md:items-start w-full md:w-1/5">
           <div className="text-2xl font-bold text-blue-500 mb-2">
             <img
+              loading="lazy"
               src="/logoB.png"
               className="w-[150px] md:max-w-[200px]"
               alt="JVAI Logo"
@@ -144,7 +145,7 @@ const Footer = () => {
 
       {/* Large Logo at Bottom */}
       <div className="mt-8 flex justify-center items-end">
-        <img src="/footer.png" alt="Footer Graphic" />
+        <img loading="lazy" src="/footer.png" alt="Footer Graphic" />
       </div>
     </footer>
   );

@@ -5,6 +5,7 @@ export default function ArticleCard({ date, title, description, image, id }) {
     <div className="flex flex-col gap-6 shadow mt-10 rounded-xl">
       <div className="w-full">
         <img
+          loading="lazy"
           src={image || "/placeholder.svg"}
           alt={title}
           className="w-full max-h-[400px] object-cover rounded-md"

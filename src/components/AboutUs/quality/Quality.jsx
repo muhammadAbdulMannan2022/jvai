@@ -56,6 +56,7 @@ export default function Quality() {
             <div className="p-4 sm:p-6 flex flex-col items-center text-center">
               <div className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-full bg-blue-100 flex items-center justify-center mb-3 sm:mb-4 overflow-hidden">
                 <img
+                  loading="lazy"
                   src={info?.icon}
                   alt={info?.title}
                   className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 object-contain"

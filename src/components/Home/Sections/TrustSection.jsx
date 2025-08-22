@@ -39,6 +39,7 @@ const LogoMarquee = ({ direction = "left" }) => {
       >
         {repeated.map((src, index) => (
           <img
+            loading="lazy"
             key={index}
             src={src}
             alt={`logo-${index}`}

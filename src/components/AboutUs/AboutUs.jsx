@@ -30,6 +30,7 @@ export default function AboutUs() {
           {/* Arrow */}
           <div className="h-[150px]">
             <img
+              loading="lazy"
               src="/arrowG.png"
               alt="Arrow"
               className="h-full max-h-16 mt-2"
@@ -37,6 +38,7 @@ export default function AboutUs() {
           </div>
           <div className="h-full max-h-[500px] overflow-hidden rounded-2xl hidden md:block">
             <img
+              loading="lazy"
               src="/aboutus/aboutLead1.png"
               className="w-full rounded-2xl"
               alt=""
@@ -70,6 +72,7 @@ export default function AboutUs() {
         <div className="w-[25%] md:flex items-start hidden">
           <div className="h-full max-h-[500px] overflow-hidden rounded-2xl">
             <img
+              loading="lazy"
               src="/aboutus/aboutLead2.png"
               className="w-full rounded-2xl"
               alt=""

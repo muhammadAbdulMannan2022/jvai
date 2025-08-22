@@ -37,7 +37,7 @@ export default function BlogDetails() {
     <div className="w-full px-5 md:px-40 py-16 max-w-7xl">
       <div className="flex flex-col items-center justify-center">
         <div className="flex items-center justify-center w-full max-h-[600px] overflow-hidden rounded-2xl">
-          <img className="w-full rounded" src={blog.picture} alt={blog.title} />
+          <img loading="lazy" className="w-full rounded" src={blog.picture} alt={blog.title} />
         </div>
         <div className="pt-16 w-full">
           <p className="text-sm text-gray-500 mb-2 flex items-center gap-2">

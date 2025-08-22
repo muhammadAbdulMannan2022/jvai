@@ -5,6 +5,7 @@ export default function PersonDetails({ name, image, position, info, email = "ex
         <div className="flex flex-col items-start text-center p-3 bg-gray-50 rounded-b-lg"> {/* Reduced padding, added light background */}
             <div className="flex items-start gap-4">
                 <img
+                    loading="lazy"
                     src={image || "/placeholder.svg?height=128&width=128&query=person profile"}
                     alt={name}
                     width={128}

@@ -49,7 +49,7 @@ export default function CareerMain() {
         <div className="w-full flex flex-col md:flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-5 mt-2 sm:mt-4 md:mt-6 lg:mt-8 mx-auto">
           <div className="relative flex items-center justify-center flex-col w-full md:w-[40%]">
             <h1 className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-500">Career</h1>
-            <img className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto" src="/career/arrowLongL.png" alt="" />
+            <img loading="lazy" className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto" src="/career/arrowLongL.png" alt="" />
           </div>
           <div className="w-full md:w-[60%]">
             <p className="text-[#464646] text-xs sm:text-sm md:text-base lg:text-lg text-center md:text-left">
@@ -67,6 +67,7 @@ export default function CareerMain() {
           {/* Sticky Image */}
           <div className="w-full sm:sticky top-10">
             <img
+              loading="lazy"
               className="w-full h-auto max-h-[30vh] sm:max-h-[40vh] md:max-h-[50vh] rounded-xl object-cover"
               src="/career/1.png"
               alt="Sticky"
@@ -83,6 +84,7 @@ export default function CareerMain() {
               className="w-full md:w-1/2"
             >
               <img
+                loading="lazy"
                 className="rounded-xl w-full h-auto max-h-[30vh] sm:max-h-[40vh] md:max-h-[50vh] object-cover"
                 src="/career/2.png"
                 alt="Left"
@@ -97,6 +99,7 @@ export default function CareerMain() {
               className="w-full md:w-1/2"
             >
               <img
+                loading="lazy"
                 className="rounded-xl w-full h-auto max-h-[30vh] sm:max-h-[40vh] md:max-h-[50vh] object-cover"
                 src="/career/3.png"
                 alt="Right"

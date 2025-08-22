@@ -48,6 +48,7 @@ export default function BlogEditor() {
                     {imagePreview ? (
                         <div className="relative group mb-6">
                             <img
+                                loading="lazy"
                                 src={imagePreview}
                                 alt="Preview"
                                 className="w-full h-64 object-cover rounded-lg shadow"
@@ -65,8 +66,8 @@ export default function BlogEditor() {
                     ) : (
                         <label
                             className={`flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer transition ${isDragOver
-                                    ? "border-blue-400 bg-blue-50"
-                                    : "border-slate-300 hover:border-slate-400"
+                                ? "border-blue-400 bg-blue-50"
+                                : "border-slate-300 hover:border-slate-400"
                                 }`}
                             onDragOver={(e) => {
                                 e.preventDefault();

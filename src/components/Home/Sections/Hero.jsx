@@ -27,7 +27,7 @@ export default function Hero() {
           <div className="flex flex-row-reverse items-center justify-start gap-5 ">
             <div className="flex items-center justify-center gap-2 sm:gap-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 p-1.5 bg-white rounded-full flex items-center justify-center">
-                <img src="/logoOnly.png" alt="JVAI logo" className="w-full h-full object-contain" />
+                <img loading="lazy" src="/logoOnly.png" alt="JVAI logo" className="w-full h-full object-contain" />
               </div>
               <div className="">
                 <div className="flex items-center gap-1 sm:gap-2">

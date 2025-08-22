@@ -161,6 +161,7 @@ const PersonCard = ({ person, onClick, delay = 0, isGM = false }) => {
                 <div className="mb-4">
                     <div className={`${cardSize} mx-auto relative rounded-full overflow-hidden ring-2 ring-blue-200 shadow-lg group-hover:ring-4 group-hover:ring-blue-300 transition-all duration-500`}>
                         <img
+                            loading='lazy'
                             src={person.image || "/placeholder.svg"}
                             alt={person.name}
                             className="w-full h-full object-cover"

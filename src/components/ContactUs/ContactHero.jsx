@@ -76,6 +76,7 @@ export default function ContactHero() {
                 className="overflow-hidden rounded-full border-2 border-white w-14 h-14"
               >
                 <img
+                  loading="lazy"
                   src={member.image}
                   alt={member.alt}
                   width={60}
