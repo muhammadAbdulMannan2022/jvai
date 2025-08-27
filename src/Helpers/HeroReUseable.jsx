@@ -6,7 +6,7 @@ export default function HeroReUseable({
   title = "",
   pageTitle = "",
   desc = "",
-  height = "min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] lg:h-[80vh]",
+  height = "h-screen",
 }) {
   return (
     <div

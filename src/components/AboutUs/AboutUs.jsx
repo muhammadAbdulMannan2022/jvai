@@ -12,6 +12,7 @@ export default function AboutUs() {
   return (
     <div className="text-[#515151]">
       <HeroReUseable
+        height="h-screen"
         pageTitle={"About Us"}
         title={
           <>

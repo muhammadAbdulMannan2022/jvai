@@ -65,7 +65,7 @@ export default function TeamHero({
     return (
         <section
             ref={heroRef}
-            className="relative w-full min-h-[400px] h-[60vh] flex flex-col items-center justify-center text-white overflow-hidden"
+            className="relative w-full min-h-[400px] h-[100vh] flex flex-col items-center justify-center text-white overflow-hidden"
         >
             {/* Background Image */}
             <div
