@@ -5,7 +5,7 @@ import { useSendToBotMutation } from '../../redux/features/apiSlice';
 const initialMessages = [
     {
         id: '1',
-        text: "Hi! I'm PIAL from JVAI. How can I help you today?",
+        text: "Hi! Your JVAI buddy is here. How can I help you today?",
         isUser: false,
         timestamp: new Date(Date.now() - 60000),
         status: 'sent'
