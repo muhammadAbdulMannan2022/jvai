@@ -29,7 +29,9 @@ export default function ContactLocation() {
           <li className="flex items-start gap-2 sm:gap-3 md:gap-4">
             <PiMapPinLineFill className="text-lg sm:text-xl md:text-2xl text-blue-500 mt-1" />
             <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
-              <strong className="text-blue-500 text-sm sm:text-base md:text-lg">Address:</strong>
+              <strong className="text-blue-500 text-sm sm:text-base md:text-lg">
+                Address:
+              </strong>
               <p className="text-gray-900 text-sm sm:text-base w-full max-w-full sm:max-w-md">
                 Police Park, House #05, Road #10, floor- Lift-8. Block D,
                 Banasree, Dhaka 1219
@@ -41,7 +43,9 @@ export default function ContactLocation() {
           <li className="flex items-center gap-2 sm:gap-3 md:gap-4">
             <FaPhoneAlt className="text-lg sm:text-xl md:text-xl text-blue-500 mt-1" />
             <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
-              <strong className="text-blue-500 text-sm sm:text-base md:text-lg">Phone:</strong>
+              <strong className="text-blue-500 text-sm sm:text-base md:text-lg">
+                Phone:
+              </strong>
               <p className="text-gray-900 text-sm sm:text-base">+0123456789</p>
             </div>
           </li>
@@ -50,13 +54,19 @@ export default function ContactLocation() {
           <li className="flex items-center gap-2 sm:gap-3 md:gap-4">
             <IoMail className="text-lg sm:text-xl md:text-2xl text-blue-500 mt-1" />
             <div className="flex flex-col sm:flex-row gap-1 sm:gap-2">
-              <strong className="text-blue-500 text-sm sm:text-base md:text-lg">Email:</strong>
-              <p className="text-gray-900 text-sm sm:text-base">info@example.com</p>
+              <strong className="text-blue-500 text-sm sm:text-base md:text-lg">
+                Email:
+              </strong>
+              <p className="text-gray-900 text-sm sm:text-base">
+                info@joinventureai.com
+              </p>
             </div>
           </li>
         </ul>
         <div>
-          <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-900">Follow Us</h1>
+          <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-blue-900">
+            Follow Us
+          </h1>
           <div className="flex gap-1 sm:gap-2 text-2xl sm:text-3xl">
             <Link className="hover:cursor-pointer transition-colors duration-100 text-blue-800 hover:text-blue-600">
               <FaFacebookSquare />
@@ -73,7 +83,15 @@ export default function ContactLocation() {
 
       {/* Right - Map */}
       <div className="w-full lg:w-1/2 h-[40vh] sm:h-[50vh] md:h-[60vh]">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0606618653414!2d90.40497267602359!3d23.780854087605178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c71f812bea6b%3A0xc289a221fd0c83e5!2sAQUA%20Tower!5e0!3m2!1sen!2sbd!4v1755239011079!5m2!1sen!2sbd" width="600" height="450" className="border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0606618653414!2d90.40497267602359!3d23.780854087605178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c71f812bea6b%3A0xc289a221fd0c83e5!2sAQUA%20Tower!5e0!3m2!1sen!2sbd!4v1755239011079!5m2!1sen!2sbd"
+          width="600"
+          height="450"
+          className="border-0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   );

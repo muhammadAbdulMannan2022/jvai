@@ -6,6 +6,8 @@ export default function VideoPlayer({ src, isPlaying, onToggle, muted = true, th
   const progressRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [showControls, setShowControls] = useState(false);
+  const [hasError, setHasError] = useState(false); // State to track if there's an error
+
   // Play/pause based on parent
   useEffect(() => {
     const video = videoRef.current;
@@ -17,6 +19,7 @@ export default function VideoPlayer({ src, isPlaying, onToggle, muted = true, th
       video.pause();
     }
   }, [isPlaying]);
+
   // Update progress
   const handleTimeUpdate = () => {
     const video = videoRef.current;
@@ -44,26 +47,40 @@ export default function VideoPlayer({ src, isPlaying, onToggle, muted = true, th
     onToggle();
   };
 
+  // Handle video error
+  const handleError = () => {
+    setHasError(true); // Set error state to true
+  };
+
   return (
     <div
       className="relative w-full h-full overflow-hidden bg-black rounded-lg"
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
-      <video
-        ref={videoRef}
-        src={src}
-        className="w-full h-full object-cover"
-        muted={muted}
-        playsInline
-        onTimeUpdate={handleTimeUpdate}
-      />
-      {
-        !isPlaying && thum && <img src={thum} alt="thum" className="absolute top-0 left-0 right-0 h-full w-full" />
-      }
+      {!hasError ? (
+        <video
+          ref={videoRef}
+          src={src}
+          className="w-full h-full object-cover"
+          muted={muted}
+          playsInline
+          onTimeUpdate={handleTimeUpdate}
+          onError={handleError} // Attach error handler to the video element
+        />
+      ) : null}
+
+      {/* Show thumbnail if not playing and video has error */}
+      {!isPlaying && thum && !hasError && (
+        <img
+          src={thum}
+          alt="thum"
+          className="absolute top-0 left-0 right-0 h-full w-full"
+        />
+      )}
 
       {/* Play icon only shown when paused */}
-      {!isPlaying && (
+      {!isPlaying && !hasError && (
         <div
           className="absolute inset-0 flex items-center justify-center z-20 cursor-pointer"
           onClick={handleClick}
@@ -75,7 +92,7 @@ export default function VideoPlayer({ src, isPlaying, onToggle, muted = true, th
       )}
 
       {/* Transparent click layer when playing */}
-      {isPlaying && (
+      {isPlaying && !hasError && (
         <div
           className="absolute inset-0 z-10 cursor-pointer"
           onClick={handleClick}
@@ -83,7 +100,7 @@ export default function VideoPlayer({ src, isPlaying, onToggle, muted = true, th
       )}
 
       {/* Progress bar, shown on hover */}
-      {showControls && (
+      {showControls && !hasError && (
         <div>
           <div
             ref={progressRef}

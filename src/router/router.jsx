@@ -15,7 +15,9 @@ const AboutUs = lazy(() => import("../components/AboutUs/AboutUs"));
 
 const Career = lazy(() => import("../components/career/Career"));
 const CareerMain = lazy(() => import("../components/career/CareerMain"));
-const JobDetails = lazy(() => import("../components/career/jobDetails/JobDetails"));
+const JobDetails = lazy(() =>
+  import("../components/career/jobDetails/JobDetails")
+);
 const ApplyJob = lazy(() => import("../components/career/Apply/ApplyJob"));
 const ContactUs = lazy(() => import("../components/ContactUs/ContactUs"));
 const Work = lazy(() => import("../components/Work/Work"));
@@ -23,27 +25,28 @@ const Projects = lazy(() => import("../components/Projects/Projects"));
 const Blog = lazy(() => import("../components/Blog/Blog"));
 const BlogMain = lazy(() => import("../components/Blog/BlogMain"));
 const BlogDetails = lazy(() => import("../components/BlogDetails/BlogDetails"));
-const ProjectHome = lazy(() => import("../components/Projects/ProjectHome"))
+const ProjectHome = lazy(() => import("../components/Projects/ProjectHome"));
 
 // Intro video component with 5-second playback, fade-out effect, and scroll prevention
 const IntroVideo = ({ onVideoEnd }) => {
   const videoRef = useRef();
   const [fadeOut, setFadeOut] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [hasError, setHasError] = useState(false); // State to track video loading errors
 
   useEffect(() => {
     const video = videoRef.current;
     document.body.style.height = "100vh";
     document.body.style.overflow = "hidden";
 
-    if (video) {
-      // Start video playback
+    if (video && !hasError) {
+      // Start video playback if no error
       video.play().catch((error) => {
         console.error("Video playback failed:", error);
       });
 
-      // Monitor video progress to stop at 5 seconds and trigger fade-out
+      // Monitor video progress to stop at 3.5 seconds and trigger fade-out
       const handleTimeUpdate = () => {
         if (video.currentTime >= 3.5) {
           video.pause();
@@ -51,7 +54,6 @@ const IntroVideo = ({ onVideoEnd }) => {
           // Hide video and re-enable scrolling after fade-out
           setTimeout(() => {
             setIsVisible(false);
-
             onVideoEnd();
             document.body.style.height = "auto";
             document.body.style.overflow = "auto";
@@ -65,14 +67,24 @@ const IntroVideo = ({ onVideoEnd }) => {
         video.removeEventListener("timeupdate", handleTimeUpdate);
       };
     }
-  }, [onVideoEnd]);
+  }, [onVideoEnd, hasError]); // Adding hasError as a dependency
 
-  if (!isVisible) return null;
+  // Handle video loading error
+  const handleVideoError = () => {
+    setHasError(true); // Mark video as failed to load
+    setIsVisible(false); // Hide video component
+    document.body.style.height = "auto";
+    document.body.style.overflow = "auto"; // Restore scroll behavior
+    onVideoEnd(); // Call the onVideoEnd callback immediately, even if video fails to load
+  };
+
+  if (!isVisible || hasError) return null; // If video has error, don't render it
 
   return (
     <div
-      className={`fixed cursor-pointer inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-1000 max-w-screen ${fadeOut ? "opacity-0" : "opacity-100"
-        }`}
+      className={`fixed cursor-pointer inset-0 flex items-center justify-center bg-black z-50 transition-opacity duration-1000 max-w-screen ${
+        fadeOut ? "opacity-0" : "opacity-100"
+      }`}
     >
       <video
         autoPlay
@@ -80,8 +92,12 @@ const IntroVideo = ({ onVideoEnd }) => {
         playsInline
         ref={videoRef}
         className="w-full h-full object-cover"
+        onError={handleVideoError} // Attach the error handler
       >
-        <source src="https://res.cloudinary.com/dglh0rizj/video/upload/v1755089298/intro_p9xm4n.mp4" type="video/mp4" />
+        <source
+          src="https://res.cloudinary.com/dn98ksbcf/video/upload/v1757577714/MicrosoftTeams-video_koqq5l.mp4"
+          type="video/mp4"
+        />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -178,7 +194,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/team",
-        element: <Team />
+        element: <Team />,
       },
       {
         path: "/work",
@@ -222,8 +238,8 @@ const router = createBrowserRouter([
           },
           {
             path: "create",
-            element: <BlogEdit />
-          }
+            element: <BlogEdit />,
+          },
         ],
       },
     ],
