@@ -46,7 +46,9 @@ export default function ContactLocation() {
               <strong className="text-blue-500 text-sm sm:text-base md:text-lg">
                 Phone:
               </strong>
-              <p className="text-gray-900 text-sm sm:text-base">+0123456789</p>
+              <p className="text-gray-900 text-sm sm:text-base">
+                +880 1332-840935.
+              </p>
             </div>
           </li>
 
@@ -68,15 +70,23 @@ export default function ContactLocation() {
             Follow Us
           </h1>
           <div className="flex gap-1 sm:gap-2 text-2xl sm:text-3xl">
-            <Link className="hover:cursor-pointer transition-colors duration-100 text-blue-800 hover:text-blue-600">
+            <a
+              target="_blank"
+              href="https://www.facebook.com/joinventureai/"
+              className="hover:cursor-pointer transition-colors duration-100 text-blue-800 hover:text-blue-600"
+            >
               <FaFacebookSquare />
-            </Link>
+            </a>
             <Link className="hover:cursor-pointer transition-colors duration-100 text-blue-500 hover:text-blue-400">
               <FaTwitterSquare />
             </Link>
-            <Link className="hover:cursor-pointer transition-colors duration-100 text-pink-600 hover:text-orange-600">
+            <a
+              target="_blank"
+              href="https://www.instagram.com/joinventure.ai/"
+              className="hover:cursor-pointer transition-colors duration-100 text-pink-600 hover:text-orange-600"
+            >
               <FaInstagramSquare />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
