@@ -60,8 +60,12 @@ export default function ProjectsCard({
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between w-full gap-4 sm:gap-5">
           <div className="w-full sm:w-[64%]">
-            <h1 className="text-2xl sm:text-4xl text-blue-950 font-bold mb-2">{title}</h1>
-            <p className="text-base sm:text-xl text-gray-700">{description}</p>
+            <h1 className="text-2xl sm:text-4xl text-blue-950 font-bold mb-2">
+              {title}
+            </h1>
+            <p className="text-base sm:text-xl text-gray-700 line-clamp-1">
+              {description}
+            </p>
           </div>
           <div className="w-full sm:w-[35%] flex flex-row sm:flex-col justify-between items-start sm:items-end gap-2 sm:gap-0">
             <div className="flex items-center gap-2 text-gray-600 text-xs sm:text-sm">

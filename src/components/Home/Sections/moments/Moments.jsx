@@ -7,10 +7,13 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "./moments.css";
-import { baseUri, useGetMomentsInJvaiQuery, } from "../../../../redux/features/apiSlice";
+import {
+  baseUri,
+  useGetMomentsInJvaiQuery,
+} from "../../../../redux/features/apiSlice";
 
 export default function MomentsSwiper() {
-  const { data, isLoading } = useGetMomentsInJvaiQuery()
+  const { data, isLoading } = useGetMomentsInJvaiQuery();
   const renderImages = (images) => {
     const count = images.length;
 
@@ -133,26 +136,32 @@ export default function MomentsSwiper() {
               <SwiperSlide key={activity.id}>
                 <div className="bg-[#B2C7FF] rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[600px] text-left p-5 h-fit md:h-[700px]">
                   <div className="pb-5">
-                    <h3 className="text-xl font-semibold">{activity.activity_title}</h3>
+                    <h3 className="text-xl font-semibold">
+                      {activity.activity_title}
+                    </h3>
                     <div className="flex items-center text-sm text-blue-950 mt-1">
                       <Calendar className="h-4 w-4 mr-1" />
-                      <span>{new Date(activity.activity_date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                      })}</span>
+                      <span>
+                        {new Date(activity.activity_date).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                          }
+                        )}
+                      </span>
                     </div>
                   </div>
                   {renderImages(
                     activity.activity_pictures.map((pic) => ({
                       id: pic.id,
-                      src: baseUri + pic.file,
+                      src: pic.file_url,
                       alt: "Activity Image",
                     }))
                   )}
                 </div>
               </SwiperSlide>
             ))}
-
           </Swiper>
         </div>
       </div>

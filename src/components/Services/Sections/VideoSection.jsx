@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useEffect, useState, useRef, useMemo } from "react"
-import { ChevronLeft, ChevronRight, Play } from "lucide-react"
-import VideoPlayer from "../../../Helpers/VideoPlayer"
-import Button from "../../../Helpers/Button"
-import { useGetAllCategoriesQuery } from "../../../redux/features/apiSlice"
+import { useEffect, useState, useRef, useMemo } from "react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import VideoPlayer from "../../../Helpers/VideoPlayer";
+import Button from "../../../Helpers/Button";
+import { useGetAllCategoriesQuery } from "../../../redux/features/apiSlice";
 
 // INDIVIDUAL CARD COMPONENT
 const VideoCard = ({
@@ -18,14 +18,18 @@ const VideoCard = ({
   index,
   setActiveIndex,
 }) => {
-  const { title, desc, videoSrc, image, services, color } = data
+  const { title, desc, videoSrc, image, services, color } = data;
 
   return (
     <div
       className={`
         transition-all duration-500 overflow-hidden relative rounded-lg shadow-md bg-cover bg-center
         ${!isActive ? "hover:cursor-pointer" : ""}
-        ${isActive ? "w-full h-[70vh]" : "w-full h-[100px] md:w-[100px] md:h-[70vh]"}
+        ${
+          isActive
+            ? "w-full h-[70vh]"
+            : "w-full h-[100px] md:w-[100px] md:h-[70vh]"
+        }
       `}
       onClick={() => !isActive && setActiveIndex(index)}
       style={{ backgroundImage: `url(${image})` }}
@@ -36,7 +40,10 @@ const VideoCard = ({
             {/* Active Header */}
             <div className="w-full h-[10%] relative flex items-center justify-end py-4 px-6 lg:px-10">
               <div className="w-full flex items-center justify-end gap-4">
-                <span className="w-4 h-4 rounded-full block" style={{ backgroundColor: color }} />
+                <span
+                  className="w-4 h-4 rounded-full block"
+                  style={{ backgroundColor: color }}
+                />
                 <span className="font-bold text-white" style={{ color: color }}>
                   {title}
                 </span>
@@ -47,10 +54,15 @@ const VideoCard = ({
             <div className="w-full flex-1 overflow-y-auto md:overflow-visible">
               <div className="p-4 sm:p-6 text-white relative z-10 flex flex-col md:flex-row gap-4 md:gap-10 items-center">
                 <div className="w-full md:w-1/2">
-                  <h2 className="text-2xl lg:text-5xl font-bold mb-2" style={{ color: color }}>
+                  <h2
+                    className="text-2xl lg:text-5xl font-bold mb-2"
+                    style={{ color: color }}
+                  >
                     {title}
                   </h2>
-                  <p className="text-sm lg:text-[16px] my-8 line-clamp-6">{desc}</p>
+                  <p className="text-sm lg:text-[16px] my-8 line-clamp-6">
+                    {desc}
+                  </p>
                   <ul className="list-decimal list-inside space-y-1 text-sm lg:text-lg font-bold mb-6">
                     {services.map((service, i) => (
                       <li key={i}>{service}</li>
@@ -59,7 +71,13 @@ const VideoCard = ({
                   <Button to={"/contact"} text={"Contact Us"} />
                 </div>
                 <div className="w-full md:w-1/2 h-[25vh] md:h-[30vh] flex items-center justify-center">
-                  <VideoPlayer src={videoSrc} isPlaying={isPlaying} onToggle={onToggle} />
+                  <div className="aspect-video">
+                    <VideoPlayer
+                      src={videoSrc}
+                      isPlaying={isPlaying}
+                      onToggle={onToggle}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,8 +116,14 @@ const VideoCard = ({
             {/* Inactive state content - Mobile */}
             <div className="flex items-center justify-center h-full px-4 md:hidden">
               <div className="flex items-center gap-4">
-                <div className="w-[30px] h-[30px] rounded-full shrink-0" style={{ backgroundColor: color }} />
-                <span className="font-medium tracking-wide text-white" style={{ color: color }}>
+                <div
+                  className="w-[30px] h-[30px] rounded-full shrink-0"
+                  style={{ backgroundColor: color }}
+                />
+                <span
+                  className="font-medium tracking-wide text-white"
+                  style={{ color: color }}
+                >
                   {title}
                 </span>
               </div>
@@ -107,7 +131,10 @@ const VideoCard = ({
 
             {/* Inactive state content - Desktop */}
             <div className="hidden md:flex flex-col items-center justify-center h-full px-4">
-              <div className="w-[30px] h-[30px] rounded-full shrink-0 mb-2" style={{ backgroundColor: color }} />
+              <div
+                className="w-[30px] h-[30px] rounded-full shrink-0 mb-2"
+                style={{ backgroundColor: color }}
+              />
               <div
                 style={{
                   writingMode: "vertical-rl",
@@ -134,18 +161,18 @@ const VideoCard = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
 // MAIN SECTION
 export default function VideoSection() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const intervalRef = useRef(null)
-  const progressRef = useRef(0)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef(null);
+  const progressRef = useRef(0);
 
-  const { data: apiResponse, isLoading } = useGetAllCategoriesQuery()
+  const { data: apiResponse, isLoading } = useGetAllCategoriesQuery();
 
   const categories = useMemo(() => {
     return (
@@ -154,62 +181,67 @@ export default function VideoSection() {
         desc: item.category_description,
         services: item.key_points?.map((point) => point.point_name) || [],
         image: item.category_background_image,
-        color: `#${Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0")}`,
+        color: `#${Math.floor(Math.random() * 0xffffff)
+          .toString(16)
+          .padStart(6, "0")}`,
         videoSrc:
           item.category_video ||
           "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
       })) || []
-    )
-  }, [apiResponse])
+    );
+  }, [apiResponse]);
 
   const goToIndex = (index) => {
-    setActiveIndex(index)
-    setProgress(0)
-    progressRef.current = 0
-    setIsPlaying(false)
-  }
+    setActiveIndex(index);
+    setProgress(0);
+    progressRef.current = 0;
+    setIsPlaying(false);
+  };
 
   const goToNext = () => {
-    if (categories.length) goToIndex((activeIndex + 1) % categories.length)
-  }
+    if (categories.length) goToIndex((activeIndex + 1) % categories.length);
+  };
 
   const goToPrev = () => {
-    if (categories.length) goToIndex((activeIndex - 1 + categories.length) % categories.length)
-  }
+    if (categories.length)
+      goToIndex((activeIndex - 1 + categories.length) % categories.length);
+  };
 
   // PROGRESS AUTO-ADVANCE
   useEffect(() => {
     if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-      intervalRef.current = null
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
 
     if (!isPlaying && categories.length > 0) {
       intervalRef.current = setInterval(() => {
-        progressRef.current += 2
+        progressRef.current += 2;
         if (progressRef.current >= 100) {
-          clearInterval(intervalRef.current)
-          intervalRef.current = null
-          progressRef.current = 0
-          setProgress(0)
-          setIsPlaying(false)
-          setActiveIndex((prev) => (prev + 1) % categories.length)
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+          progressRef.current = 0;
+          setProgress(0);
+          setIsPlaying(false);
+          setActiveIndex((prev) => (prev + 1) % categories.length);
         } else {
-          setProgress(progressRef.current)
+          setProgress(progressRef.current);
         }
-      }, 100)
+      }, 100);
     }
 
     return () => {
       if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-        intervalRef.current = null
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
       }
-    }
-  }, [activeIndex, isPlaying, categories.length])
+    };
+  }, [activeIndex, isPlaying, categories.length]);
 
   if (isLoading) {
-    return <div className="text-center py-20 text-xl">Loading categories...</div>
+    return (
+      <div className="text-center py-20 text-xl">Loading categories...</div>
+    );
   }
 
   return (
@@ -223,7 +255,7 @@ export default function VideoSection() {
             isPlaying={index === activeIndex && isPlaying}
             onToggle={() => {
               if (index === activeIndex) {
-                setIsPlaying((prev) => !prev)
+                setIsPlaying((prev) => !prev);
               }
             }}
             progress={index === activeIndex ? progress : 0}
@@ -235,5 +267,5 @@ export default function VideoSection() {
         ))}
       </div>
     </div>
-  )
+  );
 }

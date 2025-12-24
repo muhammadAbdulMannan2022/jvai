@@ -3,7 +3,10 @@ import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaEye } from "react-icons/fa";
 import Title from "../../../Helpers/Title"; // Adjust path if necessary
-import { baseUri, useGetAllCategoriesQuery } from "../../../redux/features/apiSlice"; // Adjust path if necessary
+import {
+  baseUri,
+  useGetAllCategoriesQuery,
+} from "../../../redux/features/apiSlice"; // Adjust path if necessary
 import { useNavigate } from "react-router";
 
 // Child Component for Mobile Viewport
@@ -17,13 +20,11 @@ const MobileServiceItem = ({ service, index, setActiveIndex }) => {
   });
 
   return (
-    <div
-      ref={ref}
-      className="flex flex-col gap-4 sm:gap-6 max-w-xl mx-auto"
-    >
+    <div ref={ref} className="flex flex-col gap-4 sm:gap-6 max-w-xl mx-auto">
       <h3
-        className={`text-lg sm:text-xl font-bold text-blue-900 ${inView ? "opacity-100" : "opacity-50"
-          } transition-opacity duration-300`}
+        className={`text-lg sm:text-xl font-bold text-blue-900 ${
+          inView ? "opacity-100" : "opacity-50"
+        } transition-opacity duration-300`}
       >
         {service.centerTitle}
       </h3>
@@ -60,7 +61,13 @@ const MobileServiceItem = ({ service, index, setActiveIndex }) => {
 };
 
 // Child Component for Desktop Viewport Columns
-const DesktopImageColumn = ({ service, image, altText, index, setActiveIndex }) => {
+const DesktopImageColumn = ({
+  service,
+  image,
+  altText,
+  index,
+  setActiveIndex,
+}) => {
   const { ref } = useInView({
     threshold: 0.6,
     triggerOnce: false,
@@ -87,7 +94,6 @@ const DesktopImageColumn = ({ service, image, altText, index, setActiveIndex }) 
   );
 };
 
-
 // Main Parent Component
 const ServicesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -100,8 +106,10 @@ const ServicesSection = () => {
     return data.Data.map((category) => ({
       centerTitle: category.category_name,
       centerDescription: category.category_description,
-      leftImage: category.category_left_picture || category.category_background_image,
-      rightImage: category.category_right_picture || category.category_background_image,
+      leftImage:
+        category.category_left_picture || category.category_background_image,
+      rightImage:
+        category.category_right_picture || category.category_background_image,
       bg: ["#E0EAFD", "#FFFFFF"],
     }));
   }, [data]);
@@ -147,7 +155,7 @@ const ServicesSection = () => {
             <DesktopImageColumn
               key={`left-${i}`}
               service={service}
-              image={baseUri + service.leftImage}
+              image={service.leftImage}
               altText={`${service.centerTitle} left image`}
               index={i}
               setActiveIndex={setActiveIndex}
@@ -169,7 +177,10 @@ const ServicesSection = () => {
               <h3 className="text-2xl font-bold text-blue-900">
                 {services[activeIndex]?.centerTitle}
               </h3>
-              <p title={services[activeIndex]?.centerDescription} className="text-gray-700 mt-2 line-clamp-6">
+              <p
+                title={services[activeIndex]?.centerDescription}
+                className="text-gray-700 mt-2 line-clamp-6"
+              >
                 {services[activeIndex]?.centerDescription}
               </p>
               <button
@@ -189,7 +200,7 @@ const ServicesSection = () => {
             <DesktopImageColumn
               key={`right-${i}`}
               service={service}
-              image={baseUri + service.rightImage}
+              image={service.rightImage}
               altText={`${service.centerTitle} right image`}
               index={i}
               setActiveIndex={setActiveIndex}
